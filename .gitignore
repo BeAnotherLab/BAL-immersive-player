@@ -45,3 +45,8 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Large files
+AudioPlayer/Audios/
+Assets/StreamingAssets/
+Assets/AVProVideo/Demos/
