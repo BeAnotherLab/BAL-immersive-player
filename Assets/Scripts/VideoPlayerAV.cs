@@ -10,6 +10,9 @@ public class VideoPlayerAV : MonoBehaviour {
 	public GameObject loadingImage;
 	private bool isPlaying = false;
 
+	public Vector3 rotationStep1, rotationStep2, rotationStep3;
+	public float rotationTime1, rotationTime2, rotationTime3;
+
 	public GameObject dome;
 
 	public Text currentTimeText;
@@ -26,12 +29,40 @@ public class VideoPlayerAV : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		currentTimeText.text = (_mediaPlayer.Control.GetCurrentTimeMs()/1000).ToString() + " of " + (_mediaPlayer.Info.GetDurationMs()/1000).ToString();
-			/*
-		if (_mediaPlayer.Control.GetCurrentTimeMs () >= 3000) {
-			dome.transform.Rotate(120, 150, 235);
-			Debug.Log ("mi colita");
+		//vecky = Vector3()
+		currentTimeText.text = System.Math.Round((_mediaPlayer.Control.GetCurrentTimeMs()/1000), 2).ToString() + "  of  " + System.Math.Round((_mediaPlayer.Info.GetDurationMs()/1000),2).ToString();
+			
+		if (rotationStep1 != null) {
+			if (_mediaPlayer.Control.GetCurrentTimeMs() >= rotationTime1 && _mediaPlayer.Control.GetCurrentTimeMs() <= (rotationTime1+50))
+				dome.transform.eulerAngles = rotationStep1;
+		}
+
+		if (rotationStep2 != null) {
+			if (_mediaPlayer.Control.GetCurrentTimeMs() >= rotationTime2 && _mediaPlayer.Control.GetCurrentTimeMs() <= (rotationTime2+50))
+				dome.transform.eulerAngles = rotationStep2;
+		}
+
+		if (rotationStep3!= null) {
+			if (_mediaPlayer.Control.GetCurrentTimeMs() >= rotationTime3 && _mediaPlayer.Control.GetCurrentTimeMs() <= (rotationTime3+50))
+				dome.transform.eulerAngles = rotationStep3;
+		}
+		/*if (_mediaPlayer.Control.GetCurrentTimeMs() >= 3000 && _mediaPlayer.Control.GetCurrentTimeMs() <= 3200) {
+
+			Vector3 mocos = new Vector3 (0, 0, 20);
+			dome.transform.eulerAngles = mocos;
+		
+				Debug.Log ("se movio");
+			}
+
+
+		if (_mediaPlayer.Control.GetCurrentTimeMs () >= 5000 && _mediaPlayer.Control.GetCurrentTimeMs () <= 5050) {
+
+			Vector3 mocos = new Vector3 (45, 100, 20);
+			dome.transform.eulerAngles = mocos;
+
+			Debug.Log ("se movio");
 		}*/
+		
 		if(Input.GetKeyDown("c"))
 			InputTracking.Recenter();
 
@@ -59,8 +90,6 @@ public class VideoPlayerAV : MonoBehaviour {
 		if (_mediaPlayer.Control.IsFinished()) {
 				//Application.LoadLevel (0);
 		}
-
 	}
-
-
+		
 }

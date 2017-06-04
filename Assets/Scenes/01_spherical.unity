@@ -343,7 +343,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7933534
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalRotation.y
@@ -355,11 +355,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6087614
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 105
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -764,6 +764,10 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!1 &804115224 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
+  m_PrefabInternal: {fileID: 164336920}
 --- !u!1 &912142101
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +797,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mediaPlayer: {fileID: 1534796029}
   loadingImage: {fileID: 0}
-  dome: {fileID: 1260285988}
+  rotationStep1: {x: 120, y: 25, z: 45}
+  rotationStep2: {x: 135, y: 43, z: 12}
+  rotationStep3: {x: 0, y: 0, z: 0}
+  rotationTime1: 2500
+  rotationTime2: 3200
+  rotationTime3: 7000
+  dome: {fileID: 804115224}
   currentTimeText: {fileID: 247125344}
 --- !u!4 &912142103
 Transform:
@@ -966,10 +976,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1097466582}
---- !u!1 &1260285988 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
-  m_PrefabInternal: {fileID: 164336920}
 --- !u!114 &1534796029
 MonoBehaviour:
   m_ObjectHideFlags: 0
