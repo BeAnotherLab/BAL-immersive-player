@@ -299,7 +299,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.12186928
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalRotation.y
@@ -311,7 +311,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9925462
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_RootOrder
@@ -327,7 +327,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -797,12 +797,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mediaPlayer: {fileID: 1534796029}
   loadingImage: {fileID: 0}
-  rotationStep1: {x: 120, y: 25, z: 45}
-  rotationStep2: {x: 135, y: 43, z: 12}
+  rotationStep1: {x: 0, y: 0, z: 0}
+  rotationStep2: {x: 0, y: 0, z: 0}
   rotationStep3: {x: 0, y: 0, z: 0}
-  rotationTime1: 2500
-  rotationTime2: 3200
-  rotationTime3: 7000
+  rotationTime1: 0
+  rotationTime2: 0
+  rotationTime3: 0
   dome: {fileID: 804115224}
   currentTimeText: {fileID: 247125344}
 --- !u!4 &912142103
@@ -1306,7 +1306,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1827899328}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: -100, z: -175}
+  m_LocalPosition: {x: 0, y: 0, z: -175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 273449340}
