@@ -22,6 +22,7 @@ public class VideoPlayerAV : MonoBehaviour {
 		isPlaying = false;
 		UnityEngine.XR.InputTracking.Recenter();
 
+		_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
 		currentTimeText.fontSize = 14;
 		currentTimeText.color = Color.white;
 	}

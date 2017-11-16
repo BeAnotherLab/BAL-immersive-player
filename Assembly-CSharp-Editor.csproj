@@ -149,6 +149,12 @@
  <Reference Include="UnityEditor.Purchasing">
  <HintPath>C:/Users/BeAnotherLab/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/Editor/UnityEditor.Purchasing.dll</HintPath>
  </Reference>
+ <Reference Include="System.Windows.Forms">
+ <HintPath>C:/Users/BeAnotherLab/Documents/GitHub/BAL-immersive-player/Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll</HintPath>
+ </Reference>
+ <Reference Include="Ookii.Dialogs">
+ <HintPath>C:/Users/BeAnotherLab/Documents/GitHub/BAL-immersive-player/Assets/StandaloneFileBrowser/Plugins/Ookii.Dialogs.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
