@@ -20,7 +20,7 @@ public class VideoPlayerAV : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		isPlaying = false;
-		InputTracking.Recenter();
+		UnityEngine.XR.InputTracking.Recenter();
 
 		currentTimeText.fontSize = 14;
 		currentTimeText.color = Color.white;
@@ -64,7 +64,7 @@ public class VideoPlayerAV : MonoBehaviour {
 		}*/
 		
 		if(Input.GetKeyDown("c"))
-			InputTracking.Recenter();
+			UnityEngine.XR.InputTracking.Recenter();
 
 		if (Input.GetKeyDown ("return")){
 			_mediaPlayer.Control.Stop ();

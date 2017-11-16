@@ -5,61 +5,90 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Main.unity
   - enabled: 0
-    path: Assets/Scenes/video1.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video2.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video3.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video4.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video5.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video6.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video7.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video8.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video9.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video10.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video11.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/video12.unity
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/01_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/02_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/03_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/04_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/05_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/06_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/07_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/08_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/09_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/10_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/11_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/12_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/13_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/14_spherical.unity
-  - enabled: 1
-    path: Assets/Scenes/15_spherical.unity
+    guid: 2543760af0cd35540851fabeaa410427
   - enabled: 0
-    path: Assets/Scenes/08_spherical.unity
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
