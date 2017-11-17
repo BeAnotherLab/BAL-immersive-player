@@ -12,7 +12,9 @@ public class IntroSceneManager : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-		
+
+		XRSettings.showDeviceView = false;
+		//XRSettings.enabled = false;
 	}
 
 	// Update is called once per frame
@@ -26,6 +28,7 @@ public class IntroSceneManager : MonoBehaviour {
 
 	public void onButton1 () {
 		videoPath = "C:/Users/BeAnotherLab/Desktop/HannenFinal.mp4";
+		//StartCoroutine (LoadDevice("Oculus"));
 		SceneManager.LoadScene ("Narrative");
 	}
 
@@ -54,7 +57,17 @@ public class IntroSceneManager : MonoBehaviour {
 		videoPath = videoPath.Replace("\\", "/"); //changing \ slash to / slash
 
 		Debug.Log (videoPath);
+		//StartCoroutine (LoadDevice("Oculus"));
 		SceneManager.LoadScene ("Narrative");
+	}
+
+	IEnumerator LoadDevice(string newDevice) {
+
+		XRSettings.LoadDeviceByName(newDevice);
+
+		yield return null;
+		XRSettings.enabled = true;
+		UnityEngine.XR.InputTracking.Recenter();
 	}
 		
 }

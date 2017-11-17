@@ -4,6 +4,7 @@ using RenderHeads.Media.AVProVideo;
 using UnityEngine.VR;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class VideoPlayerAV : MonoBehaviour {
 	 
@@ -20,8 +21,9 @@ public class VideoPlayerAV : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		isPlaying = false;
-		UnityEngine.XR.InputTracking.Recenter();
+
 
 		_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
 		currentTimeText.fontSize = 14;
@@ -66,6 +68,7 @@ public class VideoPlayerAV : MonoBehaviour {
 
 			Debug.Log ("se movio");
 		}*/
+
 		
 		if(Input.GetKeyDown("c"))
 			UnityEngine.XR.InputTracking.Recenter();
@@ -99,5 +102,7 @@ public class VideoPlayerAV : MonoBehaviour {
 			SceneManager.LoadScene ("Intro Scene");
 		}
 	}
+
+
 		
 }
