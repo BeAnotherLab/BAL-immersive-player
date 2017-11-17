@@ -3,6 +3,7 @@ using System.Collections;
 using RenderHeads.Media.AVProVideo;
 using UnityEngine.VR;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class VideoPlayerAV : MonoBehaviour {
 	 
@@ -47,6 +48,8 @@ public class VideoPlayerAV : MonoBehaviour {
 			if (_mediaPlayer.Control.GetCurrentTimeMs() >= rotationTime3 && _mediaPlayer.Control.GetCurrentTimeMs() <= (rotationTime3+50))
 				dome.transform.eulerAngles = rotationStep3;
 		}
+
+
 		/*if (_mediaPlayer.Control.GetCurrentTimeMs() >= 3000 && _mediaPlayer.Control.GetCurrentTimeMs() <= 3200) {
 
 			Vector3 mocos = new Vector3 (0, 0, 20);
@@ -73,6 +76,10 @@ public class VideoPlayerAV : MonoBehaviour {
 			isPlaying = false;
 		}
 
+		if (Input.GetKeyDown ("escape")){
+			SceneManager.LoadScene ("Intro Scene");
+		}
+
 		if (Input.GetKeyDown ("space")) {
 
 			if (!isPlaying) {
@@ -89,7 +96,7 @@ public class VideoPlayerAV : MonoBehaviour {
 		}
 
 		if (_mediaPlayer.Control.IsFinished()) {
-				//Application.LoadLevel (0);
+			SceneManager.LoadScene ("Intro Scene");
 		}
 	}
 		

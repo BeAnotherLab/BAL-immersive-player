@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SFB;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class IntroSceneManager : MonoBehaviour {
 
@@ -20,7 +21,22 @@ public class IntroSceneManager : MonoBehaviour {
 	}
 
 	public void onOpenFile () {
-			WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", true));
+			WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", false));
+	}
+
+	public void onButton1 () {
+		videoPath = "C:/Users/BeAnotherLab/Desktop/HannenFinal.mp4";
+		SceneManager.LoadScene ("Narrative");
+	}
+
+	public void OnButton2() {
+		videoPath = "C:/Users/BeAnotherLab/Desktop/PascalFinal.mp4";
+		SceneManager.LoadScene ("Narrative");
+	}
+
+	public void OnButton3() {
+		videoPath = "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4";
+		SceneManager.LoadScene ("Narrative");
 	}
 
 	public void WriteResult(string[] paths) {
