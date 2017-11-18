@@ -96,7 +96,7 @@ public class IntroSceneManager : MonoBehaviour {
 
 		yield return null;
 		XRSettings.enabled = true;
-		UnityEngine.XR.InputTracking.Recenter();
+		//UnityEngine.XR.InputTracking.Recenter();
 	}
 
 	public void OnCsvRead() {

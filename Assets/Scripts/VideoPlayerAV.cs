@@ -55,39 +55,6 @@ public class VideoPlayerAV : MonoBehaviour {
 				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt3;
 		}
 			
-		/*///
-		if (rotationStep1 != null) {
-			if (_mediaPlayer.Control.GetCurrentTimeMs() >= rotationTime1 && _mediaPlayer.Control.GetCurrentTimeMs() <= (rotationTime1+50))
-				dome.transform.eulerAngles = rotationStep1;
-		}
-
-		if (rotationStep2 != null) {
-			if (_mediaPlayer.Control.GetCurrentTimeMs() >= rotationTime2 && _mediaPlayer.Control.GetCurrentTimeMs() <= (rotationTime2+50))
-				dome.transform.eulerAngles = rotationStep2;
-		}
-
-		if (rotationStep3!= null) {
-			if (_mediaPlayer.Control.GetCurrentTimeMs() >= rotationTime3 && _mediaPlayer.Control.GetCurrentTimeMs() <= (rotationTime3+50))
-				dome.transform.eulerAngles = rotationStep3;
-		}*/////
-
-
-		/*if (_mediaPlayer.Control.GetCurrentTimeMs() >= 3000 && _mediaPlayer.Control.GetCurrentTimeMs() <= 3200) {
-
-			Vector3 mocos = new Vector3 (0, 0, 20);
-			dome.transform.eulerAngles = mocos;
-		
-				Debug.Log ("se movio");
-			}
-
-
-		if (_mediaPlayer.Control.GetCurrentTimeMs () >= 5000 && _mediaPlayer.Control.GetCurrentTimeMs () <= 5050) {
-
-			Vector3 mocos = new Vector3 (45, 100, 20);
-			dome.transform.eulerAngles = mocos;
-
-			Debug.Log ("se movio");
-		}*/
 
 		
 		if(Input.GetKeyDown("c"))
