@@ -18,6 +18,8 @@ public class IntroSceneManager : MonoBehaviour {
 	public static int dynamicTiltTime2;
 	public static int dynamicTiltTime3;
 
+	public static string audioName;
+
 	List<string> tiltConfigurations = new List<string>();
 
 
@@ -44,7 +46,7 @@ public class IntroSceneManager : MonoBehaviour {
 		videoPath = "C:/Users/BeAnotherLab/Desktop/HannenFinal.mp4"; //settings are for Jona
 		initialTiltConfiguration = new Vector3(90, 0, 0);//117, 0, 0
 
-
+		audioName = "pigeons";
 
 		//StartCoroutine (LoadDevice("Oculus"));
 		SceneManager.LoadScene ("Narrative");
@@ -57,6 +59,7 @@ public class IntroSceneManager : MonoBehaviour {
 		dynamicTilt1 = new Vector3 (95, 0, 0); 
 		dynamicTiltTime1 = 61800;//
  
+		audioName = "phobia";
 		//dynamicTilt2 = new Vector3 (-25, 0, 0); 
 		//dynamicTiltTime2 = 6000;
 
@@ -68,6 +71,9 @@ public class IntroSceneManager : MonoBehaviour {
 	public void OnButton3() {
 		videoPath = "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4";
 		initialTiltConfiguration = new Vector3(-45, 0, 0);
+
+		audioName = "irony";
+
 		SceneManager.LoadScene ("Narrative");
 	}
 

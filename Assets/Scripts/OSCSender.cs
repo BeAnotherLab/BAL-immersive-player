@@ -22,9 +22,10 @@ public class OSCSender : MonoBehaviour
 	public string remoteIp;
     public int sendToPort;
 
-	public string audioNumber;
+	string audioNumber;
 
 	private bool isPlaying = false;
+	private bool isPaused = false;
 
 
     ~OSCSender()
@@ -45,6 +46,8 @@ public class OSCSender : MonoBehaviour
     /// </summary>
     void Start()
     {
+
+		string audioNumber = IntroSceneManager.audioName;
         UDPPacketIO udp = GetComponent<UDPPacketIO>();
         udp.init(remoteIp, sendToPort, 0);
          
@@ -59,20 +62,42 @@ public class OSCSender : MonoBehaviour
 
 		OscMessage audioSettings = null;
 
-		if (Input.GetKeyDown ("space") && isPlaying)
-			audioSettings = Osc.StringToOscMessage ("/" + audioNumber + " pause");
 
-		if(Input.GetKeyDown("space") && !isPlaying)
+
+		if(Input.GetKeyDown("space") && isPlaying == false && isPaused == false)  {
 			audioSettings = Osc.StringToOscMessage("/" + audioNumber + " play");
+
+			isPlaying = true; 
+			isPaused = false;
+
+		} 
+
+		else if (Input.GetKeyDown ("space") && isPlaying == true && isPaused == false) {
+
+			audioSettings = Osc.StringToOscMessage ("/" + audioNumber + " pause");
+			isPaused = true;
+			isPlaying = false;
+
+		} 
+
+		else if (Input.GetKeyDown ("space") && isPlaying == false && isPaused == true) {
+			audioSettings = Osc.StringToOscMessage ("/" + audioNumber + " resume");
+			isPaused = false;
+			isPlaying = true;
+
+		}
+
+		if (Input.GetKeyDown ("return")){
+			audioSettings = Osc.StringToOscMessage ("/" + audioNumber + " stop");
+			isPaused = false;
+			isPlaying = false;
+		}
 
 		oscHandler.Send (audioSettings);
 
-		if (isPlaying)
-			isPlaying = false;
-		else if (!isPlaying)
-			isPlaying = true;
-	}
 
+
+	}
 
  
 

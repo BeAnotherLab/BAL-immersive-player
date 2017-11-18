@@ -620,7 +620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &476925371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,7 +656,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   remoteIp: 127.0.0.1
   sendToPort: 9999
-  audioNumber: pigeons
 --- !u!4 &476925374
 Transform:
   m_ObjectHideFlags: 0

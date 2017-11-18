@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 118
+  controlID: 48
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 96
+  controlID: 62
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 97
+  controlID: 63
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,8 +201,8 @@ MonoBehaviour:
     y: 0
     width: 1689
     height: 945
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 14}
@@ -365,23 +365,23 @@ MonoBehaviour:
     height: 924
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b02c0000
-    m_LastClickedID: 11440
-    m_ExpandedIDs: 26f1ffff7af3ffffe4f4ffffa6fbffff00000000
+    m_SelectedIDs: e4540000
+    m_LastClickedID: 21732
+    m_ExpandedIDs: 164ef9ff5cebffffa6fbffff000000006c2a0000742a0000842a00008e2a0000982a0000b82a0000d02a0000da2a0000fc5400003255000036550000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: OpenFile
+      m_OriginalName: OpenFile
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 10970
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
@@ -417,14 +417,14 @@ MonoBehaviour:
     width: 1685
     height: 924
   m_SceneLighting: 1
-  lastFramingTime: 1574.6180690315607
+  lastFramingTime: 204.9745418271605
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 47, y: 109.40625, z: -178.71289}
+    m_Target: {x: 842.5, y: 453.5, z: 0}
     speed: 2
-    m_Value: {x: 47, y: 109.40625, z: -178.71289}
+    m_Value: {x: 842.5, y: 453.5, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -447,13 +447,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.00017962919, y: -0.93292665, z: 0.00056655536, w: -0.36011827}
+    m_Target: {x: 0.009570062, y: 0.063271575, z: -0.000669841, w: 0.99797016}
     speed: 2
-    m_Value: {x: 0.00017962919, y: 0.93292665, z: -0.00056655536, w: 0.3601183}
+    m_Value: {x: 0.009569871, y: 0.063270316, z: -0.0006698277, w: 0.9979503}
   m_Size:
-    m_Target: 2454.3623
+    m_Target: 1121.3112
     speed: 2
-    m_Value: 2454.3623
+    m_Value: 1121.3112
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -538,10 +538,10 @@ MonoBehaviour:
   m_LastProjectPath: C:\Users\BeAnotherLab\Documents\GitHub\BAL-immersive-player
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 121}
+    scrollPos: {x: 0, y: 45}
     m_SelectedIDs: b2280000
     m_LastClickedID: 10418
-    m_ExpandedIDs: 0000000024080000302800004028000080280000d8280000002900001c29000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000240800003028000080280000d828000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -569,7 +569,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000024080000302800004028000080280000d8280000002900001c290000
+    m_ExpandedIDs: 0000000024080000302800004028000080280000d82800000029000020290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
