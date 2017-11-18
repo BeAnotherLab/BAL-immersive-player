@@ -27,7 +27,7 @@ public class IntroSceneManager : MonoBehaviour {
 
 	void Start () {
 
-		//XRSettings.showDeviceView = false;
+		XRSettings.showDeviceView = false;
 		//XRSettings.enabled = false;
 		//LoadDevice("Oculus");
 
@@ -43,10 +43,11 @@ public class IntroSceneManager : MonoBehaviour {
 	}
 
 	public void onButton1 () {
+		
 		videoPath = "./Assets/StreamingAssets/" + "Jerry.mp4"; //settings are for Jona
 		initialTiltConfiguration = new Vector3(90, 0, 0);//117, 0, 0
-
 		audioName = "pigeons";
+		Debug.Log (audioName);
 
 		//StartCoroutine (LoadDevice("Oculus"));
 		SceneManager.LoadScene ("Narrative");
@@ -57,11 +58,9 @@ public class IntroSceneManager : MonoBehaviour {
 		initialTiltConfiguration = new Vector3(90, 0, 0);
 
 		dynamicTilt1 = new Vector3 (95, 0, 0); 
-		dynamicTiltTime1 = 61800;//
- 
+		dynamicTiltTime1 = 61800;
+
 		audioName = "phobia";
-		//dynamicTilt2 = new Vector3 (-25, 0, 0); 
-		//dynamicTiltTime2 = 6000;
 
 		SceneManager.LoadScene ("Narrative");
 
@@ -72,7 +71,7 @@ public class IntroSceneManager : MonoBehaviour {
 		videoPath = "./Assets/StreamingAssets/" + "Jose.mp4";
 		initialTiltConfiguration = new Vector3(-45, 0, 0);
 
-		audioName = "irony";
+		audioName = "ironing";
 
 		SceneManager.LoadScene ("Narrative");
 	}

@@ -47,7 +47,8 @@ public class OSCSender : MonoBehaviour
     void Start()
     {
 
-		string audioNumber = IntroSceneManager.audioName;
+		//string audioNumber = IntroSceneManager.audioName;
+
         UDPPacketIO udp = GetComponent<UDPPacketIO>();
         udp.init(remoteIp, sendToPort, 0);
          
@@ -65,7 +66,8 @@ public class OSCSender : MonoBehaviour
 
 
 		if(Input.GetKeyDown("space") && isPlaying == false && isPaused == false)  {
-			audioSettings = Osc.StringToOscMessage("/" + audioNumber + " play");
+			audioSettings = Osc.StringToOscMessage("/" + IntroSceneManager.audioName + " play");
+			Debug.Log (audioNumber);
 
 			isPlaying = true; 
 			isPaused = false;
@@ -74,21 +76,27 @@ public class OSCSender : MonoBehaviour
 
 		else if (Input.GetKeyDown ("space") && isPlaying == true && isPaused == false) {
 
-			audioSettings = Osc.StringToOscMessage ("/" + audioNumber + " pause");
+			audioSettings = Osc.StringToOscMessage ("/" + IntroSceneManager.audioName + " pause");
 			isPaused = true;
 			isPlaying = false;
 
 		} 
 
 		else if (Input.GetKeyDown ("space") && isPlaying == false && isPaused == true) {
-			audioSettings = Osc.StringToOscMessage ("/" + audioNumber + " resume");
+			audioSettings = Osc.StringToOscMessage ("/" + IntroSceneManager.audioName + " resume");
 			isPaused = false;
 			isPlaying = true;
 
 		}
 
 		if (Input.GetKeyDown ("return")){
-			audioSettings = Osc.StringToOscMessage ("/" + audioNumber + " stop");
+			audioSettings = Osc.StringToOscMessage ("/" + IntroSceneManager.audioName + " stop");
+			isPaused = false;
+			isPlaying = false;
+		}
+
+		if (Input.GetKeyDown ("escape")){
+			audioSettings = Osc.StringToOscMessage ("/" + IntroSceneManager.audioName + " stop");
 			isPaused = false;
 			isPlaying = false;
 		}
