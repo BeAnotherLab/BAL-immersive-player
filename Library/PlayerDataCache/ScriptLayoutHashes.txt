@@ -13,7 +13,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 6af7378a45ad6da4992a71ef50ddc2eb UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 af723155c251fcfa0e66530a75f3ea4c UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 7d165bd22388cc8ce94589fca652d993 Assembly-CSharp.dll:RenderHeads.Media.AVProVideo.Demos.DemoInfo
-a36afda4a4ecbfc8af6a49456229b975 Assembly-CSharp.dll:.OSCSender
+82bb5d5acae586098071d5b257dfbbe1 Assembly-CSharp.dll:.OSCSender
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DontDestroy
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -114,6 +114,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 fdf85860381c661bdfd07687a4f4a66b Assembly-CSharp.dll:.CanvasSampleOpenFileText
 b088b1598c2fdf7f1254946a9b521f48 Assembly-CSharp.dll:.MenuLoader
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
+cfeb247034d942c653ec58849b0219dd Assembly-CSharp.dll:.csvReader
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
@@ -124,7 +125,7 @@ b088b1598c2fdf7f1254946a9b521f48 Assembly-CSharp.dll:.LoadOnClick
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:RenderHeads.Media.AVProVideo.Demos.AutoRotate
 7e8540ae33d55e851ca78e3d7d887260 Assembly-CSharp.dll:.CanvasSampleOpenFileImage
 c1341256a781df997b9722e48f39d1b8 Assembly-CSharp.dll:.CanvasSampleSaveFileImage
-51ab6ac10d07244e1110516226880e04 Assembly-CSharp.dll:.VideoPlayerAV
+5c675572fd92dab9092700f06e15898b Assembly-CSharp.dll:.VideoPlayerAV
 8d3cbb77731cd5e57058d3042abd805b Assembly-CSharp.dll:.BinauralAudioTrigger
 a725e0cdf6a66fad611cbee4a829088e Assembly-CSharp.dll:RenderHeads.Media.AVProVideo.UpdateStereoMaterial
 b59ad4ce82b6f9df2a8c6e94119154c4 Assembly-CSharp.dll:RenderHeads.Media.AVProVideo.DisplayIMGUI

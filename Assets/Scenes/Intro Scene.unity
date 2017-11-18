@@ -684,7 +684,6 @@ GameObject:
   - component: {fileID: 395228266}
   - component: {fileID: 395228269}
   - component: {fileID: 395228268}
-  - component: {fileID: 395228267}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -705,13 +704,6 @@ Transform:
   m_Father: {fileID: 937722018}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 113.066986, y: -0.000015258789, z: -0.000015258789}
---- !u!81 &395228267
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 395228265}
-  m_Enabled: 1
 --- !u!124 &395228268
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1035,7 +1027,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Pascal
+  m_Text: Jonah
 --- !u!222 &1009642946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1177,7 +1169,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Haneen
+  m_Text: Jerry
 --- !u!222 &1136990366
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1623,7 +1615,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Pedro
+  m_Text: Jose
 --- !u!222 &1746343910
 CanvasRenderer:
   m_ObjectHideFlags: 0

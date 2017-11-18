@@ -27,9 +27,9 @@ public class IntroSceneManager : MonoBehaviour {
 
 	void Start () {
 
-		XRSettings.showDeviceView = false;
+		//XRSettings.showDeviceView = false;
 		//XRSettings.enabled = false;
-
+		//LoadDevice("Oculus");
 
 	}
 
@@ -43,7 +43,7 @@ public class IntroSceneManager : MonoBehaviour {
 	}
 
 	public void onButton1 () {
-		videoPath = "C:/Users/BeAnotherLab/Desktop/HannenFinal.mp4"; //settings are for Jona
+		videoPath = "./Assets/StreamingAssets/" + "Jerry.mp4"; //settings are for Jona
 		initialTiltConfiguration = new Vector3(90, 0, 0);//117, 0, 0
 
 		audioName = "pigeons";
@@ -53,7 +53,7 @@ public class IntroSceneManager : MonoBehaviour {
 	}
 
 	public void OnButton2() {
-		videoPath = "C:/Users/BeAnotherLab/Desktop/PascalFinal.mp4";//settings are for Jerry
+		videoPath = "./Assets/StreamingAssets/" + "Jonah.mp4";//settings are for Jerry
 		initialTiltConfiguration = new Vector3(90, 0, 0);
 
 		dynamicTilt1 = new Vector3 (95, 0, 0); 
@@ -69,7 +69,7 @@ public class IntroSceneManager : MonoBehaviour {
 	}
 
 	public void OnButton3() {
-		videoPath = "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4";
+		videoPath = "./Assets/StreamingAssets/" + "Jose.mp4";
 		initialTiltConfiguration = new Vector3(-45, 0, 0);
 
 		audioName = "irony";
