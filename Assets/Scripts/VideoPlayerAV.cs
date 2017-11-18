@@ -12,8 +12,8 @@ public class VideoPlayerAV : MonoBehaviour {
 	public GameObject loadingImage;
 	private bool isPlaying = false;
 
-	public Vector3 rotationStep1, rotationStep2, rotationStep3;
-	public float rotationTime1, rotationTime2, rotationTime3;
+	//public Vector3 rotationStep1, rotationStep2, rotationStep3;
+	///public float rotationTime1, rotationTime2, rotationTime3;
 
 	public GameObject dome;
 
@@ -24,8 +24,11 @@ public class VideoPlayerAV : MonoBehaviour {
 
 		isPlaying = false;
 
+		if (IntroSceneManager.videoPath != null)
+			_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
 
-		_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
+		dome.transform.eulerAngles = IntroSceneManager.initialTiltConfiguration;
+
 		currentTimeText.fontSize = 14;
 		currentTimeText.color = Color.white;
 	}
@@ -35,7 +38,24 @@ public class VideoPlayerAV : MonoBehaviour {
 
 		//vecky = Vector3()
 		currentTimeText.text = System.Math.Round((_mediaPlayer.Control.GetCurrentTimeMs()/1000), 2).ToString() + "  of  " + System.Math.Round((_mediaPlayer.Info.GetDurationMs()/1000),2).ToString();
+
+		if (IntroSceneManager.dynamicTiltTime1 != 0) {
+
+			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime1 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime1 + 50))
+				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt1;
+		}
+
+		if (IntroSceneManager.dynamicTiltTime2 != 0) {
+			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime2 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime2 + 50))
+				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt2;
+		}
+
+		if (IntroSceneManager.dynamicTiltTime3 != 0) {
+			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime3 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime3 + 50))
+				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt3;
+		}
 			
+		/*///
 		if (rotationStep1 != null) {
 			if (_mediaPlayer.Control.GetCurrentTimeMs() >= rotationTime1 && _mediaPlayer.Control.GetCurrentTimeMs() <= (rotationTime1+50))
 				dome.transform.eulerAngles = rotationStep1;
@@ -49,7 +69,7 @@ public class VideoPlayerAV : MonoBehaviour {
 		if (rotationStep3!= null) {
 			if (_mediaPlayer.Control.GetCurrentTimeMs() >= rotationTime3 && _mediaPlayer.Control.GetCurrentTimeMs() <= (rotationTime3+50))
 				dome.transform.eulerAngles = rotationStep3;
-		}
+		}*/////
 
 
 		/*if (_mediaPlayer.Control.GetCurrentTimeMs() >= 3000 && _mediaPlayer.Control.GetCurrentTimeMs() <= 3200) {
