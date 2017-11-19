@@ -40,6 +40,7 @@ public class IntroSceneManager : MonoBehaviour {
 
 	public void onOpenFile () {
 			WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", false));
+		audioName = null;
 	}
 
 	public void onButton1 () {
