@@ -54,7 +54,12 @@ public class VideoPlayerAV : MonoBehaviour {
 			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime3 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime3 + 50))
 				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt3;
 		}
-			
+
+		if (IntroSceneManager.dynamicTiltTime4 != 0) {
+			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime4 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime4 + 50))
+				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt4;
+		}
+
 
 		
 		if(Input.GetKeyDown("c"))
