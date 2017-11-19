@@ -46,7 +46,17 @@ public class IntroSceneManager : MonoBehaviour {
 	public void onButton1 () {
 		
 		videoPath = "./Assets/StreamingAssets/" + "Jerry.mp4"; //settings are for Jona
-		initialTiltConfiguration = new Vector3(90, 0, 0);//117, 0, 0
+		initialTiltConfiguration = new Vector3(98, 0, 0);//102, 0, 0
+
+		dynamicTilt1 = new Vector3 (102, 0, 0); //106
+		dynamicTiltTime1 = 88000;
+
+		dynamicTilt2 = new Vector3 (108, 0, 0);///108
+		dynamicTiltTime2 = 124000;
+
+		dynamicTilt3 = new Vector3 (112, 0, 0);
+		dynamicTiltTime3 = 178000;
+
 		audioName = "pigeons";
 		Debug.Log (audioName);
 
@@ -56,9 +66,10 @@ public class IntroSceneManager : MonoBehaviour {
 
 	public void OnButton2() {
 		videoPath = "./Assets/StreamingAssets/" + "Jonah.mp4";//settings are for Jerry
-		initialTiltConfiguration = new Vector3(90, 0, 0);
 
-		dynamicTilt1 = new Vector3 (95, 0, 0); 
+		initialTiltConfiguration = new Vector3(114, 0, 0);
+
+		dynamicTilt1 = new Vector3 (119, 0, 0); 
 		dynamicTiltTime1 = 61800;
 
 		audioName = "phobia";

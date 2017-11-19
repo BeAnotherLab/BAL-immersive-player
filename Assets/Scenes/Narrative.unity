@@ -752,8 +752,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 653784124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 842.5, y: 453.5, z: -100}
-  m_LocalScale: {x: 1.5705714, y: 1.5705714, z: 1.5705714}
+  m_LocalPosition: {x: 507.5, y: 271, z: -100}
+  m_LocalScale: {x: 0.9435544, y: 0.9435544, z: 0.9435544}
   m_Children:
   - {fileID: 1097466583}
   m_Father: {fileID: 1904450596}
@@ -1005,7 +1005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_VideoLocation: 0
-  m_VideoPath: C:/Users/BeAnotherLab/Desktop/360videos/Phobia.mp4
+  m_VideoPath: C:/Users/BeAnotherLab/Desktop/Library of Ourselves/Library of Ourselves_Data/StreamingAssets/Jerry.mp4
   m_AutoOpen: 1
   m_AutoStart: 0
   m_Loop: 0

@@ -6,7 +6,7 @@
       <File FileName="Assets\Scripts\csvReader.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OSCSender.cs" Line="1" Column="1" />
       <File FileName="Assets\Plugins\OSC\Osc.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\IntroSceneManager.cs" Line="43" Column="20" />
+      <File FileName="Assets\Scripts\IntroSceneManager.cs" Line="72" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
