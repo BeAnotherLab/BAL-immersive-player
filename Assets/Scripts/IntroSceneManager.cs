@@ -112,6 +112,8 @@ public class IntroSceneManager : MonoBehaviour {
 		videoPath = videoPath.Replace("\\", "/"); //changing \ slash to / slash
 
 		Debug.Log (videoPath);
+		initialTiltConfiguration = new Vector3(98, 0, 0);
+
 		//StartCoroutine (LoadDevice("Oculus"));
 		SceneManager.LoadScene ("Narrative");
 	}
