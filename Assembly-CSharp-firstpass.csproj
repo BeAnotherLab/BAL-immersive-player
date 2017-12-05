@@ -54,10 +54,14 @@
      <Compile Include="Assets\Plugins\OSC\Osc.cs" />
      <Compile Include="Assets\Plugins\OSC\UDPPacketIO.cs" />
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo-Lit-Diffuse.shader" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
      <None Include="Assets\AVProVideo\Demos\Materials\UI-Default-ExtraTexture.shader" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_ClearAll.shader" />
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo-Unlit-Transparent.shader" />
+     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo.cginc" />
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo-IMGUI-Transparent.shader" />
+     <None Include="Assets\SteamVR\InteractionSystem\Teleport\Shaders\Highlight.shader" />
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo-Background-FullScreenTransparent.shader" />
      <None Include="Assets\AVProVideo\Demos\Materials\UI-DefaultFont-ExtraTexture.shader" />
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo-VR-InsideSphere-AndroidOES.shader" />
@@ -66,7 +70,14 @@
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo-Background-FullScreen.shader" />
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo-VR-InsideSphere-Transparent.shader" />
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo-UI-Default-Transparent.shader" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
      <None Include="Assets\AVProVideo\Resources\Shaders\AVProVideo-Unlit.shader" />
+     <None Include="Assets\SteamVR\readme.txt" />
+     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_ColorOut.shader" />
+     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
+     <None Include="Assets\SteamVR\InteractionSystem\Readme_InteractionSystem.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity_2017_2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

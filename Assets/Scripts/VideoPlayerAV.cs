@@ -17,6 +17,9 @@ public class VideoPlayerAV : MonoBehaviour {
 
 	public GameObject dome;
 
+	private float currentRotationX;
+	private float currentRotationY;
+
 	public Text currentTimeText;
 
 	// Use this for initialization
@@ -28,9 +31,12 @@ public class VideoPlayerAV : MonoBehaviour {
 			_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
 
 		dome.transform.eulerAngles = IntroSceneManager.initialTiltConfiguration;
+		currentRotationX = IntroSceneManager.initialTiltConfiguration.x;
+		currentRotationY = IntroSceneManager.initialTiltConfiguration.y;
 
 		currentTimeText.fontSize = 14;
 		currentTimeText.color = Color.white;
+
 	}
 
 	// Update is called once per frame
@@ -41,21 +47,45 @@ public class VideoPlayerAV : MonoBehaviour {
 
 		if (IntroSceneManager.dynamicTiltTime1 != 0) {
 
-			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime1 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime1 + 50))
+			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime1 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime1 + 50)) {
 				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt1;
+				currentRotationX = IntroSceneManager.dynamicTilt1.x;
+				currentRotationY = IntroSceneManager.dynamicTilt1.y;
+			}
 		}
 
 		if (IntroSceneManager.dynamicTiltTime2 != 0) {
-			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime2 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime2 + 50))
+			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime2 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime2 + 50)) {
 				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt2;
+				currentRotationX = IntroSceneManager.dynamicTilt1.x;
+				currentRotationY = IntroSceneManager.dynamicTilt1.y;
+			}
 		}
 
 		if (IntroSceneManager.dynamicTiltTime3 != 0) {
-			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime3 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime3 + 50))
+			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime3 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime3 + 50)) {
 				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt3;
+				currentRotationX = IntroSceneManager.dynamicTilt1.x;
+				currentRotationY = IntroSceneManager.dynamicTilt1.y;
+			}
 		}
 			
 
+		if (Input.GetKey("down"))
+			currentRotationX = currentRotationX - 1f;
+		
+
+		if (Input.GetKey("up"))
+			currentRotationX = currentRotationX + 1f;
+		
+
+		if (Input.GetKey("left"))
+			currentRotationX = currentRotationY - 1f;
+		
+
+		if (Input.GetKey("right"))
+			currentRotationX = currentRotationX + 1f;
+		
 		
 		if(Input.GetKeyDown("c"))
 			UnityEngine.XR.InputTracking.Recenter();
@@ -88,6 +118,9 @@ public class VideoPlayerAV : MonoBehaviour {
 		if (_mediaPlayer.Control.IsFinished()) {
 			SceneManager.LoadScene ("Intro Scene");
 		}
+
+		dome.transform.eulerAngles = new Vector3 (currentRotationX, currentRotationY, 0);
+
 	}
 
 

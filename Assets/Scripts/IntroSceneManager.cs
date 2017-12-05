@@ -27,9 +27,6 @@ public class IntroSceneManager : MonoBehaviour {
 
 	void Start () {
 
-		XRSettings.showDeviceView = false;
-		//XRSettings.enabled = false;
-		//LoadDevice("Oculus");
 
 	}
 
@@ -45,7 +42,7 @@ public class IntroSceneManager : MonoBehaviour {
 
 	public void onButton1 () {
 		
-		videoPath = "./Assets/StreamingAssets/" + "Jerry.mp4"; //settings are for Jona
+		videoPath = "./StreamingAssets/" + "Jerry.mp4"; //settings are for Jona
 		initialTiltConfiguration = new Vector3(98, 0, 0);//102, 0, 0
 
 		dynamicTilt1 = new Vector3 (102, 0, 0); //106
@@ -60,12 +57,11 @@ public class IntroSceneManager : MonoBehaviour {
 		audioName = "pigeons";
 		Debug.Log (audioName);
 
-		//StartCoroutine (LoadDevice("Oculus"));
 		SceneManager.LoadScene ("Narrative");
 	}
 
 	public void OnButton2() {
-		videoPath = "./Assets/StreamingAssets/" + "Jonah.mp4";//settings are for Jerry
+		videoPath = "./StreamingAssets/" + "Jonah.mp4";//settings are for Jerry
 
 		initialTiltConfiguration = new Vector3(114, 0, 0);
 
@@ -79,14 +75,15 @@ public class IntroSceneManager : MonoBehaviour {
 
 	}
 
-	public void OnButton3() {
+	/*public void OnButton3() {
 		videoPath = "./Assets/StreamingAssets/" + "Jose.mp4";
 		initialTiltConfiguration = new Vector3(-45, 0, 0);
 
 		audioName = "ironing";
 
 		SceneManager.LoadScene ("Narrative");
-	}
+	}*/
+
 
 	public void WriteResult(string[] paths) {
 		if (paths.Length == 0) {
@@ -102,19 +99,13 @@ public class IntroSceneManager : MonoBehaviour {
 
 		videoPath = videoPath.Replace("\\", "/"); //changing \ slash to / slash
 
+		initialTiltConfiguration = new Vector3(98, 0, 0);
+
 		Debug.Log (videoPath);
-		//StartCoroutine (LoadDevice("Oculus"));
 		SceneManager.LoadScene ("Narrative");
 	}
+		
 
-	IEnumerator LoadDevice(string newDevice) {
-
-		XRSettings.LoadDeviceByName(newDevice);
-
-		yield return null;
-		XRSettings.enabled = true;
-		//UnityEngine.XR.InputTracking.Recenter();
-	}
 
 	public void OnCsvRead() {
 		
