@@ -82,6 +82,7 @@
      <Compile Include="Assets\Scripts\BinauralAudioTrigger.cs" />
      <Compile Include="Assets\Scripts\csvReader.cs" />
      <Compile Include="Assets\Scripts\DontDestroy.cs" />
+     <Compile Include="Assets\Scripts\EnlistFiles.cs" />
      <Compile Include="Assets\Scripts\IntroSceneManager.cs" />
      <Compile Include="Assets\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Scripts\MenuLoader.cs" />
