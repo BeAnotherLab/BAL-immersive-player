@@ -36,8 +36,14 @@ public class IntroSceneManager : MonoBehaviour {
 	}
 
 	public void onOpenFile () {
-			WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", false));
+		
+		WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", false));
 		audioName = null;
+
+		initialTiltConfiguration = new Vector3(98, 0, 0);//98
+
+		Debug.Log (videoPath);
+		SceneManager.LoadScene ("Narrative");
 	}
 
 	public void onButton1 () {
@@ -75,15 +81,6 @@ public class IntroSceneManager : MonoBehaviour {
 
 	}
 
-	/*public void OnButton3() {
-		videoPath = "./Assets/StreamingAssets/" + "Jose.mp4";
-		initialTiltConfiguration = new Vector3(-45, 0, 0);
-
-		audioName = "ironing";
-
-		SceneManager.LoadScene ("Narrative");
-	}*/
-
 
 	public void WriteResult(string[] paths) {
 		if (paths.Length == 0) {
@@ -99,10 +96,10 @@ public class IntroSceneManager : MonoBehaviour {
 
 		videoPath = videoPath.Replace("\\", "/"); //changing \ slash to / slash
 
-		initialTiltConfiguration = new Vector3(98, 0, 0);
+	}
 
+	void OnDisable(){
 		Debug.Log (videoPath);
-		SceneManager.LoadScene ("Narrative");
 	}
 		
 

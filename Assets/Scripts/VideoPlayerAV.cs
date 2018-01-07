@@ -27,8 +27,13 @@ public class VideoPlayerAV : MonoBehaviour {
 
 		isPlaying = false;
 
+
 		if (IntroSceneManager.videoPath != null)
+			//_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4", false);
 			_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
+
+
+		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
 		dome.transform.eulerAngles = IntroSceneManager.initialTiltConfiguration;
 		currentRotationX = IntroSceneManager.initialTiltConfiguration.x;
@@ -42,7 +47,6 @@ public class VideoPlayerAV : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//vecky = Vector3()
 		currentTimeText.text = System.Math.Round((_mediaPlayer.Control.GetCurrentTimeMs()/1000), 2).ToString() + "  of  " + System.Math.Round((_mediaPlayer.Info.GetDurationMs()/1000),2).ToString();
 
 		if (IntroSceneManager.dynamicTiltTime1 != 0) {
@@ -72,23 +76,25 @@ public class VideoPlayerAV : MonoBehaviour {
 			
 
 		if (Input.GetKey("down"))
-			currentRotationX = currentRotationX - 1f;
+			currentRotationX = currentRotationX -0.25f;
 		
 
 		if (Input.GetKey("up"))
-			currentRotationX = currentRotationX + 1f;
+			currentRotationX = currentRotationX +0.25f;
 		
 
 		if (Input.GetKey("left"))
-			currentRotationX = currentRotationY - 1f;
+			currentRotationY = currentRotationY +0.25f;
 		
 
 		if (Input.GetKey("right"))
-			currentRotationX = currentRotationX + 1f;
+			currentRotationY = currentRotationY -0.25f;
 		
 		
-		if(Input.GetKeyDown("c"))
-			UnityEngine.XR.InputTracking.Recenter();
+		if (Input.GetKeyDown ("c")) {
+			UnityEngine.XR.InputTracking.Recenter ();
+			//Valve.VR.OpenVR.System.ResetSeatedZeroPose ();
+		} 
 
 		if (Input.GetKeyDown ("return")){
 			_mediaPlayer.Control.Stop ();
@@ -120,7 +126,6 @@ public class VideoPlayerAV : MonoBehaviour {
 		}
 
 		dome.transform.eulerAngles = new Vector3 (currentRotationX, currentRotationY, 0);
-
 	}
 
 
