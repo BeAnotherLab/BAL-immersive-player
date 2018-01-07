@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using RenderHeads.Media.AVProVideo;
-using UnityEngine.VR;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
@@ -23,6 +22,10 @@ public class VideoPlayerAV : MonoBehaviour {
 	public Text currentTimeText;
 
 	// Use this for initialization
+	void Awake () {
+		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);
+	}
+
 	void Start () {
 
 		isPlaying = false;

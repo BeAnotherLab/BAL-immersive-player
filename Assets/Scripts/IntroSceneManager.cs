@@ -40,7 +40,7 @@ public class IntroSceneManager : MonoBehaviour {
 		WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", false));
 		audioName = null;
 
-		initialTiltConfiguration = new Vector3(98, 0, 0);//98
+		initialTiltConfiguration = new Vector3(98, 0, 0);
 
 		Debug.Log (videoPath);
 		SceneManager.LoadScene ("Narrative");
@@ -103,7 +103,7 @@ public class IntroSceneManager : MonoBehaviour {
 	}
 		
 
-
+	/*
 	public void OnCsvRead() {
 		
 		tiltConfigurations = csvReader.csvList;
@@ -114,7 +114,7 @@ public class IntroSceneManager : MonoBehaviour {
 		}
 
 
-	}
+	}*/
 		
 		
 }

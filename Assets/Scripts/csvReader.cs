@@ -14,7 +14,7 @@ public class csvReader : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Load (file, csvList);
-		sceneManager.OnCsvRead ();
+		//sceneManager.OnCsvRead ();
 	}
 	
 	// Update is called once per frame
