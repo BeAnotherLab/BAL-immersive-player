@@ -4,6 +4,8 @@ using UnityEngine;
 using SFB;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
+using System.IO;
+using UnityEngine.UI;
 
 public class IntroSceneManager : MonoBehaviour {
 
@@ -20,14 +22,40 @@ public class IntroSceneManager : MonoBehaviour {
 
 	public static string audioName;
 
+	public GameObject buttonPrefab;
+	public Transform canvasParent;
+	public string folderName; //name of the folder inside Assets to look for files.
+	public string fileFormat;
+
+	private string path; 
+
 	List<string> tiltConfigurations = new List<string>();
 
 
 	// Use this for initialization
 
 	void Start () {
+		
+		path = Application.dataPath + "/" + folderName + "/";
 
+		//Debug.Log (path);
 
+		foreach (string file in System.IO.Directory.GetFiles(path, "*." + fileFormat)) {
+
+			string fileName = Path.GetFileNameWithoutExtension (file);
+			GameObject newButton = Instantiate (buttonPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+			newButton.transform.SetParent (canvasParent, false);
+
+			Debug.Log ("found " + fileName);//
+
+			Text newButtonText = newButton.GetComponentInChildren<Text> () as Text;
+			newButtonText.text = fileName;	
+
+			Button buttonBehaviour = newButton.GetComponent<Button> ();
+
+			buttonBehaviour.onClick.AddListener (() => { videoPath = path+fileName + ".mp4"; Debug.Log(videoPath); SceneManager.LoadScene("Narrative");});
+
+		}
 	}
 
 	// Update is called once per frame
@@ -46,7 +74,7 @@ public class IntroSceneManager : MonoBehaviour {
 		SceneManager.LoadScene ("Narrative");
 	}
 
-	public void onButton1 () {
+	/*public void onButton1 () {
 		
 		videoPath = "./StreamingAssets/" + "Jerry.mp4"; //settings are for Jona
 		initialTiltConfiguration = new Vector3(98, 0, 0);//102, 0, 0
@@ -64,9 +92,9 @@ public class IntroSceneManager : MonoBehaviour {
 		Debug.Log (audioName);
 
 		SceneManager.LoadScene ("Narrative");
-	}
+	}*/
 
-	public void OnButton2() {
+	/*public void OnButton2() {
 		videoPath = "./StreamingAssets/" + "Jonah.mp4";//settings are for Jerry
 
 		initialTiltConfiguration = new Vector3(114, 0, 0);
@@ -79,7 +107,7 @@ public class IntroSceneManager : MonoBehaviour {
 		SceneManager.LoadScene ("Narrative");
 
 
-	}
+}*/
 
 
 	public void WriteResult(string[] paths) {
