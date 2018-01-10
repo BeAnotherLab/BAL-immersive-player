@@ -33,7 +33,7 @@ public class VideoPlayerAV : MonoBehaviour {
 		
 		oscOut.Open (7000);
 		audioName = IntroSceneManager.audioName;
-		Debug.Log ("the audio name is " + audioName);
+		oscOut.Send ("audioName", audioName);
 
 
 		if (IntroSceneManager.videoPath != null)
@@ -120,16 +120,19 @@ public class VideoPlayerAV : MonoBehaviour {
 
 
 			if (isPlaying) {
-				_mediaPlayer.Control.Pause ();
-				isPlaying = false;
+
 
 				if (!isPaused) {
+					_mediaPlayer.Control.Pause ();
 					oscOut.Send ("pause", 1);
 					isPaused = true;
 				} else if (isPaused) {
+					_mediaPlayer.Control.Play ();
 					oscOut.Send ("pause", 0);
 					isPaused = false;
 				}
+
+				//isPlaying = false;
 			}
 
 			else if (!isPlaying) {
@@ -150,7 +153,7 @@ public class VideoPlayerAV : MonoBehaviour {
 	}
 
 	void OnDisable(){
-		oscOut.Send ("play", 1);
+		oscOut.Send ("stop", 0);
 		isPlaying = false;
 	}
 
