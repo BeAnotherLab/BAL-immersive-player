@@ -53,7 +53,7 @@ public class IntroSceneManager : MonoBehaviour {
 
 			Button buttonBehaviour = newButton.GetComponent<Button> ();
 
-			buttonBehaviour.onClick.AddListener (() => { videoPath = path+fileName + ".mp4"; Debug.Log(videoPath); SceneManager.LoadScene("Narrative");});
+			buttonBehaviour.onClick.AddListener (() => { videoPath = path+fileName + ".mp4"; Debug.Log(videoPath); audioName = fileName; SceneManager.LoadScene("Narrative");});
 
 		}
 	}

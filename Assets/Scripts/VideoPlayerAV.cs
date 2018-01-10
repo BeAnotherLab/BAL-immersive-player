@@ -9,17 +9,17 @@ public class VideoPlayerAV : MonoBehaviour {
 	 
 	public MediaPlayer	_mediaPlayer;
 	public GameObject loadingImage;
-	private bool isPlaying = false;
-
-	//public Vector3 rotationStep1, rotationStep2, rotationStep3;
-	///public float rotationTime1, rotationTime2, rotationTime3;
-
 	public GameObject dome;
 
-	private float currentRotationX;
-	private float currentRotationY;
+	private bool isPlaying = false;
+	private bool isPaused = false;
+
+	private float currentRotationX, currentRotationY;
+	private string audioName;
 
 	public Text currentTimeText;
+	public OscOut oscOut;
+	public OscIn oscIn;
 
 	// Use this for initialization
 	void Awake () {
@@ -28,7 +28,12 @@ public class VideoPlayerAV : MonoBehaviour {
 
 	void Start () {
 
-		isPlaying = false;
+		if (!oscOut)
+			oscOut = gameObject.AddComponent<OscOut> ();
+		
+		oscOut.Open (7000);
+		audioName = IntroSceneManager.audioName;
+		Debug.Log ("the audio name is " + audioName);
 
 
 		if (IntroSceneManager.videoPath != null)
@@ -53,7 +58,6 @@ public class VideoPlayerAV : MonoBehaviour {
 		currentTimeText.text = System.Math.Round((_mediaPlayer.Control.GetCurrentTimeMs()/1000), 2).ToString() + "  of  " + System.Math.Round((_mediaPlayer.Info.GetDurationMs()/1000),2).ToString();
 
 		if (IntroSceneManager.dynamicTiltTime1 != 0) {
-
 			if (_mediaPlayer.Control.GetCurrentTimeMs () >= IntroSceneManager.dynamicTiltTime1 && _mediaPlayer.Control.GetCurrentTimeMs () <= (IntroSceneManager.dynamicTiltTime1 + 50)) {
 				dome.transform.eulerAngles = IntroSceneManager.dynamicTilt1;
 				currentRotationX = IntroSceneManager.dynamicTilt1.x;
@@ -102,25 +106,39 @@ public class VideoPlayerAV : MonoBehaviour {
 		if (Input.GetKeyDown ("return")){
 			_mediaPlayer.Control.Stop ();
 			_mediaPlayer.Control.Seek (0);
+			oscOut.Send ("stop", 0);
 			isPlaying = false;
 		}
 
 		if (Input.GetKeyDown ("escape")){
+			oscOut.Send ("stop", 0);
+			isPlaying = false;
 			SceneManager.LoadScene ("Intro Scene");
 		}
 
 		if (Input.GetKeyDown ("space")) {
 
-			if (!isPlaying) {
+
+			if (isPlaying) {
+				_mediaPlayer.Control.Pause ();
+				isPlaying = false;
+
+				if (!isPaused) {
+					oscOut.Send ("pause", 1);
+					isPaused = true;
+				} else if (isPaused) {
+					oscOut.Send ("pause", 0);
+					isPaused = false;
+				}
+			}
+
+			else if (!isPlaying) {
 				_mediaPlayer.Control.Play ();
+				oscOut.Send ("play", 1);
 				isPlaying = true;
 			}
 
 
-			else if (isPlaying) {
-				_mediaPlayer.Control.Pause ();
-				isPlaying = false;
-			}
 
 		}
 
@@ -131,6 +149,10 @@ public class VideoPlayerAV : MonoBehaviour {
 		dome.transform.eulerAngles = new Vector3 (currentRotationX, currentRotationY, 0);
 	}
 
+	void OnDisable(){
+		oscOut.Send ("play", 1);
+		isPlaying = false;
+	}
 
 		
 }
