@@ -48,7 +48,7 @@ Temporary Items
 
 # Large files
 AudioPlayer/Audios/
-.mp4
+*.mp4
 Assets/StreamingAssets/
 Assets/Images/
 *.wav
