@@ -19,7 +19,7 @@ public class VideoPlayerAV : MonoBehaviour {
 
 	public Text currentTimeText;
 	public OscOut oscOut;
-	public OscIn oscIn;
+	//public OscIn oscIn;
 
 	// Use this for initialization
 	void Awake () {

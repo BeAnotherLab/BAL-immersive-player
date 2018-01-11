@@ -88,26 +88,8 @@ public class IntroSceneManager : MonoBehaviour {
 		dynamicTilt3 = new Vector3 (112, 0, 0);
 		dynamicTiltTime3 = 178000;
 
-		audioName = "pigeons";
-		Debug.Log (audioName);
-
 		SceneManager.LoadScene ("Narrative");
 	}*/
-
-	/*public void OnButton2() {
-		videoPath = "./StreamingAssets/" + "Jonah.mp4";//settings are for Jerry
-
-		initialTiltConfiguration = new Vector3(114, 0, 0);
-
-		dynamicTilt1 = new Vector3 (119, 0, 0); 
-		dynamicTiltTime1 = 61800;
-
-		audioName = "phobia";
-
-		SceneManager.LoadScene ("Narrative");
-
-
-}*/
 
 
 	public void WriteResult(string[] paths) {
