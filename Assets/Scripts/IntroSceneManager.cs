@@ -52,6 +52,7 @@ public class IntroSceneManager : MonoBehaviour {
 			newButtonText.text = fileName;	
 
 			Button buttonBehaviour = newButton.GetComponent<Button> ();
+			initialTiltConfiguration = new Vector3(98, 0, 0);
 
 			buttonBehaviour.onClick.AddListener (() => { videoPath = path+fileName + ".mp4"; Debug.Log(videoPath); audioName = fileName; SceneManager.LoadScene("Narrative");});
 
