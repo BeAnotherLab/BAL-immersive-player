@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\IntroSceneManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ImmersiveVideoPlayer.cs">
     <Files>
-      <File FileName="Assets\Scripts\VideoPlayerAV.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\IntroSceneManager.cs" Line="55" Column="53" />
+      <File FileName="Assets\Scripts\IntroSceneManager.cs" Line="57" Column="43" />
+      <File FileName="Assets\Scripts\OscMessenger.cs" Line="19" Column="5" />
+      <File FileName="Assets\Scripts\ImmersiveVideoPlayer.cs" Line="84" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

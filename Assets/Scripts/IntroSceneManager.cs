@@ -9,54 +9,35 @@ using UnityEngine.UI;
 
 public class IntroSceneManager : MonoBehaviour {
 
-	public static string videoPath;
-
-	public static Vector3 initialTiltConfiguration;
-	public static Vector3 dynamicTilt1;
-	public static Vector3 dynamicTilt2;
-	public static Vector3 dynamicTilt3;
-
-	public static int dynamicTiltTime1;
-	public static int dynamicTiltTime2;
-	public static int dynamicTiltTime3;
-
-	public static string audioName;
-
+	#region public variables
 	public GameObject buttonPrefab;
 	public Transform canvasParent;
 	public string folderName; //name of the folder inside Assets to look for files.
 	public string fileFormat;
+	public int verticalTiltInit;
 
-	private string path; 
+	public static string videoPath;
+	public static Vector3 initialTiltConfiguration;
+	public static string audioName;
+	#endregion
 
-	List<string> tiltConfigurations = new List<string>();
+
+	#region private variables
+	private string _path; 
+
+	#endregion
 
 
+	#region monobehavior methods
 	// Use this for initialization
-
 	void Start () {
 		
-		path = Application.dataPath + "/" + folderName + "/";
+		_path = "./" + folderName + "/";
 
-		//Debug.Log (path);
-
-		foreach (string file in System.IO.Directory.GetFiles(path, "*." + fileFormat)) {
-
-			string fileName = Path.GetFileNameWithoutExtension (file);
-			GameObject newButton = Instantiate (buttonPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
-			newButton.transform.SetParent (canvasParent, false);
-
-			Debug.Log ("found " + fileName);//
-
-			Text newButtonText = newButton.GetComponentInChildren<Text> () as Text;
-			newButtonText.text = fileName;	
-
-			Button buttonBehaviour = newButton.GetComponent<Button> ();
-			initialTiltConfiguration = new Vector3(98, 0, 0);
-
-			buttonBehaviour.onClick.AddListener (() => { videoPath = path+fileName + ".mp4"; Debug.Log(videoPath); audioName = fileName; SceneManager.LoadScene("Narrative");});
-
+		foreach (string file in System.IO.Directory.GetFiles(_path, "*." + fileFormat)) {
+			CreateButtonWithBehavior (file);
 		}
+
 	}
 
 	// Update is called once per frame
@@ -64,33 +45,36 @@ public class IntroSceneManager : MonoBehaviour {
 		
 	}
 
-	public void onOpenFile () {
+	#endregion
+
+
+	#region public methods
+	public void OnOpenFile () {
 		
 		WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", false));
 		audioName = null;
 
-		initialTiltConfiguration = new Vector3(98, 0, 0);
+		initialTiltConfiguration = new Vector3(-verticalTiltInit, 0, 0);
 
-		Debug.Log (videoPath);
 		SceneManager.LoadScene ("Narrative");
 	}
 
-	/*public void onButton1 () {
-		
-		videoPath = "./StreamingAssets/" + "Jerry.mp4"; //settings are for Jona
-		initialTiltConfiguration = new Vector3(98, 0, 0);//102, 0, 0
+	public void CreateButtonWithBehavior(string file){
+		string fileName = Path.GetFileNameWithoutExtension (file);
+		GameObject newButton = Instantiate (buttonPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+		newButton.transform.SetParent (canvasParent, false);
 
-		dynamicTilt1 = new Vector3 (102, 0, 0); //106
-		dynamicTiltTime1 = 88000;
+		Text newButtonText = newButton.GetComponentInChildren<Text> () as Text;
+		newButtonText.text = fileName;	
 
-		dynamicTilt2 = new Vector3 (108, 0, 0);///108
-		dynamicTiltTime2 = 124000;
+		Button buttonBehaviour = newButton.GetComponent<Button> ();
 
-		dynamicTilt3 = new Vector3 (112, 0, 0);
-		dynamicTiltTime3 = 178000;
-
-		SceneManager.LoadScene ("Narrative");
-	}*/
+		buttonBehaviour.onClick.AddListener (() => { 
+			videoPath = _path+fileName + ".mp4";
+			Debug.Log(videoPath); 
+			audioName = fileName; 
+			SceneManager.LoadScene("Narrative");});
+	}
 
 
 	public void WriteResult(string[] paths) {
@@ -109,23 +93,8 @@ public class IntroSceneManager : MonoBehaviour {
 
 	}
 
-	void OnDisable(){
-		Debug.Log (videoPath);
-	}
-		
 
-	/*
-	public void OnCsvRead() {
-		
-		tiltConfigurations = csvReader.csvList;
-
-		for (int i = 0; i < tiltConfigurations.Count; i++) {
-			string[] tiltAngles = tiltConfigurations[i].Split (' ');
-			Debug.Log (tiltAngles[0] + tiltAngles[1] + tiltAngles [2]);
-		}
-
-
-	}*/
+#endregion
 		
 		
 }
