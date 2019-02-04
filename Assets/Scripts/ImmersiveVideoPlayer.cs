@@ -12,6 +12,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public GameObject loadingImage;
 	public GameObject dome;
 	public Text currentTimeText;
+	public AudioOSCController oscOut;
 	#endregion
 
 	#region private variables
@@ -31,11 +32,12 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	void Start () {
 		
 		_audioName = IntroSceneManager.audioName;
-
+		oscOut.LoadAudio (_audioName);
 
 		if (IntroSceneManager.videoPath != null)
 			_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
-
+		
+		Debug.Log(IntroSceneManager.videoPath + " should be open!!!!");
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
 		dome.transform.eulerAngles = IntroSceneManager.initialTiltConfiguration;
@@ -76,12 +78,12 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		if (Input.GetKeyDown ("return")){
 			_mediaPlayer.Control.Stop ();
 			_mediaPlayer.Control.Seek (0);
-			//oscOut.Send ("stop", 0);
+			oscOut.StopMessage();
 			_isPlaying = false;
 		}
 
 		if (Input.GetKeyDown ("escape")){
-			//oscOut.Send ("stop", 0);
+			oscOut.StopMessage ();
 			_isPlaying = false;
 			SceneManager.LoadScene ("Intro Scene");
 		}
@@ -94,13 +96,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 				if (!_isPaused) {
 					_mediaPlayer.Control.Pause ();
-					//oscOut.Send ("pause", 1);
+					oscOut.PauseMessage();
 					_isPaused = true;
 				} 
 
 				else if (_isPaused) {
 					_mediaPlayer.Control.Play ();
-					//oscOut.Send ("pause", 0);
+					oscOut.ResumeMessage ();
 					_isPaused = false;
 				}
 					
@@ -108,7 +110,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 			else if (!_isPlaying) {
 				_mediaPlayer.Control.Play ();
-				//oscOut.Send ("play", 1);
+				oscOut.PlayMessage ();
 				_isPlaying = true;
 			}
 
@@ -119,15 +121,17 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 		if (_mediaPlayer.Control.IsFinished()) {
 			_mediaPlayer.Control.Stop ();
+			oscOut.StopMessage ();
 		}
 
 		dome.transform.eulerAngles = new Vector3 (_currentRotationX, _currentRotationY, 0);
 	}
 
 	void OnDisable(){
-		//oscOut.Send ("stop", 0);
+		oscOut.StopMessage ();
 		_isPlaying = false;
 	}
+
 	#endregion
 
 		

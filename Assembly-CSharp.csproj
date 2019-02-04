@@ -369,6 +369,7 @@
      <Compile Include="Assets\3rd Party Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" />
      <Compile Include="Assets\3rd Party Assets\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
      <Compile Include="Assets\3rd Party Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
+     <Compile Include="Assets\Scripts\AudioOSCController.cs" />
      <Compile Include="Assets\Scripts\BinauralAudioTrigger.cs" />
      <Compile Include="Assets\Scripts\ButtonCreator.cs" />
      <Compile Include="Assets\Scripts\DontDestroy.cs" />
@@ -376,7 +377,6 @@
      <Compile Include="Assets\Scripts\IntroSceneManager.cs" />
      <Compile Include="Assets\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Scripts\MenuLoader.cs" />
-     <Compile Include="Assets\Scripts\OscMessenger.cs" />
      <Compile Include="Assets\Scripts\VideoPlayer.cs" />
      <None Include="Assets\3rd Party Assets\AVProVideo\Resources\Shaders\AVProVideo-Lit-Diffuse.shader" />
      <None Include="Assets\3rd Party Assets\SteamVR\Resources\SteamVR_Fade.shader" />
@@ -409,11 +409,11 @@
  <Reference Include="Unity.PackageManagerUI.Editor">
  <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
  <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
@@ -625,9 +625,6 @@
  <Reference Include="System.Windows.Forms">
  <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Assets/3rd Party Assets/StandaloneFileBrowser/Plugins/System.Windows.Forms.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/PackageCache/com.unity.ads@2.0.8/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Analytics.Editor">
  <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
@@ -636,9 +633,6 @@
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
  <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/PackageCache/com.unity.purchasing@2.0.3/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity 2018.3.4/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>

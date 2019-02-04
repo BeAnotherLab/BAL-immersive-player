@@ -71,7 +71,6 @@ public class IntroSceneManager : MonoBehaviour {
 
 		buttonBehaviour.onClick.AddListener (() => { 
 			videoPath = _path+fileName + ".mp4";
-			Debug.Log(videoPath); 
 			audioName = fileName; 
 			SceneManager.LoadScene("Narrative");});
 	}
