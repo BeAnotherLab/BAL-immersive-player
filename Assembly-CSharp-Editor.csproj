@@ -53,9 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\DisplayUGUIEditor.cs" />
-     <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\MediaPlayerEditor.cs" />
-     <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\PostProcessBuild.cs" />
      <Compile Include="Assets\3rd Party Assets\extOSC\Scripts\Editor\Drawers\OSCFilterDrawer.cs" />
      <Compile Include="Assets\3rd Party Assets\extOSC\Scripts\Editor\Drawers\OSCPacketDrawer.cs" />
      <Compile Include="Assets\3rd Party Assets\extOSC\Scripts\Editor\Drawers\OSCPacketEditableDrawer.cs" />
