@@ -24,7 +24,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 
 	#region monobehavior methods
-	// Use this for initialization
 	void Awake () {
 		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);
 		//_videoPlayer = gameObject.GetComponent<VideoPlayer> ();
@@ -32,18 +31,19 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	void Start () {
 
-		Debug.Log (IntroSceneManager.videoPath);
 		_videoPlayer.loopPointReached += EndReached;
 		_videoPlayer.playOnAwake = false;
+		StartCoroutine (InitializeImmersiveContent ());
+
 		_audioName = IntroSceneManager.audioName;
 		oscOut.SendOnAddress("audioname/", _audioName);
 
 		if (IntroSceneManager.videoPath != null)
-			_videoPlayer.url = IntroSceneManager.videoPath;//(MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
+			_videoPlayer.url = IntroSceneManager.videoPath;
 		
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
-		dome.transform.Rotate (IntroSceneManager.initialTiltConfiguration);//(90f,0f,0f,Space.Self);
+		dome.transform.Rotate (IntroSceneManager.initialTiltConfiguration);
 	}
 
 
@@ -90,7 +90,11 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		if (Input.GetKeyDown ("space")) {
 
 
-			if (_isPlaying) {
+			if (!_isPlaying) {
+				StartCoroutine (InitializeImmersiveContent ());
+			}
+
+			else if (_isPlaying) {
 
 
 				if (!_isPaused) {
@@ -104,15 +108,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 					oscOut.Send("resume");
 					_isPaused = false;
 				}
-					
-			}
 
-			else if (!_isPlaying) {
-				_videoPlayer.Play ();
-				oscOut.Send ("play");
-				_isPlaying = true;
 			}
-
 
 
 		}
@@ -134,5 +131,17 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		vp.Stop ();
 		oscOut.Send ("stop");
 	}
+
+	private IEnumerator InitializeImmersiveContent(){
+		
+		_videoPlayer.Prepare ();
+		while (!_videoPlayer.isPrepared) {
+			yield return null;
+		}
+		_videoPlayer.Play ();
+		oscOut.Send ("play");
+		_isPlaying = true;
+	}
+
 	#endregion
 }
