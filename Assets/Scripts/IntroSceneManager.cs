@@ -49,11 +49,12 @@ public class IntroSceneManager : MonoBehaviour {
 	public void LoadFile () {
 		
 		WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", false));
-		audioName = null;
 
-		initialTiltConfiguration = new Vector3(verticalTiltInit, 0f, 0f);		
-
-		SceneManager.LoadScene ("Narrative");
+		if (videoPath != null) {
+			audioName = null;
+			initialTiltConfiguration = new Vector3 (verticalTiltInit, 0f, 0f);		
+			SceneManager.LoadScene ("Narrative");
+		}
 	}
 
 	public void CreateButton(string file){
@@ -81,7 +82,6 @@ public class IntroSceneManager : MonoBehaviour {
 		foreach (var p in paths) {
 			videoPath += p; //videoPath += p + "\n";
 		}
-			
 
 		videoPath = videoPath.Replace("\\", "/"); //changing \ slash to / slash
 
