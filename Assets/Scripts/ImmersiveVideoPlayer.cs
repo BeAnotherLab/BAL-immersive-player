@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RenderHeads.Media.AVProVideo;
+using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
@@ -8,7 +8,7 @@ using UnityEngine.XR;
 public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	#region public variables
-	public MediaPlayer	_mediaPlayer;
+	public VideoPlayer _videoPlayer;
 	public GameObject loadingImage;
 	public GameObject dome;
 	public Text currentTimeText;
@@ -27,15 +27,19 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);
+		//_videoPlayer = gameObject.GetComponent<VideoPlayer> ();
 	}
 
 	void Start () {
-		
+
+		Debug.Log (IntroSceneManager.videoPath);
+		_videoPlayer.loopPointReached += EndReached;
+		_videoPlayer.playOnAwake = false;
 		_audioName = IntroSceneManager.audioName;
-		oscOut.Send("audioname " + _audioName);
+		oscOut.SendOnAddress("audioname/", _audioName);
 
 		if (IntroSceneManager.videoPath != null)
-			_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
+			_videoPlayer.url = IntroSceneManager.videoPath;//(MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
 		
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
@@ -45,9 +49,9 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-		currentTimeText.text = System.Math.Round((_mediaPlayer.Control.GetCurrentTimeMs()/1000), 2).ToString() + "  of  " 
-			+ System.Math.Round((_mediaPlayer.Info.GetDurationMs()/1000),2).ToString();
+		/*
+		currentTimeText.text = System.Math.Round((_videoPlayer.Control.GetCurrentTimeMs()/1000), 2).ToString() + "  of  " 
+			+ System.Math.Round((_videoPlayer.Info.GetDurationMs()/1000),2).ToString();*/
 
 		if (Input.GetKey ("down")) 
 			UpdateDomeTransform(-0.25f, 0f);
@@ -71,8 +75,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		} 
 
 		if (Input.GetKeyDown ("return")){
-			_mediaPlayer.Control.Stop ();
-			_mediaPlayer.Control.Seek (0);
+			_videoPlayer.Stop ();
+			_videoPlayer.frame = 0;
 			oscOut.Send("stop");
 			_isPlaying = false;
 		}
@@ -90,13 +94,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 
 				if (!_isPaused) {
-					_mediaPlayer.Control.Pause ();
+					_videoPlayer.Pause ();
 					oscOut.Send("pause");
 					_isPaused = true;
 				} 
 
 				else if (_isPaused) {
-					_mediaPlayer.Control.Play ();
+					_videoPlayer.Play ();
 					oscOut.Send("resume");
 					_isPaused = false;
 				}
@@ -104,7 +108,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 			}
 
 			else if (!_isPlaying) {
-				_mediaPlayer.Control.Play ();
+				_videoPlayer.Play ();
 				oscOut.Send ("play");
 				_isPlaying = true;
 			}
@@ -113,10 +117,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 		}
 			
-		if (_mediaPlayer.Control.IsFinished()) {
-			_mediaPlayer.Control.Stop ();
-			oscOut.Send ("stop");
-		}
 	}
 		
 
@@ -125,6 +125,14 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	#region Public methods
 	public void UpdateDomeTransform(float x, float y){
 		dome.transform.Rotate(x, 0f, y, Space.Self);
+	}
+	#endregion
+
+	#region Private methods
+	private void EndReached(UnityEngine.Video.VideoPlayer vp){
+		Debug.Log ("video is over");
+		vp.Stop ();
+		oscOut.Send ("stop");
 	}
 	#endregion
 }

@@ -377,7 +377,7 @@
      <Compile Include="Assets\Scripts\IntroSceneManager.cs" />
      <Compile Include="Assets\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Scripts\MenuLoader.cs" />
-     <Compile Include="Assets\Scripts\VideoPlayer.cs" />
+     <Compile Include="Assets\Scripts\VideoManager.cs" />
      <None Include="Assets\3rd Party Assets\AVProVideo\Resources\Shaders\AVProVideo-Lit-Diffuse.shader" />
      <None Include="Assets\3rd Party Assets\SteamVR\Resources\SteamVR_Fade.shader" />
      <None Include="Assets\3rd Party Assets\AVProVideo\Demos\Materials\UI-Default-ExtraTexture.shader" />

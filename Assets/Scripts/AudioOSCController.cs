@@ -28,5 +28,12 @@ public class AudioOSCController : MonoBehaviour
 		message.AddValue(OSCValue.String(m));
 		oscOut.Send(message);
 	}
+
+	public void SendOnAddress(string address, string m) {
+		var message = new OSCMessage (audioAddress);
+		message.AddValue (OSCValue.String (address));
+		message.AddValue (OSCValue.String (m));
+		oscOut.Send (message);
+	}
 	#endregion
 }
