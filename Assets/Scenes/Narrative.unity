@@ -383,7 +383,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f73252af48052464f99b2a221454844e, type: 2}
     - target: {fileID: 400000, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3b259a0bf5c0d724c983c4724c21352a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -727,11 +727,11 @@ PrefabInstance:
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 899574187}
+      objectReference: {fileID: 680030711}
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1669940434}
+      objectReference: {fileID: 790392083}
     - target: {fileID: 124034, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!43 &899574187
+--- !u!43 &680030711
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1069,6 +1069,40 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!21 &790392083
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &912142101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1231,12 @@ CanvasRenderer:
 --- !u!1 &1406251745 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 3b259a0bf5c0d724c983c4724c21352a,
+    type: 3}
+  m_PrefabInstance: {fileID: 164336920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1406251746 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 3b259a0bf5c0d724c983c4724c21352a,
     type: 3}
   m_PrefabInstance: {fileID: 164336920}
   m_PrefabAsset: {fileID: 0}
@@ -1423,11 +1463,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643468101}
-  m_LocalRotation: {x: -0.70774615, y: 0.032888934, z: -0.03275853, w: 0.7049402}
-  m_LocalPosition: {x: -71, y: -590, z: 53}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.70774615, y: -0.032888934, z: -0.03275853, w: 0.7049402}
+  m_LocalPosition: {x: -71, y: -590, z: -53}
+  m_LocalScale: {x: 1, y: 1, z: -1}
   m_Children: []
-  m_Father: {fileID: 273449340}
+  m_Father: {fileID: 1406251746}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -84.674, y: 92.453, z: -92.442}
 --- !u!92 &1643468104
@@ -1488,40 +1528,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!21 &1669940434
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1827028063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,11 +1696,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827899328}
-  m_LocalRotation: {x: -0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 0, z: -175}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.3420201, y: 0, z: -0, w: 0.9396927}
+  m_LocalPosition: {x: 0, y: 0, z: 175}
+  m_LocalScale: {x: 1, y: 1, z: -1}
   m_Children: []
-  m_Father: {fileID: 273449340}
+  m_Father: {fileID: 1406251746}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -40, y: 0, z: 0}
 --- !u!1 &1835167219
