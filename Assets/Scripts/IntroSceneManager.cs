@@ -14,7 +14,7 @@ public class IntroSceneManager : MonoBehaviour {
 	public Transform canvasParent;
 	public string folderName; //name of the folder inside Assets to look for files.
 	public string fileFormat;
-	public int verticalTiltInit;
+	public float verticalTiltInit;
 
 	public static string videoPath;
 	public static Vector3 initialTiltConfiguration;
@@ -35,44 +35,39 @@ public class IntroSceneManager : MonoBehaviour {
 		_path = "./" + folderName + "/";
 
 		foreach (string file in System.IO.Directory.GetFiles(_path, "*." + fileFormat)) {
-			CreateButtonWithBehavior (file);
+			CreateButton (file);
 		}
 
-	}
-
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	#endregion
 
 
-	#region public methods
-	public void OnOpenFile () {
+	#region Public methods
+
+
+	public void LoadFile () {
 		
 		WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", false));
 		audioName = null;
 
-		initialTiltConfiguration = new Vector3(-verticalTiltInit, 0, 0);
+		initialTiltConfiguration = new Vector3(verticalTiltInit, 0f, 0f);		
 
 		SceneManager.LoadScene ("Narrative");
 	}
 
-	public void CreateButtonWithBehavior(string file){
-		string fileName = Path.GetFileNameWithoutExtension (file);
+	public void CreateButton(string file){
+		
+		string _fileName = Path.GetFileNameWithoutExtension (file);
 		GameObject newButton = Instantiate (buttonPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
 		newButton.transform.SetParent (canvasParent, false);
 
 		Text newButtonText = newButton.GetComponentInChildren<Text> () as Text;
-		newButtonText.text = fileName;	
+		newButtonText.text = _fileName;	
 
 		Button buttonBehaviour = newButton.GetComponent<Button> ();
 
-		buttonBehaviour.onClick.AddListener (() => { 
-			videoPath = _path+fileName + ".mp4";
-			audioName = fileName; 
-			SceneManager.LoadScene("Narrative");});
+		buttonBehaviour.onClick.AddListener (() => { ButtonBehavior(_fileName);});
 	}
 
 
@@ -91,9 +86,16 @@ public class IntroSceneManager : MonoBehaviour {
 		videoPath = videoPath.Replace("\\", "/"); //changing \ slash to / slash
 
 	}
+	#endregion
 
 
-#endregion
-		
+	#region Private methods
+	private void ButtonBehavior(string _fileName){
+		videoPath = _path+_fileName + ".mp4";
+		audioName = _fileName; 
+		initialTiltConfiguration = new Vector3(verticalTiltInit, 0f, 0f);
+		SceneManager.LoadScene("Narrative");
+	}	
+	#endregion
 		
 }

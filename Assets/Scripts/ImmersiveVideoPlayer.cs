@@ -32,19 +32,16 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	void Start () {
 		
 		_audioName = IntroSceneManager.audioName;
-		oscOut.LoadAudio (_audioName);
+		oscOut.Send("audioname " + _audioName);
 
 		if (IntroSceneManager.videoPath != null)
 			_mediaPlayer.OpenVideoFromFile (MediaPlayer.FileLocation.AbsolutePathOrURL, IntroSceneManager.videoPath, false); // "C:/Users/BeAnotherLab/Desktop/SittingTest1.mp4"
 		
-		Debug.Log(IntroSceneManager.videoPath + " should be open!!!!");
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
-		dome.transform.eulerAngles = IntroSceneManager.initialTiltConfiguration;
-		_currentRotationX = IntroSceneManager.initialTiltConfiguration.x;
-		_currentRotationY = IntroSceneManager.initialTiltConfiguration.y;
-
+		dome.transform.Rotate (IntroSceneManager.initialTiltConfiguration);//(90f,0f,0f,Space.Self);
 	}
+
 
 	// Update is called once per frame
 	void Update () {
@@ -52,22 +49,20 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		currentTimeText.text = System.Math.Round((_mediaPlayer.Control.GetCurrentTimeMs()/1000), 2).ToString() + "  of  " 
 			+ System.Math.Round((_mediaPlayer.Info.GetDurationMs()/1000),2).ToString();
 
-
-
-		if (Input.GetKey("down"))
-			_currentRotationX = _currentRotationX -0.25f;
+		if (Input.GetKey ("down")) 
+			UpdateDomeTransform(-0.25f, 0f);
 		
 
 		if (Input.GetKey("up"))
-			_currentRotationX = _currentRotationX +0.25f;
+			UpdateDomeTransform(0.25f, 0f);
 		
 
 		if (Input.GetKey("left"))
-			_currentRotationY = _currentRotationY +0.25f;
+			UpdateDomeTransform(0f, 0.25f);
 		
 
 		if (Input.GetKey("right"))
-			_currentRotationY = _currentRotationY -0.25f;
+			UpdateDomeTransform(0f, -0.25f);
 		
 		
 		if (Input.GetKeyDown ("c")) {
@@ -78,12 +73,12 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		if (Input.GetKeyDown ("return")){
 			_mediaPlayer.Control.Stop ();
 			_mediaPlayer.Control.Seek (0);
-			oscOut.StopMessage();
+			oscOut.Send("stop");
 			_isPlaying = false;
 		}
 
 		if (Input.GetKeyDown ("escape")){
-			oscOut.StopMessage ();
+			oscOut.Send ("stop");
 			_isPlaying = false;
 			SceneManager.LoadScene ("Intro Scene");
 		}
@@ -96,13 +91,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 				if (!_isPaused) {
 					_mediaPlayer.Control.Pause ();
-					oscOut.PauseMessage();
+					oscOut.Send("pause");
 					_isPaused = true;
 				} 
 
 				else if (_isPaused) {
 					_mediaPlayer.Control.Play ();
-					oscOut.ResumeMessage ();
+					oscOut.Send("resume");
 					_isPaused = false;
 				}
 					
@@ -110,29 +105,26 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 			else if (!_isPlaying) {
 				_mediaPlayer.Control.Play ();
-				oscOut.PlayMessage ();
+				oscOut.Send ("play");
 				_isPlaying = true;
 			}
 
 
 
 		}
-
-
+			
 		if (_mediaPlayer.Control.IsFinished()) {
 			_mediaPlayer.Control.Stop ();
-			oscOut.StopMessage ();
+			oscOut.Send ("stop");
 		}
-
-		dome.transform.eulerAngles = new Vector3 (_currentRotationX, _currentRotationY, 0);
 	}
-
-	void OnDisable(){
-		oscOut.StopMessage ();
-		_isPlaying = false;
-	}
+		
 
 	#endregion
 
-		
+	#region Public methods
+	public void UpdateDomeTransform(float x, float y){
+		dome.transform.Rotate(x, 0f, y, Space.Self);
+	}
+	#endregion
 }

@@ -11,55 +11,22 @@ public class AudioOSCController : MonoBehaviour
 	#endregion
 
 	#region Unity Methods
-
 	void Awake(){
 		oscOut = GetComponent<OSCTransmitter> ();
 	}
-    // Start is called before the first frame update
-    void Start()
-    {
-		
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Not sending osc messages, but should find a solution to send 'stop' on quit.
+	void OnApplicationQuit(){
+		
+	}
 	#endregion
 
-	#region Private metods
-	public void PauseMessage(){
+	#region Public metods
+
+	public void Send(string m) {
 		var message = new OSCMessage(audioAddress);
-		message.AddValue(OSCValue.String("pause"));
+		message.AddValue(OSCValue.String(m));
 		oscOut.Send(message);
 	}
-
-	public void PlayMessage(){
-		var message = new OSCMessage(audioAddress);
-		message.AddValue(OSCValue.String("play"));
-		oscOut.Send(message);
-	}
-
-	public void ResumeMessage(){
-		var message = new OSCMessage(audioAddress);
-		message.AddValue(OSCValue.String("resume"));
-		oscOut.Send(message);
-	}
-
-	public void StopMessage(){
-		var message = new OSCMessage(audioAddress);
-		message.AddValue(OSCValue.String("stop"));
-		oscOut.Send(message);
-	}
-
-	public void LoadAudio(string audioname) {
-		var message = new OSCMessage(audioAddress);
-		message.AddValue(OSCValue.String("audioname "));
-		message.AddValue (OSCValue.String(audioname));
-		oscOut.Send(message);
-	}
-
 	#endregion
 }
