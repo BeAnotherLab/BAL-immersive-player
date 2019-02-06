@@ -35,15 +35,15 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		_videoPlayer.playOnAwake = false;
 		StartCoroutine (InitializeImmersiveContent ());
 
-		_audioName = IntroSceneManager.audioName;
+		_audioName = VideoPlayerSettings.audioName;
 		oscOut.SendOnAddress("audioname/", _audioName);
 
-		if (IntroSceneManager.videoPath != null)
-			_videoPlayer.url = IntroSceneManager.videoPath;
+		if (VideoPlayerSettings.videoPath != null)
+			_videoPlayer.url = VideoPlayerSettings.videoPath;
 		
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
-		dome.transform.Rotate (IntroSceneManager.initialTiltConfiguration);
+		dome.transform.Rotate (VideoPlayerSettings.initialTiltConfiguration);
 	}
 
 

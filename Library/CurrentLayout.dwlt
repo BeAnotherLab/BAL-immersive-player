@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 548}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -111,10 +111,10 @@ MonoBehaviour:
     y: 30
     width: 1746
     height: 922
-  m_MinSize: {x: 683, y: 498}
-  m_MaxSize: {x: 14004, y: 14048}
+  m_MinSize: {x: 679, y: 498}
+  m_MaxSize: {x: 14002, y: 14048}
   vertical: 0
-  controlID: 10
+  controlID: 82
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,10 +136,10 @@ MonoBehaviour:
     y: 0
     width: 1406
     height: 922
-  m_MinSize: {x: 406, y: 498}
+  m_MinSize: {x: 404, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 11
+  controlID: 83
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,10 +161,10 @@ MonoBehaviour:
     y: 0
     width: 1406
     height: 648
-  m_MinSize: {x: 406, y: 224}
-  m_MaxSize: {x: 8006, y: 4024}
+  m_MinSize: {x: 404, y: 224}
+  m_MaxSize: {x: 8004, y: 4024}
   vertical: 0
-  controlID: 12
+  controlID: 84
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -265,8 +265,8 @@ MonoBehaviour:
     y: 0
     width: 340
     height: 922
-  m_MinSize: {x: 277, y: 74}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -381,20 +381,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 482e0000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 0ee0ffff2ee0ffff9ce2ffff2cfaffff4efaffff6efaffff76faffff40fbffff483300006a33000096330000
+      m_SelectedIDs: 0e2f0000
+      m_LastClickedID: 12046
+      m_ExpandedIDs: b2f7ffffc8f7ffffccfbffff362d00005c2d0000162f00003c2f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: GUI
-        m_OriginalName: GUI
+        m_Name: Canvas
+        m_OriginalName: Canvas
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 13206
+        m_UserData: 11574
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -468,13 +468,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.062644236, y: 0.86961114, z: 0.4761997, w: 0.114393815}
+    m_Target: {x: -0.0000006587352, y: 0.00059218745, z: 0.0000019437648, w: -0.9999999}
     speed: 2
-    m_Value: {x: -0.062644236, y: 0.86961114, z: 0.4761997, w: 0.114393815}
+    m_Value: {x: -0.0000006587352, y: 0.00059218745, z: 0.0000019437648, w: -0.9999999}
   m_Size:
-    m_Target: 2194.396
+    m_Target: 891.6322
     speed: 2
-    m_Value: 2194.396
+    m_Value: 891.6322
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -550,20 +550,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Marte\Documents\GitHub\BAL-immersive-player
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 7}
-    m_SelectedIDs: 9a2d0000
-    m_LastClickedID: 11674
-    m_ExpandedIDs: 000000003a0a0000602c0000ba2c00002c2d0000c02d0000842e00002e300000b4300000463100000e330000103300001233000000ca9a3b
+    m_SelectedIDs: ae2b0000
+    m_LastClickedID: 11182
+    m_ExpandedIDs: 00000000b6090000be2800000029000058290000b2290000722b0000cc2b0000382c0000b62d0000b82d0000ba2d0000bc2d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -591,7 +591,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003a0a0000602c0000ba2c00002c2d0000c02d00000c2e0000842e00002e300000b4300000463100000e3300001033000012330000
+    m_ExpandedIDs: 00000000b6090000be2800000029000058290000b2290000722b0000cc2b0000382c0000b62d0000b82d0000ba2d0000bc2d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
