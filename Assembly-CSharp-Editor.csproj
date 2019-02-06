@@ -101,12 +101,6 @@
      <Compile Include="Assets\3rd Party Assets\extOSC\Scripts\Editor\Windows\OSCWindowControlCreator.cs" />
      <Compile Include="Assets\3rd Party Assets\extOSC\Scripts\Editor\Windows\OSCWindowDebug.cs" />
      <Compile Include="Assets\3rd Party Assets\extOSC\Scripts\Editor\Windows\OSCWindowMapping.cs" />
-     <Compile Include="Assets\3rd Party Assets\SteamVR\Editor\SteamVR_Editor.cs" />
-     <Compile Include="Assets\3rd Party Assets\SteamVR\Editor\SteamVR_Preferences.cs" />
-     <Compile Include="Assets\3rd Party Assets\SteamVR\Editor\SteamVR_RenderModelEditor.cs" />
-     <Compile Include="Assets\3rd Party Assets\SteamVR\Editor\SteamVR_Settings.cs" />
-     <Compile Include="Assets\3rd Party Assets\SteamVR\Editor\SteamVR_SkyboxEditor.cs" />
-     <Compile Include="Assets\3rd Party Assets\SteamVR\Editor\SteamVR_Update.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Marte/Documents/GitHub/BAL-immersive-player/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
