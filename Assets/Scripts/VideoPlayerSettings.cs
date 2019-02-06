@@ -102,7 +102,6 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 	private void LoadVideoScene(){
 		is360 = toggle360Video.isOn;
-		Debug.Log (is360);
 		SceneManager.LoadScene("Narrative");
 	}
 	#endregion

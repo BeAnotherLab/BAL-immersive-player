@@ -244,6 +244,7 @@
      <Compile Include="Assets\Scripts\ButtonCreator.cs" />
      <Compile Include="Assets\Scripts\DontDestroy.cs" />
      <Compile Include="Assets\Scripts\ImmersiveVideoPlayer.cs" />
+     <Compile Include="Assets\Scripts\KeyboardPlayerControls.cs" />
      <Compile Include="Assets\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Scripts\MenuLoader.cs" />
      <Compile Include="Assets\Scripts\VideoDisplaySelector.cs" />

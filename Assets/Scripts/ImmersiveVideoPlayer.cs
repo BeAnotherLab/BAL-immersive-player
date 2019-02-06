@@ -11,13 +11,17 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public GameObject dome;
 	public Text currentTimeText;
 	public AudioOSCController oscOut;
+
+	[HideInInspector]
+	public bool isPlaying = false;
+	[HideInInspector]
+	public bool isPaused = false;
 	#endregion
 
 	#region private variables
 	private GameObject _display;
 	private VideoPlayer _videoPlayer;
-	private bool _isPlaying = false;
-	private bool _isPaused = false;
+
 	private float _currentRotationX, _currentRotationY;
 	private string _audioName;
 	#endregion
@@ -49,77 +53,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		dome.transform.Rotate (VideoPlayerSettings.initialTiltConfiguration);
 	}
 
-
-	// Update is called once per frame
-	void Update () {
-		/*
-		currentTimeText.text = System.Math.Round((_videoPlayer.Control.GetCurrentTimeMs()/1000), 2).ToString() + "  of  " 
-			+ System.Math.Round((_videoPlayer.Info.GetDurationMs()/1000),2).ToString();*/
-
-		if (Input.GetKey ("down")) 
-			UpdateProjectorTransform(-0.25f, 0f);
-		
-
-		if (Input.GetKey("up"))
-			UpdateProjectorTransform(0.25f, 0f);
-		
-
-		if (Input.GetKey("left"))
-			UpdateProjectorTransform(0f, 0.25f);
-		
-
-		if (Input.GetKey("right"))
-			UpdateProjectorTransform(0f, -0.25f);
-		
-		
-		if (Input.GetKeyDown ("c")) {
-			UnityEngine.XR.InputTracking.Recenter ();
-			//Valve.VR.OpenVR.System.ResetSeatedZeroPose ();
-		} 
-
-		if (Input.GetKeyDown ("return")){
-			_videoPlayer.Stop ();
-			_videoPlayer.frame = 0;
-			oscOut.Send("stop");
-			_isPlaying = false;
-		}
-
-		if (Input.GetKeyDown ("escape")){
-			oscOut.Send ("stop");
-			_isPlaying = false;
-			SceneManager.LoadScene ("Intro Scene");
-		}
-
-		if (Input.GetKeyDown ("space")) {
-
-
-			if (!_isPlaying) {
-				StartCoroutine (InitializeImmersiveContent ());
-			}
-
-			else if (_isPlaying) {
-
-
-				if (!_isPaused) {
-					_videoPlayer.Pause ();
-					oscOut.Send("pause");
-					_isPaused = true;
-				} 
-
-				else if (_isPaused) {
-					_videoPlayer.Play ();
-					oscOut.Send("resume");
-					_isPaused = false;
-				}
-
-			}
-
-
-		}
-			
-	}
-		
-
 	#endregion
 
 	#region Public methods
@@ -127,21 +60,33 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		dome.transform.Rotate(x, 0f, y, Space.Self);
 	}
 
-	private void PlayImmersiveContent(){
-
+	public void PlayImmersiveContent(){
+		StartCoroutine (InitializeImmersiveContent ());
+		Debug.Log ("should start playing");
 	}
 
-	private void StopImmersiveContent(){
-
+	public void StopImmersiveContent(){
+		_videoPlayer.Stop ();
+		oscOut.Send("stop");
+		isPlaying = false;
 	}
 
-	private void PauseImmersiveContent(){
-
+	public void PauseImmersiveContent(){
+		_videoPlayer.Pause ();
+		oscOut.Send("pause");
+		isPaused = true;
 	}
 
-	private void ResumeImmersiveContent(){
-
+	public void ResumeImmersiveContent(){
+		_videoPlayer.Play ();
+		oscOut.Send("resume");
+		isPaused = false;
 	}
+
+	public void BackToMenu(){
+		Resources.UnloadUnusedAssets ();
+	}
+
 	#endregion
 
 	#region Private methods
@@ -161,7 +106,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		}
 		_videoPlayer.Play ();
 		oscOut.Send ("play");
-		_isPlaying = true;
+		isPlaying = true;
 	}
 
 	#endregion
