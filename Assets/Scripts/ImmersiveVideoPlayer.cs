@@ -83,6 +83,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		StartCoroutine (InitializeImmersiveContent ());
 	}
 
+	public void GoToFrame(int frameToSeek){
+		//_videoPlayer.Stop ();
+		oscOut.Send ("stop");
+		//Debug.Log ("Stoped Audio Player, seek is not supported");
+		_videoPlayer.frame = frameToSeek;
+	}
+
 	public void StopImmersiveContent(){
 		_videoPlayer.Stop ();
 		oscOut.Send("stop");
@@ -104,6 +111,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public void BackToMenu(){
 		Resources.UnloadUnusedAssets ();
 	}
+		
 
 	#endregion
 
