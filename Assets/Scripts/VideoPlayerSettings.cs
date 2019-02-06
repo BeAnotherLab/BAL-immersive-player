@@ -15,7 +15,9 @@ public class VideoPlayerSettings : MonoBehaviour {
 	public string folderName; //name of the folder inside Assets to look for files.
 	public string fileFormat;
 	public float verticalTiltInit;
+	public Toggle toggle360Video;
 
+	public static bool is360;
 	public static string videoPath;
 	public static Vector3 initialTiltConfiguration;
 	public static string audioName;
@@ -99,8 +101,9 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 
 	private void LoadVideoScene(){
+		is360 = toggle360Video.isOn;
+		Debug.Log (is360);
 		SceneManager.LoadScene("Narrative");
-
 	}
 	#endregion
 		

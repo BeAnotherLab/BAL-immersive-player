@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 1746
     height: 972
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 548}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -111,10 +111,10 @@ MonoBehaviour:
     y: 30
     width: 1746
     height: 922
-  m_MinSize: {x: 679, y: 498}
-  m_MaxSize: {x: 14002, y: 14048}
+  m_MinSize: {x: 683, y: 498}
+  m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 82
+  controlID: 98
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,10 +136,10 @@ MonoBehaviour:
     y: 0
     width: 1406
     height: 922
-  m_MinSize: {x: 404, y: 498}
+  m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 83
+  controlID: 11
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,10 +161,10 @@ MonoBehaviour:
     y: 0
     width: 1406
     height: 648
-  m_MinSize: {x: 404, y: 224}
-  m_MaxSize: {x: 8004, y: 4024}
+  m_MinSize: {x: 406, y: 224}
+  m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 84
+  controlID: 12
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -265,8 +265,8 @@ MonoBehaviour:
     y: 0
     width: 340
     height: 922
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 74}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -381,20 +381,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 0e2f0000
-      m_LastClickedID: 12046
-      m_ExpandedIDs: b2f7ffffc8f7ffffccfbffff362d00005c2d0000162f00003c2f0000
+      m_SelectedIDs: 9c330000
+      m_LastClickedID: 13212
+      m_ExpandedIDs: 94e5ffffaaecffffb6ecffffbcecffff86faffff8cfaffffbafbffffb2100000e4320000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Canvas
-        m_OriginalName: Canvas
+        m_Name: Dome
+        m_OriginalName: Dome
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 11574
+        m_UserData: 12988
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -468,13 +468,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.0000006587352, y: 0.00059218745, z: 0.0000019437648, w: -0.9999999}
+    m_Target: {x: -0.02249788, y: 0.00959022, z: -0.00021342115, w: -0.9997049}
     speed: 2
-    m_Value: {x: -0.0000006587352, y: 0.00059218745, z: 0.0000019437648, w: -0.9999999}
+    m_Value: {x: -0.02249779, y: 0.0095901815, z: -0.00021342031, w: -0.99970096}
   m_Size:
-    m_Target: 891.6322
+    m_Target: 2151.6057
     speed: 2
-    m_Value: 891.6322
+    m_Value: 2151.6057
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -550,20 +550,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Marte\Documents\GitHub\BAL-immersive-player
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 7}
-    m_SelectedIDs: ae2b0000
-    m_LastClickedID: 11182
-    m_ExpandedIDs: 00000000b6090000be2800000029000058290000b2290000722b0000cc2b0000382c0000b62d0000b82d0000ba2d0000bc2d000000ca9a3b
+    scrollPos: {x: 0, y: 51}
+    m_SelectedIDs: fc0c0000
+    m_LastClickedID: 3324
+    m_ExpandedIDs: 00000000b80900001a0c00005c0c0000b40c00000e0d00004c0d0000a80e0000ce0e0000280f0000940f0000b42d0000b62d0000b82d0000ba2d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -591,7 +591,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b6090000be2800000029000058290000b2290000722b0000cc2b0000382c0000b62d0000b82d0000ba2d0000bc2d0000
+    m_ExpandedIDs: 00000000b80900001a0c00005c0c0000b40c00000e0d0000ce0e0000280f0000940f0000b42d0000b62d0000b82d0000ba2d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -619,7 +619,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: ea1b0000da1b0000141c0000dc1b00002e1c0000e0260000142600009e220000000000001c360000b2310000
+    m_ExpandedInstanceIDs: ea1b0000da1b0000141c0000dc1b00002e1c0000e0260000142600009e220000000000001c360000b2310000a40c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
