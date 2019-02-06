@@ -651,7 +651,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 497758105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c966b0b8125425c4b895b77ec1ddf73a, type: 3}
+  m_Script: {fileID: 11500000, guid: a3081f1228fb1f54eb36a4229fe2e7b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   semisphere: {fileID: 692433961}
@@ -1113,9 +1113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e8fbe366211294cba4d47cd4d9e2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dome: {fileID: 497758105}
-  currentTimeText: {fileID: 247125344}
-  oscOut: {fileID: 1827028067}
   isPlaying: 0
   isPaused: 0
 --- !u!4 &912142103

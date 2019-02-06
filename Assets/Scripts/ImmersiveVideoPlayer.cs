@@ -8,9 +8,6 @@ using UnityEngine.XR;
 public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	#region public variables
-	public GameObject dome;
-	public Text currentTimeText;
-	public AudioOSCController oscOut;
 
 	[HideInInspector]
 	public bool isPlaying = false;
@@ -19,6 +16,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	#endregion
 
 	#region private variables
+	private AudioOSCController oscOut;
 	private GameObject _display;
 	private VideoPlayer _videoPlayer;
 
@@ -30,13 +28,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	#region monobehavior methods
 	void Awake () {
 		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);
-		//_videoPlayer = gameObject.GetComponent<VideoPlayer> ();
-		_display = FindObjectOfType<VideoDisplaySelector>().gameObject;
+		_display = FindObjectOfType<DisplaySelector>().gameObject;
+		oscOut = (AudioOSCController)FindObjectOfType(typeof(AudioOSCController));
 	}
 
 	void Start () {
 
-		_videoPlayer = _display.GetComponent<VideoDisplaySelector>().selectedDisplay.GetComponent<VideoPlayer>();
+		_videoPlayer = _display.GetComponent<DisplaySelector>().selectedDisplay.GetComponent<VideoPlayer>();
 
 		_videoPlayer.loopPointReached += EndReached;
 		_videoPlayer.playOnAwake = false;
@@ -50,19 +48,39 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
-		dome.transform.Rotate (VideoPlayerSettings.initialTiltConfiguration);
+		_display.transform.Rotate (VideoPlayerSettings.initialTiltConfiguration);
+	}
+
+	void Update(){
+
 	}
 
 	#endregion
 
 	#region Public methods
+
+	public int CurrentFrame () {
+		return (int)_videoPlayer.frame;
+	}
+
+	public int TotalFrames() {
+		return (int) _videoPlayer.frameCount;
+	}
+
+	public float ElapsedTime() {
+		return (_videoPlayer.frame / _videoPlayer.frameRate);
+	}
+
+	public float TotalTime(){
+		return (_videoPlayer.frameCount / _videoPlayer.frameRate);
+	}
+
 	public void UpdateProjectorTransform(float x, float y){
-		dome.transform.Rotate(x, 0f, y, Space.Self);
+		_display.transform.Rotate(x, 0f, y, Space.Self);
 	}
 
 	public void PlayImmersiveContent(){
 		StartCoroutine (InitializeImmersiveContent ());
-		Debug.Log ("should start playing");
 	}
 
 	public void StopImmersiveContent(){
