@@ -8,14 +8,14 @@ using UnityEngine.XR;
 public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	#region public variables
-	public VideoPlayer _videoPlayer;
-	public GameObject loadingImage;
 	public GameObject dome;
 	public Text currentTimeText;
 	public AudioOSCController oscOut;
 	#endregion
 
 	#region private variables
+	private GameObject _display;
+	private VideoPlayer _videoPlayer;
 	private bool _isPlaying = false;
 	private bool _isPaused = false;
 	private float _currentRotationX, _currentRotationY;
@@ -27,9 +27,12 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	void Awake () {
 		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);
 		//_videoPlayer = gameObject.GetComponent<VideoPlayer> ();
+		_display = FindObjectOfType<VideoDisplaySelector>().gameObject;
 	}
 
 	void Start () {
+
+		_videoPlayer = _display.GetComponent<VideoDisplaySelector>().selectedDisplay.GetComponent<VideoPlayer>();
 
 		_videoPlayer.loopPointReached += EndReached;
 		_videoPlayer.playOnAwake = false;

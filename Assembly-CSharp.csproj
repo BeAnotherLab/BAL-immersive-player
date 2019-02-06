@@ -246,7 +246,7 @@
      <Compile Include="Assets\Scripts\ImmersiveVideoPlayer.cs" />
      <Compile Include="Assets\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Scripts\MenuLoader.cs" />
-     <Compile Include="Assets\Scripts\VideoManager.cs" />
+     <Compile Include="Assets\Scripts\VideoDisplaySelector.cs" />
      <Compile Include="Assets\Scripts\VideoPlayerSettings.cs" />
      <None Include="Assets\Graphics\Shaders\Backfaces.shader" />
      <None Include="Assets\3rd Party Assets\extOSC\versions.txt" />
