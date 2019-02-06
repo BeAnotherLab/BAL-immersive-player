@@ -57,19 +57,19 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 			+ System.Math.Round((_videoPlayer.Info.GetDurationMs()/1000),2).ToString();*/
 
 		if (Input.GetKey ("down")) 
-			UpdateDomeTransform(-0.25f, 0f);
+			UpdateProjectorTransform(-0.25f, 0f);
 		
 
 		if (Input.GetKey("up"))
-			UpdateDomeTransform(0.25f, 0f);
+			UpdateProjectorTransform(0.25f, 0f);
 		
 
 		if (Input.GetKey("left"))
-			UpdateDomeTransform(0f, 0.25f);
+			UpdateProjectorTransform(0f, 0.25f);
 		
 
 		if (Input.GetKey("right"))
-			UpdateDomeTransform(0f, -0.25f);
+			UpdateProjectorTransform(0f, -0.25f);
 		
 		
 		if (Input.GetKeyDown ("c")) {
@@ -123,8 +123,24 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	#endregion
 
 	#region Public methods
-	public void UpdateDomeTransform(float x, float y){
+	public void UpdateProjectorTransform(float x, float y){
 		dome.transform.Rotate(x, 0f, y, Space.Self);
+	}
+
+	private void PlayImmersiveContent(){
+
+	}
+
+	private void StopImmersiveContent(){
+
+	}
+
+	private void PauseImmersiveContent(){
+
+	}
+
+	private void ResumeImmersiveContent(){
+
 	}
 	#endregion
 
@@ -134,6 +150,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		vp.Stop ();
 		oscOut.Send ("stop");
 	}
+
+		
 
 	private IEnumerator InitializeImmersiveContent(){
 		
