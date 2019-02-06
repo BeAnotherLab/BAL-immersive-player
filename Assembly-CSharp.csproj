@@ -354,6 +354,7 @@
      <None Include="Assets\3rd Party Assets\SteamVR\Resources\SteamVR_ClearAll.shader" />
      <None Include="Assets\3rd Party Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
      <None Include="Assets\3rd Party Assets\SteamVR\InteractionSystem\Teleport\Shaders\Highlight.shader" />
+     <None Include="Assets\Graphics\Shaders\Backfaces.shader" />
      <None Include="Assets\3rd Party Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
      <None Include="Assets\3rd Party Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
      <None Include="Assets\3rd Party Assets\SteamVR\readme.txt" />
