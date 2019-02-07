@@ -242,6 +242,7 @@
      <Compile Include="Assets\Scripts\AudioOSCController.cs" />
      <Compile Include="Assets\Scripts\BinauralAudioTrigger.cs" />
      <Compile Include="Assets\Scripts\ButtonCreator.cs" />
+     <Compile Include="Assets\Scripts\CoroutineCreator.cs" />
      <Compile Include="Assets\Scripts\DisplaySelector.cs" />
      <Compile Include="Assets\Scripts\ImmersiveVideoPlayer.cs" />
      <Compile Include="Assets\Scripts\KeyboardPlayerControls.cs" />

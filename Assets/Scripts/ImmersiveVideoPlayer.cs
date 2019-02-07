@@ -35,17 +35,27 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	void Start () {
 
 		_videoPlayer = _display.GetComponent<DisplaySelector>().selectedDisplay.GetComponent<VideoPlayer>();
-
-		_videoPlayer.loopPointReached += EndReached;
 		_videoPlayer.playOnAwake = false;
-		StartCoroutine (InitializeImmersiveContent ());
 
 		_audioName = VideoPlayerSettings.audioName;
 		oscOut.SendOnAddress("audioname/", _audioName);
 
-		if (VideoPlayerSettings.videoPath != null)
-			_videoPlayer.url = VideoPlayerSettings.videoPath;
-		
+		if (VideoPlayerSettings.videoPath != null) {
+			if (Application.isEditor) {
+				_videoPlayer.url = VideoPlayerSettings.videoPath;
+
+			} 
+			else {
+				//There must be a better way to do this, VideoPlayer.url uses the _Data folder for references while in general ./ refers to the application path 
+				string _videoPath = Application.dataPath + VideoPlayerSettings.videoPath;
+				Debug.Log (_videoPath);
+				_videoPath = _videoPath.Replace ("/Immersive Player Desktop_Data.", "");
+				Debug.Log (_videoPath);
+				_videoPlayer.url = _videoPath;
+			}
+		}
+		_videoPlayer.Prepare ();
+		_videoPlayer.loopPointReached += EndReached;
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
 		_display.transform.Rotate (VideoPlayerSettings.initialTiltConfiguration);
@@ -80,7 +90,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	}
 
 	public void PlayImmersiveContent(){
-		StartCoroutine (InitializeImmersiveContent ());
+		StartCoroutine(PrepareToPlayImmersiveContent ());
 	}
 
 	public void GoToFrame(int frameToSeek){
@@ -111,7 +121,10 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public void BackToMenu(){
 		Resources.UnloadUnusedAssets ();
 	}
-		
+
+	public bool ImmersiveContentIsReady(){
+		return _videoPlayer.isPrepared;
+	}
 
 	#endregion
 
@@ -121,18 +134,18 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		vp.Stop ();
 		oscOut.Send ("stop");
 	}
-
 		
 
-	private IEnumerator InitializeImmersiveContent(){
-		
-		_videoPlayer.Prepare ();
+	private IEnumerator PrepareToPlayImmersiveContent() {
+
 		while (!_videoPlayer.isPrepared) {
 			yield return null;
 		}
+
 		_videoPlayer.Play ();
 		oscOut.Send ("play");
 		isPlaying = true;
+
 	}
 
 	#endregion
