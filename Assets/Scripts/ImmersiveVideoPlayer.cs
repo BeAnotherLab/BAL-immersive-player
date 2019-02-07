@@ -13,6 +13,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public bool isPlaying = false;
 	[HideInInspector]
 	public bool isPaused = false;
+
+	public AudioSource audioSource;
 	#endregion
 
 	#region private variables
@@ -37,6 +39,9 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		_videoPlayer = _display.GetComponent<DisplaySelector>().selectedDisplay.GetComponent<VideoPlayer>();
 		_videoPlayer.playOnAwake = false;
 
+		_videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+		_videoPlayer.SetTargetAudioSource (0, audioSource);
+
 		_audioName = VideoPlayerSettings.audioName;
 		oscOut.SendOnAddress("audioname/", _audioName);
 
@@ -54,6 +59,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 				_videoPlayer.url = _videoPath;
 			}
 		}
+			
 		_videoPlayer.Prepare ();
 		_videoPlayer.loopPointReached += EndReached;
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
@@ -143,6 +149,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 			yield return null;
 		}
 
+		_videoPlayer.EnableAudioTrack (0, true);
 		_videoPlayer.Play ();
 		oscOut.Send ("play");
 		isPlaying = true;

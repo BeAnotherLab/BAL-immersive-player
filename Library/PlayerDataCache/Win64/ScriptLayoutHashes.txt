@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/Marte/Desktop/Immersive vp/Immersive Player Desktop.exe
+C:/Users/Marte/Desktop/Immersive video player/Video player/Immersive Player Desktop.exe
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Narrative.unity
@@ -136,7 +136,7 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 4abd8eb5621022e31612adb0ab9968ff Assembly-CSharp.dll:extOSC.Examples.PingExample
-ce84b4f70e12425b9a152edbb3b97464 Assembly-CSharp.dll:.ImmersiveVideoPlayer
+bbf885524853899cae90ba1494950a7c Assembly-CSharp.dll:.ImmersiveVideoPlayer
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 4b7d535df5dde47d80dbb4aa5d2477d8 Assembly-CSharp.dll:extOSC.Components.Events.OSCReceiverEventBool
 ac0fd01e12e8ef1213f20fccb123f23f Assembly-CSharp.dll:extOSC.Examples.EventsExample
