@@ -2,7 +2,7 @@ Win64
 PlayerPath?
 C:/Users/Marte/Desktop/Immersive vp/Immersive Player Desktop.exe
 SceneListBegin?
-Assets/Scenes/Intro Scene.unity
+Assets/Scenes/Menu.unity
 Assets/Scenes/Narrative.unity
 SceneListEnd?
 984dcc0ba3707b7691fbdca8ff508d28 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
@@ -24,6 +24,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.P
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 296880f2a844c0be7d8caa4a94c0d7b3 Assembly-CSharp.dll:extOSC.Components.Informers.OSCTransmitterInformerDouble
 6d0d6a4c3eee7a3886cfd82599b432f1 Assembly-CSharp.dll:extOSC.Examples.InformersExample
+3b584755ce2d2d60ed5cb524f73ad979 Assembly-CSharp.dll:.CoroutineCreator
 296880f2a844c0be7d8caa4a94c0d7b3 Assembly-CSharp.dll:extOSC.Components.Informers.OSCTransmitterInformerLong
 e6f1691b43ddf21359318c8a273ad5f5 Assembly-CSharp.dll:extOSC.Components.Events.OSCReceiverEventQuaternion
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
@@ -249,4 +250,3 @@ fcf3af6fd15bd3feac9f792a4c2024f1 Assembly-CSharp.dll:.CanvasSampleSaveFileText
 2dc4c748cd52865264f9b58f9c7cf4be Assembly-CSharp.dll:extOSC.Examples.MatchPatternExample
 23e3f0f09167cc1ea389b5dcd4b0e47f Assembly-CSharp.dll:extOSC.Components.ReceiverReflections.OSCReceiverReflectionColor
 4a9318e8f75cc3c92381a30490089865 Assembly-CSharp.dll:extOSC.Examples.ArrayExample
-3b584755ce2d2d60ed5cb524f73ad979 Assembly-CSharp.dll:.CoroutineCreator

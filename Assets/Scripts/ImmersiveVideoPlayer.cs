@@ -120,6 +120,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	public void BackToMenu(){
 		Resources.UnloadUnusedAssets ();
+		SceneManager.LoadScene ("Menu");
 	}
 
 	public bool ImmersiveContentIsReady(){
@@ -131,7 +132,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	#region Private methods
 	private void EndReached(UnityEngine.Video.VideoPlayer vp){
 		Debug.Log ("video is over");
-		vp.Stop ();
+		SceneManager.LoadScene ("Menu");
 		oscOut.Send ("stop");
 	}
 		
