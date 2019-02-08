@@ -47,8 +47,10 @@ Temporary Items
 .apdisk
 
 # Large files
-AudioPlayer/Audios/
+Max audio player/Narratives/
+Narratives/
 *.mp4
-Assets/StreamingAssets/
-Assets/Images/
 *.wav
+*.aiff
+*.aif
+*.mp3
