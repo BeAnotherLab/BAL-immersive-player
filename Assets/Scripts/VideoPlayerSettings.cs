@@ -14,7 +14,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 	public Transform canvasParent;
 	public string folderName; //name of the folder inside Assets to look for files.
 	public string fileFormat;
-	public float verticalTiltInit;
+	public Vector3 initialRotation;
 	public Toggle toggle360Video;
 
 	public static bool is360;
@@ -54,7 +54,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 		if (videoPath != null) {
 			audioName = null;
-			initialTiltConfiguration = new Vector3 (verticalTiltInit, 0f, 0f);		
+			initialTiltConfiguration = initialRotation;		
 			LoadVideoScene ();
 		}
 	}
@@ -95,7 +95,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 	private void ButtonBehavior(string _fileName){
 		videoPath = _path+_fileName + ".mp4";
 		audioName = _fileName; 
-		initialTiltConfiguration = new Vector3(verticalTiltInit, 0f, 0f);
+		initialTiltConfiguration = initialRotation;
 		LoadVideoScene ();
 	}	
 

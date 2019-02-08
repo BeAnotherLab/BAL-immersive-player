@@ -47,6 +47,12 @@ public class TemporalVideoControls : MonoBehaviour
 		sliderIsinteracting = true;
 	}
 
+
+	public void OnStop(){
+		timeSlider.value = 0f;
+		elapsedTimeText.text = "0 of " + _videoPlayer.TotalTime ();
+	}
+
 	public void OnDiselect(){
 		int frameToGoTo = (int)(timeSlider.value * _videoPlayer.TotalFrames());
 		_videoPlayer.GoToFrame (frameToGoTo);

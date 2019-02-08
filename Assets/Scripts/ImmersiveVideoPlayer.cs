@@ -13,11 +13,15 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public bool isPlaying = false;
 	[HideInInspector]
 	public bool isPaused = false;
+	[HideInInspector]
+	public Transform cameraParentTransform;
 
 	public AudioSource audioSource;
+
 	#endregion
 
 	#region private variables
+
 	private AudioOSCController oscOut;
 	private GameObject _display;
 	private VideoPlayer _videoPlayer;
@@ -29,6 +33,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	#region monobehavior methods
 	void Awake () {
+		cameraParentTransform = GameObject.FindGameObjectWithTag ("MainCamera").transform;
 		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);
 		_display = FindObjectOfType<DisplaySelector>().gameObject;
 		oscOut = (AudioOSCController)FindObjectOfType(typeof(AudioOSCController));
@@ -64,7 +69,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		_videoPlayer.loopPointReached += EndReached;
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
-		_display.transform.Rotate (VideoPlayerSettings.initialTiltConfiguration);
+
 	}
 
 	void Update(){
@@ -91,8 +96,11 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		return (_videoPlayer.frameCount / _videoPlayer.frameRate);
 	}
 
-	public void UpdateProjectorTransform(float x, float y){
-		_display.transform.Rotate(x, 0f, y, Space.Self);
+	public void UpdateProjectorTransform(float pitch, float yaw, float roll){
+		_display.transform.Rotate(pitch, 0f, 0f, Space.Self);
+		_display.transform.Rotate(0f, yaw, 0f, Space.World); 
+
+		cameraParentTransform.transform.rotation *= Quaternion.AngleAxis (roll, cameraParentTransform.GetChild (0).forward);
 	}
 
 	public void PlayImmersiveContent(){
@@ -100,14 +108,15 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	}
 
 	public void GoToFrame(int frameToSeek){
-		//_videoPlayer.Stop ();
 		oscOut.Send ("stop");
 		//Debug.Log ("Stoped Audio Player, seek is not supported");
 		_videoPlayer.frame = frameToSeek;
 	}
 
 	public void StopImmersiveContent(){
-		_videoPlayer.Stop ();
+		_videoPlayer.frame = 0;
+		_videoPlayer.Pause ();
+		//_videoPlayer.Stop ();
 		oscOut.Send("stop");
 		isPlaying = false;
 	}
@@ -132,6 +141,15 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public bool ImmersiveContentIsReady(){
 		return _videoPlayer.isPrepared;
 	}
+		
+
+	public void CalibrateAllTransforms(){
+		UnityEngine.XR.InputTracking.Recenter ();
+		_display.transform.rotation = Quaternion.Euler(VideoPlayerSettings.initialTiltConfiguration.x, VideoPlayerSettings.initialTiltConfiguration.y, 0f);
+		cameraParentTransform.transform.rotation = Quaternion.Euler (0f, 0f, VideoPlayerSettings.initialTiltConfiguration.z);
+		Debug.Log ("the inital transform is " + VideoPlayerSettings.initialTiltConfiguration);
+	}
+		
 
 	#endregion
 
@@ -141,6 +159,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		SceneManager.LoadScene ("Menu");
 		oscOut.Send ("stop");
 	}
+
 		
 
 	private IEnumerator PrepareToPlayImmersiveContent() {
