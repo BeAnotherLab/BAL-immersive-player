@@ -9,14 +9,15 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	#region public variables
 
+	public Transform cameraParentTransform;
+	public AudioSource audioSource;
+
 	[HideInInspector]
 	public bool isPlaying = false;
 	[HideInInspector]
 	public bool isPaused = false;
-	[HideInInspector]
-	public Transform cameraParentTransform;
 
-	public AudioSource audioSource;
+	public static ImmersiveVideoPlayer instance;
 
 	#endregion
 
@@ -28,20 +29,24 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	private float _currentRotationX, _currentRotationY;
 	private string _audioName;
+
 	#endregion
 
 
 	#region monobehavior methods
+
 	void Awake () {
-		cameraParentTransform = GameObject.FindGameObjectWithTag ("MainCamera").transform;
+		if (instance == null)
+			instance = this;
+
 		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);
-		_display = FindObjectOfType<DisplaySelector>().gameObject;
 		oscOut = (AudioOSCController)FindObjectOfType(typeof(AudioOSCController));
+		_display = DisplaySelector.instance.gameObject;
 	}
 
 	void Start () {
 
-		_videoPlayer = _display.GetComponent<DisplaySelector>().selectedDisplay.GetComponent<VideoPlayer>();
+		_videoPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<VideoPlayer>();
 		_videoPlayer.playOnAwake = false;
 
 		_videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
@@ -58,9 +63,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 			else {
 				//There must be a better way to do this, VideoPlayer.url uses the _Data folder for references while in general ./ refers to the application path 
 				string _videoPath = Application.dataPath + VideoPlayerSettings.videoPath;
-				Debug.Log (_videoPath);
 				_videoPath = _videoPath.Replace ("/Immersive Player Desktop_Data.", "");
-				Debug.Log (_videoPath);
 				_videoPlayer.url = _videoPath;
 			}
 		}
@@ -109,14 +112,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	public void GoToFrame(int frameToSeek){
 		oscOut.Send ("stop");
-		//Debug.Log ("Stoped Audio Player, seek is not supported");
+		Debug.Log ("Stoped assistant Audio Player, seek is not supported");
 		_videoPlayer.frame = frameToSeek;
 	}
 
 	public void StopImmersiveContent(){
 		_videoPlayer.frame = 0;
 		_videoPlayer.Pause ();
-		//_videoPlayer.Stop ();
 		oscOut.Send("stop");
 		isPlaying = false;
 	}
@@ -147,21 +149,17 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		UnityEngine.XR.InputTracking.Recenter ();
 		_display.transform.rotation = Quaternion.Euler(VideoPlayerSettings.initialTiltConfiguration.x, VideoPlayerSettings.initialTiltConfiguration.y, 0f);
 		cameraParentTransform.transform.rotation = Quaternion.Euler (0f, 0f, VideoPlayerSettings.initialTiltConfiguration.z);
-		Debug.Log ("the inital transform is " + VideoPlayerSettings.initialTiltConfiguration);
+		//Debug.Log ("the inital transform is " + VideoPlayerSettings.initialTiltConfiguration);
 	}
-		
 
 	#endregion
 
 	#region Private methods
 	private void EndReached(UnityEngine.Video.VideoPlayer vp){
-		Debug.Log ("video is over");
 		SceneManager.LoadScene ("Menu");
 		oscOut.Send ("stop");
 	}
-
 		
-
 	private IEnumerator PrepareToPlayImmersiveContent() {
 
 		while (!_videoPlayer.isPrepared) {
@@ -174,6 +172,5 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		isPlaying = true;
 
 	}
-
 	#endregion
 }

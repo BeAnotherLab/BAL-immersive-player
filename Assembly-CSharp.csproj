@@ -245,8 +245,8 @@
      <Compile Include="Assets\Scripts\CoroutineCreator.cs" />
      <Compile Include="Assets\Scripts\DisplaySelector.cs" />
      <Compile Include="Assets\Scripts\ImmersiveVideoPlayer.cs" />
+     <Compile Include="Assets\Scripts\ImmersiveVideoUIController.cs" />
      <Compile Include="Assets\Scripts\KeyboardPlayerControls.cs" />
-     <Compile Include="Assets\Scripts\PlaybackUIContent.cs" />
      <Compile Include="Assets\Scripts\SmoothDisplayRotator.cs" />
      <Compile Include="Assets\Scripts\TemporalVideoControls.cs" />
      <Compile Include="Assets\Scripts\VideoPlayerSettings.cs" />

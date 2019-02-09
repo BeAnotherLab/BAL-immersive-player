@@ -10,11 +10,17 @@ public class DisplaySelector : MonoBehaviour
 
 	[HideInInspector]
 	public GameObject selectedDisplay;
+
+	public static DisplaySelector instance;
+
 	#endregion
 
 	#region Unity Methods
     void Awake()
-    {
+	{
+		if (instance == null)
+			instance = this;
+
 		if (VideoPlayerSettings.is360) {
 			semisphere.SetActive (false);
 			fullsphere.SetActive (true);

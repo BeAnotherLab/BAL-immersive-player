@@ -2,11 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SmoothDisplayRotator.cs">
     <Files>
-      <File FileName="Assets\Scripts\ImmersiveVideoPlayer.cs" Line="150" Column="89" />
-      <File FileName="Assets\Scripts\KeyboardPlayerControls.cs" Line="57" Column="1" />
-      <File FileName="Assets\Scripts\SmoothDisplayRotator.cs" Line="61" Column="128" />
-      <File FileName="Assets\Scripts\PlaybackUIContent.cs" Line="27" Column="58" />
-      <File FileName="Assets\Scripts\TemporalVideoControls.cs" Line="52" Column="25" />
+      <File FileName="Assets\Scripts\ImmersiveVideoPlayer.cs" Line="154" Column="2" />
+      <File FileName="Assets\Scripts\KeyboardPlayerControls.cs" Line="15" Column="3" />
+      <File FileName="Assets\Scripts\ImmersiveVideoUIController.cs" Line="10" Column="2" />
+      <File FileName="Assets\Scripts\TemporalVideoControls.cs" Line="45" Column="2" />
+      <File FileName="Assets\Scripts\DisplaySelector.cs" Line="14" Column="41" />
+      <File FileName="Assets\Scripts\SmoothDisplayRotator.cs" Line="41" Column="52" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

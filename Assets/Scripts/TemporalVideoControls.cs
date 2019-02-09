@@ -7,23 +7,18 @@ using UnityEngine.Video;
 public class TemporalVideoControls : MonoBehaviour
 {
 	#region Public variables
-	public Text elapsedTimeText;
-	public Slider timeSlider;
-
 	[HideInInspector]
 	public bool sliderIsinteracting;
+
+	public static TemporalVideoControls instance;
 	#endregion
 
-	#region Private vars
-	private ImmersiveVideoPlayer _videoPlayer;
-	private VideoPlayer vp;
-	#endregion
 
 	#region Unity methods
     void Awake()
     {
-		_videoPlayer = (ImmersiveVideoPlayer)FindObjectOfType(typeof(ImmersiveVideoPlayer));
-		vp = (VideoPlayer)FindObjectOfType (typeof(VideoPlayer));
+		if (instance == null)
+			instance = this;
     }
 
 	void Start(){
@@ -34,11 +29,11 @@ public class TemporalVideoControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (_videoPlayer.isPlaying && !sliderIsinteracting)
-			elapsedTimeText.text = _videoPlayer.ElapsedTime ().ToString("F2") + " of " + _videoPlayer.TotalTime ();
+		if (ImmersiveVideoPlayer.instance.isPlaying && !sliderIsinteracting)
+			ImmersiveVideoUIController.instance.UpdateTimeText(ImmersiveVideoPlayer.instance.ElapsedTime ().ToString("F2") + " of " + ImmersiveVideoPlayer.instance.TotalTime ());
 
 		if(!sliderIsinteracting)
-			timeSlider.value = _videoPlayer.ElapsedTime() / _videoPlayer.TotalTime ();
+			ImmersiveVideoUIController.instance.timeSlider.value = ImmersiveVideoPlayer.instance.ElapsedTime() / ImmersiveVideoPlayer.instance.TotalTime ();
     }
 	#endregion
 
@@ -49,13 +44,13 @@ public class TemporalVideoControls : MonoBehaviour
 
 
 	public void OnStop(){
-		timeSlider.value = 0f;
-		elapsedTimeText.text = "0 of " + _videoPlayer.TotalTime ();
+		ImmersiveVideoUIController.instance.timeSlider.value = 0f;
+		ImmersiveVideoUIController.instance.UpdateTimeText( "0 of " + ImmersiveVideoPlayer.instance.TotalTime ());
 	}
 
 	public void OnDiselect(){
-		int frameToGoTo = (int)(timeSlider.value * _videoPlayer.TotalFrames());
-		_videoPlayer.GoToFrame (frameToGoTo);
+		int frameToGoTo = (int)(ImmersiveVideoUIController.instance.timeSlider.value * ImmersiveVideoPlayer.instance.TotalFrames());
+		ImmersiveVideoPlayer.instance.GoToFrame (frameToGoTo);
 		StartCoroutine(WaitForFrame());
 	}
 	#endregion
@@ -65,17 +60,16 @@ public class TemporalVideoControls : MonoBehaviour
 	private IEnumerator WaitForFrame(){
 
 		yield return new WaitForSeconds (0.5f);
-
 		sliderIsinteracting = false;
 	}
 
 	private IEnumerator SetVideoDuration(){
-		while (!_videoPlayer.ImmersiveContentIsReady ()) {
+		while (!ImmersiveVideoPlayer.instance.ImmersiveContentIsReady ()) {
 			yield return null;
-			elapsedTimeText.text = "...";
+			ImmersiveVideoUIController.instance.UpdateTimeText("...");
 		}
 
-		elapsedTimeText.text = "0 of " + _videoPlayer.TotalTime ();
+		ImmersiveVideoUIController.instance.UpdateTimeText( "0 of " + ImmersiveVideoPlayer.instance.TotalTime ());
 	}
 	#endregion
 			
