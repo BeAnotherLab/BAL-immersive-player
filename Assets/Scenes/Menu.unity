@@ -770,7 +770,7 @@ MonoBehaviour:
   buttonPrefab: {fileID: 1260149462890170, guid: 0ade352b37a0546f99a7f8851710e4b0,
     type: 3}
   canvasParent: {fileID: 1902858491}
-  folderName: Narratives
+  libraryFolderName: Narratives
   fileFormat: mp4
   initialRotation: {x: 90, y: 0, z: 0}
   toggle360Video: {fileID: 118359331}
