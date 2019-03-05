@@ -60,8 +60,10 @@ public class VideoPlayerSettings : MonoBehaviour {
         WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", lastBrowsedDirectory,"", false));
         PlayerPrefs.SetString("lastBrowsedDirectory", System.IO.Path.GetDirectoryName(videoPath));
 
+        string _fileName = Path.GetFileNameWithoutExtension(videoPath);
+
         if (videoPath != null) {
-			instructionsAudioName = null;
+			instructionsAudioName = _fileName;
 			initialTiltConfiguration = initialRotation;		
 			LoadVideoScene ();
 		}
