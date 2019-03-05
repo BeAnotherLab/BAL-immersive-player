@@ -28,7 +28,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	private VideoPlayer _videoPlayer;
 
 	private float _currentRotationX, _currentRotationY;
-	private string _audioName;
+	private string _instructionsAudioName;
 
 	#endregion
 
@@ -52,8 +52,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		_videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
 		_videoPlayer.SetTargetAudioSource (0, audioSource);
 
-		_audioName = VideoPlayerSettings.audioName;
-		oscOut.SendOnAddress("audioname/", _audioName);
+		_instructionsAudioName = VideoPlayerSettings.instructionsAudioName;
+		oscOut.SendOnAddress("audioname/", _instructionsAudioName);
 
 		if (VideoPlayerSettings.videoPath != null) {
 			if (Application.isEditor) {

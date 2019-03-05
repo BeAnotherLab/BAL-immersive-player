@@ -20,12 +20,12 @@ public class VideoPlayerSettings : MonoBehaviour {
 	public static bool is360;
 	public static string videoPath;
 	public static Vector3 initialTiltConfiguration;
-	public static string audioName;
+	public static string instructionsAudioName;
 	#endregion
 
 
 	#region private variables
-	private string _path; 
+	private string _libraryPath;
 
 	#endregion
 
@@ -34,9 +34,9 @@ public class VideoPlayerSettings : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		_path = "./" + folderName + "/";
+		_libraryPath = "./" + folderName + "/";
 
-		foreach (string file in System.IO.Directory.GetFiles(_path, "*." + fileFormat)) {
+		foreach (string file in System.IO.Directory.GetFiles(_libraryPath, "*." + fileFormat)) {
 			CreateButton (file);
 		}
 
@@ -49,11 +49,19 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 
 	public void LoadFile () {
-		
-		WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", Application.dataPath, "", false));
 
-		if (videoPath != null) {
-			audioName = null;
+        string lastBrowsedDirectory;
+
+        if (PlayerPrefs.GetString("lastBrowsedDirectory") != null)
+            lastBrowsedDirectory = PlayerPrefs.GetString("lastBrowsedDirectory");
+        else
+            lastBrowsedDirectory = Application.dataPath;
+
+        WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", lastBrowsedDirectory,"", false));
+        PlayerPrefs.SetString("lastBrowsedDirectory", System.IO.Path.GetDirectoryName(videoPath));
+
+        if (videoPath != null) {
+			instructionsAudioName = null;
 			initialTiltConfiguration = initialRotation;		
 			LoadVideoScene ();
 		}
@@ -75,15 +83,13 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 
 	public void WriteResult(string[] paths) {
-		if (paths.Length == 0) {
+		if (paths.Length == 0)
 			return;
-		}
 
 		videoPath = "";
 
-		foreach (var p in paths) {
+		foreach (var p in paths) 
 			videoPath += p; //videoPath += p + "\n";
-		}
 
 		videoPath = videoPath.Replace("\\", "/"); //changing \ slash to / slash
 
@@ -93,8 +99,8 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 	#region Private methods
 	private void ButtonBehavior(string _fileName){
-		videoPath = _path+_fileName + ".mp4";
-		audioName = _fileName; 
+		videoPath = _libraryPath+_fileName + ".mp4";
+		instructionsAudioName = _fileName; 
 		initialTiltConfiguration = initialRotation;
 		LoadVideoScene ();
 	}	
@@ -104,6 +110,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 		is360 = toggle360Video.isOn;
 		SceneManager.LoadScene("Narrative");
 	}
+
 	#endregion
 		
 }
