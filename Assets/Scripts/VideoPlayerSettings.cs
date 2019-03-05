@@ -12,7 +12,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 	#region public variables
 	public GameObject buttonPrefab;
 	public Transform canvasParent;
-	public string folderName; //name of the folder inside Assets to look for files.
+	public string libraryFolderName; //name of the folder inside Assets to look for files.
 	public string fileFormat;
 	public Vector3 initialRotation;
 	public Toggle toggle360Video;
@@ -24,21 +24,15 @@ public class VideoPlayerSettings : MonoBehaviour {
 	#endregion
 
 
-	#region private variables
-	private string _libraryPath;
-
-	#endregion
-
 
 	#region monobehavior methods
 	// Use this for initialization
 	void Start () {
 		
-		_libraryPath = "./" + folderName + "/";
+        libraryFolderName = "./" + libraryFolderName + "/";
 
-		foreach (string file in System.IO.Directory.GetFiles(_libraryPath, "*." + fileFormat)) {
+        foreach (string file in System.IO.Directory.GetFiles(libraryFolderName, "*." + fileFormat))
 			CreateButton (file);
-		}
 
 	}
 
@@ -101,7 +95,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 	#region Private methods
 	private void ButtonBehavior(string _fileName){
-		videoPath = _libraryPath+_fileName + ".mp4";
+		videoPath = libraryFolderName + _fileName + ".mp4";
 		instructionsAudioName = _fileName; 
 		initialTiltConfiguration = initialRotation;
 		LoadVideoScene ();
