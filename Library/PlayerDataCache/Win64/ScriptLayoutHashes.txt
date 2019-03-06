@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/Marte/Desktop/Immersive video player 0.2/Video Player/Immersive Player Desktop.exe
+C:/Users/BAL/Desktop/Immersive video player/Video player/Immersive Player Desktop.exe
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Narrative.unity
