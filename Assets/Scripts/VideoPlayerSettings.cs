@@ -28,9 +28,10 @@ public class VideoPlayerSettings : MonoBehaviour {
 	#region monobehavior methods
 	// Use this for initialization
 	void Start () {
-		
-        libraryFolderName = "./" + libraryFolderName + "/";
 
+        InitialSettings();
+
+        //Creates a button for each file.
         foreach (string file in System.IO.Directory.GetFiles(libraryFolderName, "*." + fileFormat))
 			CreateButton (file);
 
@@ -77,6 +78,16 @@ public class VideoPlayerSettings : MonoBehaviour {
 		buttonBehaviour.onClick.AddListener (() => { ButtonBehavior(_fileName);});
 	}
 
+    public void SwitchSphereMode()
+    {
+        is360 = toggle360Video.isOn;
+
+        if (toggle360Video.isOn)
+            PlayerPrefs.SetInt("is360", 1);
+        else
+            PlayerPrefs.SetInt("is360", 0);
+    }
+
 
 	public void WriteResult(string[] paths) {
 		if (paths.Length == 0)
@@ -94,6 +105,20 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 
 	#region Private methods
+
+    private void InitialSettings()
+    {
+        if (PlayerPrefs.GetInt("is360") == 1)
+            toggle360Video.isOn = true;
+        else
+            toggle360Video.isOn = false;
+
+        is360 = toggle360Video.isOn;
+
+        libraryFolderName = "./" + libraryFolderName + "/";
+
+    }
+
 	private void ButtonBehavior(string _fileName){
 		videoPath = libraryFolderName + _fileName + ".mp4";
 		instructionsAudioName = _fileName; 
@@ -103,8 +128,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 
 	private void LoadVideoScene(){
-		is360 = toggle360Video.isOn;
-		SceneManager.LoadScene("Narrative");
+        SceneManager.LoadScene("Narrative");
 	}
 
 	#endregion
