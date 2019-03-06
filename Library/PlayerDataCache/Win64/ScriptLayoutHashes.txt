@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/BAL/Desktop/Immersive video player/Video player/Immersive Player Desktop.exe
+C:/Users/Marte/Desktop/Immersive video player/Video player/Immersive Player Desktop.exe
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Narrative.unity
@@ -69,8 +69,6 @@ abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.Tou
 6e26965cca511c84909d98727187f48f Assembly-CSharp.dll:extOSC.UI.OSCButton
 98ad81e9f689a492509f07e75b810aaa Unity.TextMeshPro.dll:TMPro.TMP_InputField
 fe922498726b6710e1a28b6e53c71678 Assembly-CSharp.dll:.DisplaySelector
-71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
-71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 77263a94f5d76fb46491f260585b0c6e Assembly-CSharp.dll:extOSC.Components.Events.OSCReceiverEventBlob
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput

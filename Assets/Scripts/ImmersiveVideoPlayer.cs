@@ -56,16 +56,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		oscOut.SendOnAddress("audioname/", _instructionsAudioName);
 
 		if (VideoPlayerSettings.videoPath != null) {
-			if (Application.isEditor) {
 				_videoPlayer.url = VideoPlayerSettings.videoPath;
-
-			} 
-			else {
-				//There must be a better way to do this, VideoPlayer.url uses the _Data folder for references while in general ./ refers to the application path 
-				string _videoPath = Application.dataPath + VideoPlayerSettings.videoPath;
-				_videoPath = _videoPath.Replace ("/Immersive Player Desktop_Data.", "");
-				_videoPlayer.url = _videoPath;
-			}
 		}
 			
 		_videoPlayer.Prepare ();

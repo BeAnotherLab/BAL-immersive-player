@@ -25,16 +25,15 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 
 
-	#region monobehavior methods
-	// Use this for initialization
-	void Start () {
+	#region Monobehavior methods
 
+	void Start ()
+    {
         InitialSettings();
 
         //Creates a button for each file.
         foreach (string file in System.IO.Directory.GetFiles(libraryFolderName, "*." + fileFormat))
 			CreateButton (file);
-
 	}
 
 	#endregion
@@ -56,6 +55,7 @@ public class VideoPlayerSettings : MonoBehaviour {
         PlayerPrefs.SetString("lastBrowsedDirectory", System.IO.Path.GetDirectoryName(videoPath));
 
         string _fileName = Path.GetFileNameWithoutExtension(videoPath);
+        Debug.Log("file path " + videoPath + " and file name " + _fileName);
 
         if (videoPath != null) {
 			instructionsAudioName = _fileName;
@@ -120,11 +120,19 @@ public class VideoPlayerSettings : MonoBehaviour {
     }
 
 	private void ButtonBehavior(string _fileName){
+
 		videoPath = libraryFolderName + _fileName + ".mp4";
 		instructionsAudioName = _fileName; 
 		initialTiltConfiguration = initialRotation;
 		LoadVideoScene ();
-	}	
+
+        //VideoPlayer.url in ImmersiveVideoPLayer uses the _Data folder for references in standalone, while in general./ refers to the application path
+        if (!Application.isEditor)
+        {
+                videoPath = Application.dataPath + videoPath;
+                videoPath = videoPath.Replace("/Immersive Player Desktop_Data.", "");
+        }
+    }	
 
 
 	private void LoadVideoScene(){
