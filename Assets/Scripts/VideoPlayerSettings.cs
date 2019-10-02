@@ -15,7 +15,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 	public string libraryFolderName; //name of the folder inside Assets to look for files.
 	public string fileFormat;
 	public Vector3 initialRotation;
-	public Toggle toggle360Video;
+	public Toggle toggle360Video, toggleVideoFlip;
 
 	public static bool is360;
 	public static string videoPath;
@@ -59,8 +59,13 @@ public class VideoPlayerSettings : MonoBehaviour {
 
         if (videoPath != null) {
 			instructionsAudioName = _fileName;
-			initialTiltConfiguration = initialRotation;		
-			LoadVideoScene ();
+
+            if(toggleVideoFlip.isOn == true)
+                initialRotation = new Vector3(90, 0, 180);
+
+            initialTiltConfiguration = initialRotation;
+                
+            LoadVideoScene ();
 		}
 	}
 
@@ -86,6 +91,15 @@ public class VideoPlayerSettings : MonoBehaviour {
             PlayerPrefs.SetInt("is360", 1);
         else
             PlayerPrefs.SetInt("is360", 0);
+
+    }
+
+    public void SwitchRotationMode()
+    {
+        if (toggleVideoFlip.isOn)
+            PlayerPrefs.SetInt("isFlipped", 1);
+        else
+            PlayerPrefs.SetInt("isFlipped", 0);
     }
 
 
@@ -113,6 +127,11 @@ public class VideoPlayerSettings : MonoBehaviour {
         else
             toggle360Video.isOn = false;
 
+        if (PlayerPrefs.GetInt("isFlipped") == 1)
+            toggleVideoFlip.isOn = true;
+        else
+            toggleVideoFlip.isOn = false;
+
         is360 = toggle360Video.isOn;
 
         libraryFolderName = "./" + libraryFolderName + "/";
@@ -122,8 +141,12 @@ public class VideoPlayerSettings : MonoBehaviour {
 	private void ButtonBehavior(string _fileName){
 
 		videoPath = libraryFolderName + _fileName + ".mp4";
-		instructionsAudioName = _fileName; 
-		initialTiltConfiguration = initialRotation;
+		instructionsAudioName = _fileName;
+
+        if (toggleVideoFlip.isOn == true)
+            initialRotation = new Vector3(90, 0, 180);
+
+        initialTiltConfiguration = initialRotation;
 		LoadVideoScene ();
 
         //VideoPlayer.url in ImmersiveVideoPLayer uses the _Data folder for references in standalone, while in general./ refers to the application path

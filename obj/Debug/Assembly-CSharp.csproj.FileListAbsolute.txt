@@ -215,7 +215,6 @@ C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\UnityEngine.
 C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\UnityEngine.Networking.xml
 C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\UnityEngine.GoogleAudioSpatializer.xml
 C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
-C:\Users\Marte\Documents\GitHub\BAL-immersive-player\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Marte\Documents\GitHub\BAL-immersive-player\obj\Debug\Assembly-CSharp.dll
 C:\Users\Marte\Documents\GitHub\BAL-immersive-player\obj\Debug\Assembly-CSharp.pdb
 C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\nunit.framework.dll
@@ -236,3 +235,12 @@ C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\UnityEngine.
 C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\UnityEngine.VFXModule.xml
 C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\UnityEngine.TestRunner.xml
 C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\nunit.framework.xml
+C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\System.Core.dll
+C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\System.dll
+C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\System.Runtime.Serialization.dll
+C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\System.Windows.Forms.dll
+C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\System.Xml.dll
+C:\Users\Marte\Documents\GitHub\BAL-immersive-player\Temp\bin\Debug\System.Xml.Linq.dll
+C:\Users\Marte\Documents\GitHub\BAL-immersive-player\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\Marte\Documents\GitHub\BAL-immersive-player\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\Marte\Documents\GitHub\BAL-immersive-player\obj\Debug\Assembly-CSharp.csproj.CopyComplete
