@@ -247,6 +247,7 @@
     <Compile Include="Assets\3rd Party Assets\StandaloneFileBrowser\StandaloneFileBrowserEditor.cs" />
     <Compile Include="Assets\3rd Party Assets\StandaloneFileBrowser\StandaloneFileBrowserMac.cs" />
     <Compile Include="Assets\3rd Party Assets\StandaloneFileBrowser\StandaloneFileBrowserWindows.cs" />
+    <Compile Include="Assets\Scripts\AssistantVideoPlayer.cs" />
     <Compile Include="Assets\Scripts\AudioOSCController.cs" />
     <Compile Include="Assets\Scripts\BinauralAudioTrigger.cs" />
     <Compile Include="Assets\Scripts\ButtonCreator.cs" />

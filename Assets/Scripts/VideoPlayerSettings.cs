@@ -12,13 +12,13 @@ public class VideoPlayerSettings : MonoBehaviour {
 	#region public variables
 	public GameObject buttonPrefab;
 	public Transform canvasParent;
-	public string libraryFolderName; //name of the folder inside Assets to look for files.
+	public string libraryFolderName, assistantVideoFolderName; //name of the folder inside Assets to look for files.
 	public string fileFormat;
 	public Vector3 initialRotation;
-	public Toggle toggle360Video, toggleVideoFlip;
+	public Toggle toggle360Video, toggleVideoFlip, toggleAssistantVideo;
 
-	public static bool is360;
-	public static string videoPath;
+	public static bool is360, useAssistantVideo;
+	public static string videoPath, assistantVideoPath;
 	public static Vector3 initialTiltConfiguration;
 	public static string instructionsAudioName;
 	#endregion
@@ -102,8 +102,19 @@ public class VideoPlayerSettings : MonoBehaviour {
             PlayerPrefs.SetInt("isFlipped", 0);
     }
 
+    public void SwitchAssistantVideo()
+    {
 
-	public void WriteResult(string[] paths) {
+        useAssistantVideo = toggleAssistantVideo.isOn;
+
+        if (toggleAssistantVideo.isOn)
+            PlayerPrefs.SetInt("assistantVideo", 1);
+        else
+            PlayerPrefs.SetInt("assistantVideo", 0);
+    }
+
+
+    public void WriteResult(string[] paths) {
 		if (paths.Length == 0)
 			return;
 
@@ -132,16 +143,23 @@ public class VideoPlayerSettings : MonoBehaviour {
         else
             toggleVideoFlip.isOn = false;
 
+        if (PlayerPrefs.GetInt("assistantVideo") == 1)
+            toggleAssistantVideo.isOn = true;
+        else
+            toggleAssistantVideo.isOn = false;
+
         is360 = toggle360Video.isOn;
+        useAssistantVideo = toggleAssistantVideo.isOn;
 
         libraryFolderName = "./" + libraryFolderName + "/";
+        assistantVideoFolderName = "./" + assistantVideoFolderName + "/";
 
     }
 
 	private void ButtonBehavior(string _fileName){
 
 		videoPath = libraryFolderName + _fileName + ".mp4";
-		instructionsAudioName = _fileName;
+		assistantVideoPath = assistantVideoFolderName + _fileName + ".mp4";
 
         if (toggleVideoFlip.isOn == true)
             initialRotation = new Vector3(90, 0, 180);

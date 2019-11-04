@@ -26,6 +26,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	private AudioOSCController oscOut;
 	private GameObject _display;
 	private VideoPlayer _videoPlayer;
+    private VideoPlayer _assistantVideoPlayer;
+
 
 	private float _currentRotationX, _currentRotationY;
 	private string _instructionsAudioName;
@@ -58,11 +60,22 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		if (VideoPlayerSettings.videoPath != null) {
 				_videoPlayer.url = VideoPlayerSettings.videoPath;
 		}
-			
-		_videoPlayer.Prepare ();
+
+        if (VideoPlayerSettings.useAssistantVideo)
+        {
+            _assistantVideoPlayer = AssistantVideoPlayer.instance.assistantVideoObject.GetComponent<VideoPlayer>();
+            _assistantVideoPlayer.playOnAwake = false;
+            //_assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            //_assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
+
+            if (VideoPlayerSettings.assistantVideoPath != null)
+                _assistantVideoPlayer.url = VideoPlayerSettings.assistantVideoPath;
+        }
+
+        _videoPlayer.Prepare ();
 		_videoPlayer.loopPointReached += EndReached;
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
-
+        
 
 	}
 
@@ -112,19 +125,28 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		_videoPlayer.Pause ();
 		oscOut.Send("stop");
 		isPlaying = false;
+
+        if (VideoPlayerSettings.useAssistantVideo)
+            _assistantVideoPlayer.Pause();
 	}
 
 	public void PauseImmersiveContent(){
 		_videoPlayer.Pause ();
 		oscOut.Send("pause");
 		isPaused = true;
-	}
+
+        if (VideoPlayerSettings.useAssistantVideo)
+            _assistantVideoPlayer.Pause();
+    }
 
 	public void ResumeImmersiveContent(){
 		_videoPlayer.Play ();
 		oscOut.Send("resume");
 		isPaused = false;
-	}
+
+        if (VideoPlayerSettings.useAssistantVideo)
+            _assistantVideoPlayer.Play();
+    }
 
 	public void BackToMenu(){
 		Resources.UnloadUnusedAssets ();
@@ -153,15 +175,25 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		
 	private IEnumerator PrepareToPlayImmersiveContent() {
 
-		while (!_videoPlayer.isPrepared) {
-			yield return null;
-		}
+        if (VideoPlayerSettings.useAssistantVideo)
+            while (!_videoPlayer.isPrepared && !_assistantVideoPlayer.isPrepared)
+            {
+                yield return null;
+            }
+
+        else 
+            while (!_videoPlayer.isPrepared) {
+			    yield return null;
+		    }
 
 		_videoPlayer.EnableAudioTrack (0, true);
 		_videoPlayer.Play ();
 		oscOut.Send ("play");
 		isPlaying = true;
 
-	}
+        if (VideoPlayerSettings.useAssistantVideo)
+            _assistantVideoPlayer.Play();
+
+    }
 	#endregion
 }

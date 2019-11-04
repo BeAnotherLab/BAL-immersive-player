@@ -18,21 +18,22 @@ public class DisplaySelector : MonoBehaviour
 	#region Unity Methods
     void Awake()
 	{
+
 		if (instance == null)
 			instance = this;
 
+
 		if (VideoPlayerSettings.is360) {
-			semisphere.SetActive (false);
-			fullsphere.SetActive (true);
-			selectedDisplay = fullsphere;
+		    fullsphere.SetActive (true);
+            semisphere.SetActive(false);
+            selectedDisplay = fullsphere;
 		} 
 
 		else {
-			semisphere.SetActive (true);
-			fullsphere.SetActive (false);
-			selectedDisplay = semisphere;
+		    semisphere.SetActive (true);
+            fullsphere.SetActive(false);
+            selectedDisplay = semisphere;
 		}
-
         
     }
 		
