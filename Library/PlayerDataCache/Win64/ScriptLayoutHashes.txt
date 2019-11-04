@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/Marte/Desktop/Immersive video player/Video player/Immersive Player Desktop.exe
+C:/Users/Marte/Desktop/Immersive Player with assistant video/Immersive Player Desktop.exe
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Narrative.unity
@@ -104,7 +104,7 @@ abf1930d8126d0b2e00e9449129a0190 UnityEngine.UI.dll:UnityEngine.EventSystems.Tou
 64e54c0cbb0177c5ea26f340efb9ff85 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 23e3f0f09167cc1ea389b5dcd4b0e47f Assembly-CSharp.dll:extOSC.Components.ReceiverReflections.OSCReceiverReflectionString
 296880f2a844c0be7d8caa4a94c0d7b3 Assembly-CSharp.dll:extOSC.Components.Informers.OSCTransmitterInformerString
-45caa832638291dfab9063ddc0c0368b Assembly-CSharp.dll:.VideoPlayerSettings
+0d440212765edbd35e405d95b69fda1c Assembly-CSharp.dll:.VideoPlayerSettings
 73ed217b6172a3d055380153432047dc Assembly-CSharp.dll:extOSC.UI.OSCSlider
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 06f0fef534ca4c1d6064fd77a26bf722 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -153,6 +153,7 @@ b5904eebd40b7d1c878f23c55ebcea2d Assembly-CSharp.dll:.CanvasSampleOpenFileText
 296880f2a844c0be7d8caa4a94c0d7b3 Assembly-CSharp.dll:extOSC.Components.Informers.OSCTransmitterInformerTimeTag
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.KeyboardPlayerControls
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
+a2e083dc746d8d12c8dac8ffdcdfe5e2 Assembly-CSharp.dll:.AssistantVideoPlayer
 d2a50b088422328cf32162bdc2c3d772 Assembly-CSharp.dll:extOSC.Components.Events.OSCReceiverEventString
 1c90b5aa75a46ecb3082edc4be336551 Assembly-CSharp.dll:extOSC.Components.Events.OSCReceiverEventFloat
 4651c2e7c4609d477424cbcd730fafcb Assembly-CSharp.dll:extOSC.Examples.SimpleMessageReceiver

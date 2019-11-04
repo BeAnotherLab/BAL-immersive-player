@@ -152,7 +152,7 @@ public class VideoPlayerSettings : MonoBehaviour {
         useAssistantVideo = toggleAssistantVideo.isOn;
 
         libraryFolderName = "./" + libraryFolderName + "/";
-        assistantVideoFolderName = "./" + assistantVideoFolderName + "/";
+        assistantVideoFolderName = "./" + assistantVideoFolderName + "/";//add ./ before when not in standalone
 
     }
 
@@ -172,6 +172,8 @@ public class VideoPlayerSettings : MonoBehaviour {
         {
                 videoPath = Application.dataPath + videoPath;
                 videoPath = videoPath.Replace("/Immersive Player Desktop_Data.", "");
+                assistantVideoPath = Application.dataPath + assistantVideoPath;
+                assistantVideoPath = assistantVideoPath.Replace("/Immersive Player Desktop_Data.", "");
         }
     }	
 
