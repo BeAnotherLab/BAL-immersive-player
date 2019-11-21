@@ -61,6 +61,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Components\Support\PlayMaker\Editor\AVProVideoActionHeaderPropertyDrawer.cs" />
+    <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\ApplyToMeshEditor.cs" />
+    <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\AudioOutputEditor.cs" />
+    <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\DisplayUGUIEditor.cs" />
+    <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\MediaPlayerEditor.cs" />
+    <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\PlaylistMediaPlayerEditor.cs" />
+    <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\PostProcessBuild.cs" />
+    <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\SupportWindow.cs" />
+    <Compile Include="Assets\3rd Party Assets\AVProVideo\Scripts\Editor\UpdateStereoMaterialEditor.cs" />
     <Compile Include="Assets\3rd Party Assets\extOSC\Scripts\Editor\Drawers\OSCFilterDrawer.cs" />
     <Compile Include="Assets\3rd Party Assets\extOSC\Scripts\Editor\Drawers\OSCPacketDrawer.cs" />
     <Compile Include="Assets\3rd Party Assets\extOSC\Scripts\Editor\Drawers\OSCPacketEditableDrawer.cs" />

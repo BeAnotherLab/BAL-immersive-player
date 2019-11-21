@@ -4,6 +4,7 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
+using RenderHeads.Media.AVProVideo;
 
 public class ImmersiveVideoPlayer : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	public Transform cameraParentTransform;
 	public AudioSource audioSource;
+    public bool useNativeVideoPlugin;
 
 	[HideInInspector]
 	public bool isPlaying = false;
@@ -26,7 +28,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	private AudioOSCController oscOut;
 	private GameObject _display;
 	private VideoPlayer _videoPlayer;
-    private VideoPlayer _assistantVideoPlayer;
+    //private VideoPlayer _assistantVideoPlayer;
+    private MediaPlayer _mediaPlayer;
 
 
 	private float _currentRotationX, _currentRotationY;
@@ -48,32 +51,47 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	void Start () {
 
-		_videoPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<VideoPlayer>();
-		_videoPlayer.playOnAwake = false;
+        
+        if(useNativeVideoPlugin) { //Unity video player
 
-		_videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
-		_videoPlayer.SetTargetAudioSource (0, audioSource);
+            _videoPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<VideoPlayer>();
+		    _videoPlayer.playOnAwake = false;
 
-		_instructionsAudioName = VideoPlayerSettings.instructionsAudioName;
+		    _videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+		    _videoPlayer.SetTargetAudioSource (0, audioSource);
+
+            if (VideoPlayerSettings.videoPath != null)
+                _videoPlayer.url = VideoPlayerSettings.videoPath;
+
+            _videoPlayer.Prepare();
+            _videoPlayer.loopPointReached += EndReached;
+        }
+
+        else { //Media player
+        
+            _mediaPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<MediaPlayer>();
+
+            if (VideoPlayerSettings.videoPath != null)
+                _mediaPlayer.OpenVideoFromFile(MediaPlayer.FileLocation.AbsolutePathOrURL, VideoPlayerSettings.videoPath, false);
+        }
+
+        _instructionsAudioName = VideoPlayerSettings.instructionsAudioName;
 		oscOut.SendOnAddress("audioname/", _instructionsAudioName);
 
-		if (VideoPlayerSettings.videoPath != null) {
-				_videoPlayer.url = VideoPlayerSettings.videoPath;
-		}
-
-        if (VideoPlayerSettings.useAssistantVideo)
+       /* if (VideoPlayerSettings.useAssistantVideo)
         {
             _assistantVideoPlayer = AssistantVideoPlayer.instance.assistantVideoObject.GetComponent<VideoPlayer>();
             _assistantVideoPlayer.playOnAwake = false;
-            //_assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
-            //_assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
+            ////_assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            ////_assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
 
             if (VideoPlayerSettings.assistantVideoPath != null)
-                _assistantVideoPlayer.url = VideoPlayerSettings.assistantVideoPath;
-        }
+               _assistantVideoPlayer.url = VideoPlayerSettings.assistantVideoPath;
+        }*/
 
-        _videoPlayer.Prepare ();
-		_videoPlayer.loopPointReached += EndReached;
+       
+
+
 		//Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
         
 
@@ -121,31 +139,48 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	}
 
 	public void StopImmersiveContent(){
-		_videoPlayer.frame = 0;
-		_videoPlayer.Pause ();
-		oscOut.Send("stop");
+        if (useNativeVideoPlugin)
+        {
+            _videoPlayer.frame = 0;
+            _videoPlayer.Pause();
+        }
+
+        else
+            _mediaPlayer.Stop();
+
+        oscOut.Send("stop");
 		isPlaying = false;
 
-        if (VideoPlayerSettings.useAssistantVideo)
-            _assistantVideoPlayer.Pause();
+
+
+        //if (VideoPlayerSettings.useAssistantVideo)
+          //  _assistantVideoPlayer.Pause();
 	}
 
 	public void PauseImmersiveContent(){
-		_videoPlayer.Pause ();
-		oscOut.Send("pause");
+        if (useNativeVideoPlugin)
+            _videoPlayer.Pause ();
+        else
+            _mediaPlayer.Pause();
+
+        oscOut.Send("pause");
 		isPaused = true;
 
-        if (VideoPlayerSettings.useAssistantVideo)
-            _assistantVideoPlayer.Pause();
+        //if (VideoPlayerSettings.useAssistantVideo)
+          //  _assistantVideoPlayer.Pause();
     }
 
 	public void ResumeImmersiveContent(){
-		_videoPlayer.Play ();
-		oscOut.Send("resume");
+        if(useNativeVideoPlugin)
+            _videoPlayer.Play ();
+        else
+            _mediaPlayer.Play();
+
+        oscOut.Send("resume");
 		isPaused = false;
 
-        if (VideoPlayerSettings.useAssistantVideo)
-            _assistantVideoPlayer.Play();
+        //if (VideoPlayerSettings.useAssistantVideo)
+          //  _assistantVideoPlayer.Play();
     }
 
 	public void BackToMenu(){
@@ -175,24 +210,38 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		
 	private IEnumerator PrepareToPlayImmersiveContent() {
 
+        /*
         if (VideoPlayerSettings.useAssistantVideo)
             while (!_videoPlayer.isPrepared && !_assistantVideoPlayer.isPrepared)
             {
                 yield return null;
             }
-
-        else 
+            */
+        //else 
+        if(useNativeVideoPlugin) { 
             while (!_videoPlayer.isPrepared) {
-			    yield return null;
-		    }
+			        yield return null;
+		        }
 
-		_videoPlayer.EnableAudioTrack (0, true);
-		_videoPlayer.Play ();
-		oscOut.Send ("play");
-		isPlaying = true;
+		    _videoPlayer.EnableAudioTrack (0, true);
+		    _videoPlayer.Play ();
+        }
 
-        if (VideoPlayerSettings.useAssistantVideo)
-            _assistantVideoPlayer.Play();
+        else
+        {
+            while (_mediaPlayer != null && _mediaPlayer.TextureProducer != null && _mediaPlayer.TextureProducer.GetTextureFrameCount() <= 0)
+            {
+                yield return null;
+            }
+
+            _mediaPlayer.Play();
+        }
+
+        oscOut.Send ("play");
+		isPlaying = true;       
+
+        // if (VideoPlayerSettings.useAssistantVideo)
+        //   _assistantVideoPlayer.Play();
 
     }
 	#endregion
