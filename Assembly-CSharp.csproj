@@ -312,7 +312,9 @@
     <None Include="Assets\3rd Party Assets\AVProVideo\Demos\Materials\UI-Default-ExtraTexture.shader" />
     <None Include="Assets\3rd Party Assets\AVProVideo\Resources\Shaders\AVProVideo-VR-InsideSphere-StereoUV.shader" />
     <None Include="Assets\3rd Party Assets\AVProVideo\Resources\Shaders\AVProVideo-Unlit-Transparent.shader" />
+    <None Include="Assets\Graphics\Shaders\AVProVideo-Unlit.shader" />
     <None Include="Assets\3rd Party Assets\AVProVideo\Resources\Shaders\AVProVideo.cginc" />
+    <None Include="Assets\Graphics\Shaders\AVProVideo.cginc" />
     <None Include="Assets\3rd Party Assets\AVProVideo\Resources\Shaders\AVProVideo-Unlit-AndroidOES.shader" />
     <None Include="Assets\3rd Party Assets\AVProVideo\Resources\Shaders\AVProVideo-IMGUI-Transparent.shader" />
     <None Include="Assets\3rd Party Assets\AVProVideo\Resources\Shaders\AVProVideo-Background-FullScreenTransparent.shader" />

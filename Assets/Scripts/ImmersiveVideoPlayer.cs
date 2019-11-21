@@ -106,19 +106,32 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	#region Public methods
 
 	public int CurrentFrame () {
-		return (int)_videoPlayer.frame;
+        if (useNativeVideoPlugin)
+            return (int)_videoPlayer.frame;
+        else
+            return (int)_mediaPlayer.Control.GetCurrentTimeMs();
 	}
 
 	public int TotalFrames() {
-		return (int) _videoPlayer.frameCount;
-	}
+        if (useNativeVideoPlugin)
+            return (int) _videoPlayer.frameCount;
+        else
+            return (int)_mediaPlayer.Info.GetDurationMs();
+
+    }
 
 	public float ElapsedTime() {
-		return (_videoPlayer.frame / _videoPlayer.frameRate);
-	}
+        if (useNativeVideoPlugin)
+            return (_videoPlayer.frame / _videoPlayer.frameRate);
+        else
+            return _mediaPlayer.Control.GetCurrentTimeMs()/1000;
+    }
 
 	public float TotalTime(){
-		return (_videoPlayer.frameCount / _videoPlayer.frameRate);
+        if (useNativeVideoPlugin)
+            return (_videoPlayer.frameCount / _videoPlayer.frameRate);
+        else
+            return _mediaPlayer.Info.GetDurationMs()/1000;
 	}
 
 	public void UpdateProjectorTransform(float pitch, float yaw, float roll){
@@ -135,7 +148,11 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public void GoToFrame(int frameToSeek){
 		oscOut.Send ("stop");
 		Debug.Log ("Stoped assistant Audio Player, seek is not supported");
-		_videoPlayer.frame = frameToSeek;
+        if (useNativeVideoPlugin)
+            _videoPlayer.frame = frameToSeek;
+
+        else
+            _mediaPlayer.Control.Seek(frameToSeek);
 	}
 
 	public void StopImmersiveContent(){
