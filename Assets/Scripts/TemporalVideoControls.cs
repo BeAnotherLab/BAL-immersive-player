@@ -64,10 +64,12 @@ public class TemporalVideoControls : MonoBehaviour
 	}
 
 	private IEnumerator SetVideoDuration(){
-		while (!ImmersiveVideoPlayer.instance.ImmersiveContentIsReady ()) {
-			yield return null;
-			ImmersiveVideoUIController.instance.UpdateTimeText("...");
-		}
+
+        if(ImmersiveVideoPlayer.instance.useNativeVideoPlugin)
+		    while (!ImmersiveVideoPlayer.instance.ImmersiveContentIsReady ()) {
+			    yield return null;
+			    ImmersiveVideoUIController.instance.UpdateTimeText("...");
+		    }
 
 		ImmersiveVideoUIController.instance.UpdateTimeText( "0 of " + ImmersiveVideoPlayer.instance.TotalTime ());
 	}
