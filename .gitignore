@@ -29,3 +29,6 @@ Narratives/
 *.aiff
 *.aif
 *.mp3
+
+# Not ours
+Assets/3rd Party Assets/
