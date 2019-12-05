@@ -984,6 +984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assistantVideoObject: {fileID: 461969981}
+  assistantVideoCamera: {fileID: 2121138786}
 --- !u!1 &588387219
 GameObject:
   m_ObjectHideFlags: 0

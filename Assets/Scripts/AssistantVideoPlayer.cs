@@ -7,6 +7,7 @@ public class AssistantVideoPlayer : MonoBehaviour
 
     private GameObject _dpCameras;
     public GameObject assistantVideoObject;
+    public Camera assistantVideoCamera;
 
     public static AssistantVideoPlayer instance;
 
@@ -16,10 +17,14 @@ public class AssistantVideoPlayer : MonoBehaviour
         if (instance == null)
             instance = this;
 
-        if (VideoPlayerSettings.useAssistantVideo)
+        if (VideoPlayerSettings.useAssistantVideo) { 
             assistantVideoObject.SetActive(true);
-        else
+            assistantVideoCamera.enabled = true;
+        }
+        else { 
             assistantVideoObject.SetActive(false);
+            assistantVideoCamera.enabled = false;
+        }
     }
     // Start is called before the first frame update
 
