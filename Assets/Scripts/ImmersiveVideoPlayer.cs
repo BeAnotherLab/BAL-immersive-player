@@ -169,8 +169,10 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _videoPlayer.Pause();
         }
 
-        else
+        else {
             _mediaPlayer.Stop();
+            _mediaPlayer.Control.Seek(0f);
+             }
 
         oscOut.Send("stop");
 		isPlaying = false;
@@ -241,8 +243,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
                 yield return null;
 
             }
-        }
-        Debug.Log("done for assistant video");
+        }       
 
         //else 
         if (useNativeVideoPlugin) { 

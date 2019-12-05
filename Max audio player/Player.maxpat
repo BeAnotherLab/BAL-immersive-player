@@ -38,6 +38,18 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 104.0, 317.0, 86.0, 22.0 ],
+					"style" : "",
+					"text" : "print message"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -88,7 +100,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 37.0, 370.0, 72.0, 22.0 ],
 					"style" : "",
-					"text" : "loadmess 2"
+					"text" : "loadmess 1"
 				}
 
 			}
@@ -297,6 +309,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-3",
@@ -923,7 +936,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 337.0, 468.0, 309.0, 36.0 ],
 													"style" : "",
-													"text" : "\"C:/Program Files/Cycling '74/Max 7/Narratives/filename\""
+													"text" : "\"C:/Program Files/Cycling '74/Max 7/Narratives/Jonah.mp3\""
 												}
 
 											}
@@ -1553,6 +1566,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-12", 0 ],
+					"order" : 0,
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"order" : 1,
 					"source" : [ "obj-13", 0 ]
 				}
 

@@ -174,7 +174,9 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 	private void ButtonBehavior(string _fileName){
 
-		videoPath = libraryFolderName + _fileName + ".mp4";
+        instructionsAudioName = _fileName;
+
+        videoPath = libraryFolderName + _fileName + ".mp4";
 		assistantVideoPath = assistantVideoFolderName + _fileName + ".mp4";
 
         if (toggleVideoFlip.isOn == true)
