@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-C:/Users/Marte/Desktop/Immersive video player 0.0.4/Immersive Player Desktop.exe
+C:/Users/Marte/Desktop/Immersive video player 0.0.5/Video player/Immersive Player Desktop.exe
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Narrative.unity
@@ -165,7 +165,7 @@ b2d54ec8d8f9527e88d5a71ccd307023 Assembly-CSharp.dll:RenderHeads.Media.AVProVide
 296880f2a844c0be7d8caa4a94c0d7b3 Assembly-CSharp.dll:extOSC.Components.Informers.OSCTransmitterInformerTimeTag
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.KeyboardPlayerControls
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
-a2e083dc746d8d12c8dac8ffdcdfe5e2 Assembly-CSharp.dll:.AssistantVideoPlayer
+57febbf0f16575efda8a65e738081d0f Assembly-CSharp.dll:.AssistantVideoPlayer
 d2a50b088422328cf32162bdc2c3d772 Assembly-CSharp.dll:extOSC.Components.Events.OSCReceiverEventString
 180c04fc54ca885ab1c47088ef65488f Assembly-CSharp.dll:RenderHeads.Media.AVProVideo.Demos.ChangeStereoMode
 1c90b5aa75a46ecb3082edc4be336551 Assembly-CSharp.dll:extOSC.Components.Events.OSCReceiverEventFloat
