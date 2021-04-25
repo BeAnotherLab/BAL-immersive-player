@@ -742,7 +742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461969981}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 20.040003}
+  m_LocalPosition: {x: 0, y: 0, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2121138784}
@@ -1408,6 +1408,8 @@ MonoBehaviour:
     overridePath: 0
     pathLocation: 2
     path: 
+    audioMode: 0
+    httpHeaders: []
     httpHeaderJson: 
     keyServerURLOverride: 
     keyServerAuthToken: 
@@ -1416,20 +1418,26 @@ MonoBehaviour:
     overridePath: 0
     pathLocation: 2
     path: 
+    audioMode: 0
+    httpHeaders: []
     httpHeaderJson: 
     keyServerURLOverride: 
     keyServerAuthToken: 
     base64EncodedKeyBlob: 
     useYpCbCr420Textures: 1
+    resumePlaybackOnAudioSessionRouteChange: 0
   _optionsTVOS:
     overridePath: 0
     pathLocation: 2
     path: 
+    audioMode: 0
+    httpHeaders: []
     httpHeaderJson: 
     keyServerURLOverride: 
     keyServerAuthToken: 
     base64EncodedKeyBlob: 
     useYpCbCr420Textures: 1
+    resumePlaybackOnAudioSessionRouteChange: 0
   _optionsAndroid:
     overridePath: 0
     pathLocation: 2
@@ -1440,6 +1448,7 @@ MonoBehaviour:
     enableAudio360: 0
     audio360ChannelMode: 0
     preferSoftwareDecoder: 0
+    httpHeaders: []
     httpHeaderJson: 
     fileOffset: 0
   _optionsWindowsPhone:
@@ -1801,6 +1810,8 @@ MonoBehaviour:
     overridePath: 0
     pathLocation: 2
     path: 
+    audioMode: 0
+    httpHeaders: []
     httpHeaderJson: 
     keyServerURLOverride: 
     keyServerAuthToken: 
@@ -1809,20 +1820,26 @@ MonoBehaviour:
     overridePath: 0
     pathLocation: 2
     path: 
+    audioMode: 0
+    httpHeaders: []
     httpHeaderJson: 
     keyServerURLOverride: 
     keyServerAuthToken: 
     base64EncodedKeyBlob: 
     useYpCbCr420Textures: 1
+    resumePlaybackOnAudioSessionRouteChange: 0
   _optionsTVOS:
     overridePath: 0
     pathLocation: 2
     path: 
+    audioMode: 0
+    httpHeaders: []
     httpHeaderJson: 
     keyServerURLOverride: 
     keyServerAuthToken: 
     base64EncodedKeyBlob: 
     useYpCbCr420Textures: 1
+    resumePlaybackOnAudioSessionRouteChange: 0
   _optionsAndroid:
     overridePath: 0
     pathLocation: 2
@@ -1833,6 +1850,7 @@ MonoBehaviour:
     enableAudio360: 0
     audio360ChannelMode: 0
     preferSoftwareDecoder: 0
+    httpHeaders: []
     httpHeaderJson: 
     fileOffset: 0
   _optionsWindowsPhone:
@@ -3097,8 +3115,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121138783}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 20.04, z: 0}
-  m_LocalScale: {x: 4, y: 3, z: 1}
+  m_LocalPosition: {x: 0, y: -500, z: 0}
+  m_LocalScale: {x: 5, y: 3, z: 1}
   m_Children:
   - {fileID: 461969982}
   m_Father: {fileID: 497758106}

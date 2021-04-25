@@ -253,6 +253,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 		    _videoPlayer.EnableAudioTrack (0, true);
 		    _videoPlayer.Play ();
+
         }
 
         else
@@ -263,13 +264,16 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             }
 
             _mediaPlayer.Play();
+			
         }
 
         oscOut.Send ("play");
 		isPlaying = true;       
 
-        if (VideoPlayerSettings.useAssistantVideo)
+        if (VideoPlayerSettings.useAssistantVideo) {
            _assistantVideoPlayer.Play();
+			_assistantVideoPlayer.SetDirectAudioMute(0, true);
+		}
 
     }
 	#endregion

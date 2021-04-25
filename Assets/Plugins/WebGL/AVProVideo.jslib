@@ -45,7 +45,10 @@ var AVProVideoWebGL = {
         var vid = document.createElement("video");
         var useNativeSrcPath = true;
 
-        if (externalLibrary == 1)
+        var url = path.split('/').pop().replace(/\#(.*?)$/, '').replace(/\?(.*?)$/, '');
+        url = url.split('.');  // separates filename and extension
+
+        if (externalLibrary == 1 && url[1] == "mpd")
         {
             useNativeSrcPath = false;
             var player = dashjs.MediaPlayer().create();
