@@ -12,7 +12,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	public Transform cameraParentTransform;
 	public AudioSource audioSource;
-    public bool useNativeVideoPlugin;
+    [HideInInspector]
+    public bool useNativeVideoPlugin = true;
 
 	[HideInInspector]
 	public bool isPlaying = false;
@@ -29,7 +30,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	private GameObject _display;
 	private VideoPlayer _videoPlayer;
     private VideoPlayer _assistantVideoPlayer;
-    //private MediaPlayer _mediaPlayer;
+//    private MediaPlayer _mediaPlayer;
 
 
 	private float _currentRotationX, _currentRotationY;
@@ -48,13 +49,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		oscOut = (AudioOSCController)FindObjectOfType(typeof(AudioOSCController));
 		_display = DisplaySelector.instance.gameObject;
 
-        //suseNativeVideoPlugin = VideoPlayerSettings.enableNativeVideoPlugin;
+        //useNativeVideoPlugin = VideoPlayerSettings.enableNativeVideoPlugin;
 	}
 
 	void Start () {
 
         
-       // if(useNativeVideoPlugin) { //Unity video player
+        //if(useNativeVideoPlugin) { //Unity video player
 
             _videoPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<VideoPlayer>();
 		    _videoPlayer.playOnAwake = false;
@@ -68,7 +69,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _videoPlayer.Prepare();
             _videoPlayer.loopPointReached += EndReached;
         /*}
-
+        
         else { //Media player
         
             _mediaPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<MediaPlayer>();
@@ -114,7 +115,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         //if (useNativeVideoPlugin)
             return (int)_videoPlayer.frame;
         //else
-           // return (int)_mediaPlayer.Control.GetCurrentTimeMs();
+          //  return (int)_mediaPlayer.Control.GetCurrentTimeMs();
 	}
 
 	public int TotalFrames() {
@@ -126,7 +127,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     }
 
 	public float ElapsedTime() {
-        //if (useNativeVideoPlugin)
+       // if (useNativeVideoPlugin)
             return (_videoPlayer.frame / _videoPlayer.frameRate);
         //else
             //return _mediaPlayer.Control.GetCurrentTimeMs()/1000;
@@ -155,11 +156,11 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
         Debug.Log ("Stoped assistant Audio Player, seek is not supported");
 
-       // if (useNativeVideoPlugin)
+        //if (useNativeVideoPlugin)
             _videoPlayer.frame = frameToSeek;
 
         //else
-          //  _mediaPlayer.Control.Seek(frameToSeek);
+            //_mediaPlayer.Control.Seek(frameToSeek);
 	}
 
 	public void StopImmersiveContent(){
@@ -186,7 +187,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         //if (useNativeVideoPlugin)
             _videoPlayer.Pause ();
         //else
-          //  _mediaPlayer.Pause();
+            //_mediaPlayer.Pause();
 
         oscOut.Send("pause");
 		isPaused = true;
@@ -199,7 +200,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         //if(useNativeVideoPlugin)
             _videoPlayer.Play ();
         //else
-           // _mediaPlayer.Play();
+            //_mediaPlayer.Play();
 
         oscOut.Send("resume");
 		isPaused = false;
@@ -244,8 +245,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             }
         }       
 
-        //else 
-        //if (useNativeVideoPlugin) { 
+        else 
+            //if (useNativeVideoPlugin) { 
             while (!_videoPlayer.isPrepared) {
 			        yield return null;
 		        }
@@ -253,7 +254,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		    _videoPlayer.EnableAudioTrack (0, true);
 		    _videoPlayer.Play ();
         /*}
-
+    
         else
         {
             while (_mediaPlayer != null && _mediaPlayer.TextureProducer != null && _mediaPlayer.TextureProducer.GetTextureFrameCount() <= 0)

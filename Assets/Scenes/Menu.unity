@@ -1489,6 +1489,7 @@ MonoBehaviour:
   toggle360Video: {fileID: 118359331}
   toggleVideoFlip: {fileID: 777970205}
   toggleAssistantVideo: {fileID: 1621628942}
+  toggleNativeVideoPlugin: {fileID: 1747645636}
 --- !u!4 &1733982421
 Transform:
   m_ObjectHideFlags: 0
