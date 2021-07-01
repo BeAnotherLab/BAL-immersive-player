@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Backfaces
-  m_Shader: {fileID: 4800000, guid: 2e67ff5b6f462c64c9dba729112ec768, type: 3}
-  m_ShaderKeywords: FORCEEYE_NONE LAYOUT_NONE STEREO_NONE _ALPHAPREMULTIPLY_ON
+  m_Name: 360_video_mask
+  m_Shader: {fileID: 4800000, guid: 7173ea01cda64034091aefa0eed02031, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,10 +20,6 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ChromaTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -44,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c0ba2083bf6d9de44a3a3c5abf9f14b6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -59,37 +55,29 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _diffuseMap:
+        m_Texture: {fileID: 2800000, guid: e548d458815cf7944a60e0c2b034ba6c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - ForceEye: 0
-    - Layout: 0
-    - Stereo: 0
-    - _ApplyGamma: 0
     - _BumpScale: 1
-    - _ColorMask: 15
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HighQuality: 0
     - _Metallic: 0
-    - _Mode: 3
+    - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _StereoDebug: 0
     - _UVSec: 0
-    - _UseUIAlphaClip: 0
-    - _UseYpCbCr: 0
-    - _ZWrite: 0
+    - _ZWrite: 1
+    - _alphaPower: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _diffuseColor: {r: 0.8113208, g: 0.37504452, b: 0.37504452, a: 1}
