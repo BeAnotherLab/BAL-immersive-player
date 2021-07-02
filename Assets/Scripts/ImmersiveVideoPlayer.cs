@@ -4,7 +4,7 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
-//using RenderHeads.Media.AVProVideo;
+using RenderHeads.Media.AVProVideo;
 
 public class ImmersiveVideoPlayer : MonoBehaviour {
 
@@ -29,7 +29,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	private GameObject _display;
 	private VideoPlayer _videoPlayer;
     private VideoPlayer _assistantVideoPlayer;
-    //private MediaPlayer _mediaPlayer;
+    private MediaPlayer _mediaPlayer;
 
 
 	private float _currentRotationX, _currentRotationY;
@@ -48,13 +48,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		oscOut = (AudioOSCController)FindObjectOfType(typeof(AudioOSCController));
 		_display = DisplaySelector.instance.gameObject;
 
-        //suseNativeVideoPlugin = VideoPlayerSettings.enableNativeVideoPlugin;
+        useNativeVideoPlugin = VideoPlayerSettings.enableNativeVideoPlugin;
 	}
 
 	void Start () {
 
         
-       // if(useNativeVideoPlugin) { //Unity video player
+        if(useNativeVideoPlugin) { //Unity video player
 
             _videoPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<VideoPlayer>();
 		    _videoPlayer.playOnAwake = false;
@@ -67,7 +67,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
             _videoPlayer.Prepare();
             _videoPlayer.loopPointReached += EndReached;
-        /*}
+        }
 
         else { //Media player
         
@@ -75,7 +75,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
             if (VideoPlayerSettings.videoPath != null)
                 _mediaPlayer.OpenVideoFromFile(MediaPlayer.FileLocation.AbsolutePathOrURL, VideoPlayerSettings.videoPath, false);
-        }*/
+        }
 
         _instructionsAudioName = VideoPlayerSettings.instructionsAudioName;
 		oscOut.SendOnAddress("audioname/", _instructionsAudioName);
@@ -84,8 +84,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         {
             _assistantVideoPlayer = AssistantVideoPlayer.instance.assistantVideoObject.GetComponent<VideoPlayer>();
             _assistantVideoPlayer.playOnAwake = false;
-            ////_assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
-            ////_assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
+            _assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            _assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
 
             if (VideoPlayerSettings.assistantVideoPath != null)
                 _assistantVideoPlayer.url = VideoPlayerSettings.assistantVideoPath;
@@ -97,7 +97,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         }
 
         CalibrateAllTransforms();
-        //Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
+       // Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
 
 
     }
@@ -111,32 +111,32 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	#region Public methods
 
 	public int CurrentFrame () {
-        //if (useNativeVideoPlugin)
+        if (useNativeVideoPlugin)
             return (int)_videoPlayer.frame;
-        //else
-           // return (int)_mediaPlayer.Control.GetCurrentTimeMs();
+        else
+            return (int)_mediaPlayer.Control.GetCurrentTimeMs();
 	}
 
 	public int TotalFrames() {
-        //if (useNativeVideoPlugin)
+        if (useNativeVideoPlugin)
             return (int) _videoPlayer.frameCount;
-        //else
-           // return (int)_mediaPlayer.Info.GetDurationMs();
+        else
+            return (int)_mediaPlayer.Info.GetDurationMs();
 
     }
 
 	public float ElapsedTime() {
-        //if (useNativeVideoPlugin)
+        if (useNativeVideoPlugin)
             return (_videoPlayer.frame / _videoPlayer.frameRate);
-        //else
-            //return _mediaPlayer.Control.GetCurrentTimeMs()/1000;
+        else
+            return _mediaPlayer.Control.GetCurrentTimeMs()/1000;
     }
 
 	public float TotalTime(){
-        //if (useNativeVideoPlugin)
+        if (useNativeVideoPlugin)
             return (_videoPlayer.frameCount / _videoPlayer.frameRate);
-        //else
-            //return _mediaPlayer.Info.GetDurationMs()/1000;
+        else
+            return _mediaPlayer.Info.GetDurationMs()/1000;
 	}
 
 	public void UpdateProjectorTransform(float pitch, float yaw, float roll){
@@ -155,23 +155,23 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
         Debug.Log ("Stoped assistant Audio Player, seek is not supported");
 
-       // if (useNativeVideoPlugin)
+        if (useNativeVideoPlugin)
             _videoPlayer.frame = frameToSeek;
 
-        //else
-          //  _mediaPlayer.Control.Seek(frameToSeek);
+        else
+            _mediaPlayer.Control.Seek(frameToSeek);
 	}
 
 	public void StopImmersiveContent(){
-        //if (useNativeVideoPlugin) {
+        if (useNativeVideoPlugin) {
             _videoPlayer.frame = 0;
             _videoPlayer.Pause();
-        /*}
+        }
 
         else {
             _mediaPlayer.Stop();
             _mediaPlayer.Control.Seek(0f);
-             }*/
+             }
 
         oscOut.Send("stop");
 		isPlaying = false;
@@ -183,10 +183,10 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	}
 
 	public void PauseImmersiveContent(){
-        //if (useNativeVideoPlugin)
+        if (useNativeVideoPlugin)
             _videoPlayer.Pause ();
-        //else
-          //  _mediaPlayer.Pause();
+        else
+            _mediaPlayer.Pause();
 
         oscOut.Send("pause");
 		isPaused = true;
@@ -196,10 +196,10 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     }
 
 	public void ResumeImmersiveContent(){
-        //if(useNativeVideoPlugin)
+        if(useNativeVideoPlugin)
             _videoPlayer.Play ();
-        //else
-           // _mediaPlayer.Play();
+        else
+            _mediaPlayer.Play();
 
         oscOut.Send("resume");
 		isPaused = false;
@@ -244,15 +244,15 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             }
         }       
 
-        //else 
-        //if (useNativeVideoPlugin) { 
+        else 
+        if (useNativeVideoPlugin) { 
             while (!_videoPlayer.isPrepared) {
 			        yield return null;
 		        }
 
 		    _videoPlayer.EnableAudioTrack (0, true);
 		    _videoPlayer.Play ();
-        /*}
+        }
 
         else
         {
@@ -262,7 +262,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             }
 
             _mediaPlayer.Play();
-        }*/
+        }
 
         oscOut.Send ("play");
 		isPlaying = true;       
