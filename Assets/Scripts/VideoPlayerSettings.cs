@@ -15,9 +15,9 @@ public class VideoPlayerSettings : MonoBehaviour {
 	public string libraryFolderName, assistantVideoFolderName; //name of the folder inside Assets to look for files.
 	public string fileFormat;
 	public Vector3 initialRotation;
-    public Toggle toggle360Video, toggleVideoFlip, toggleAssistantVideo, toggleNativeVideoPlugin;
+    public Toggle toggle360Video, toggleVideoFlip, toggleAssistantVideo, toggleNativeVideoPlugin, toggleMask360Video;
 
-    public static bool is360, useAssistantVideo, enableNativeVideoPlugin;
+    public static bool is360, useAssistantVideo, enableNativeVideoPlugin, useMask;
 	public static string videoPath, assistantVideoPath;
 	public static Vector3 initialTiltConfiguration;
 	public static string instructionsAudioName;
@@ -124,7 +124,15 @@ public class VideoPlayerSettings : MonoBehaviour {
         else
             PlayerPrefs.SetInt("nativeVideoPlugin", 0);
     }
-    
+
+    public void Switch360Mask()
+    {
+        if (toggleMask360Video.isOn)
+            PlayerPrefs.SetInt("mask360video", 1);
+        else
+            PlayerPrefs.SetInt("mask360video", 0);
+    }
+
 
 
     public void WriteResult(string[] paths) {
@@ -165,6 +173,11 @@ public class VideoPlayerSettings : MonoBehaviour {
             toggleNativeVideoPlugin.isOn = true;
         else
             toggleNativeVideoPlugin.isOn = false;
+
+        if (PlayerPrefs.GetInt("mask360video") == 1)
+            toggleMask360Video.isOn = true;
+        else
+            toggleMask360Video.isOn = false;
 
         is360 = toggle360Video.isOn;
         useAssistantVideo = toggleAssistantVideo.isOn;

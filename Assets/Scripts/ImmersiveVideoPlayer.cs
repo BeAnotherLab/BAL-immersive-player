@@ -13,6 +13,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public Transform cameraParentTransform;
 	public AudioSource audioSource;
     public bool useNativeVideoPlugin;
+    public GameObject mask360video;
 
 	[HideInInspector]
 	public bool isPlaying = false;
@@ -49,6 +50,9 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		_display = DisplaySelector.instance.gameObject;
 
         useNativeVideoPlugin = VideoPlayerSettings.enableNativeVideoPlugin;
+
+        mask360video.SetActive(VideoPlayerSettings.useMask);
+
 	}
 
 	void Start () {
