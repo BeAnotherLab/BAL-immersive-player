@@ -51,16 +51,23 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         useNativeVideoPlugin = VideoPlayerSettings.enableNativeVideoPlugin;
 	}
 
-	void Start () {
+	void Update(){
 
-        
-        if(useNativeVideoPlugin) { //Unity video player
+	}
+
+    #endregion
+
+    #region Public methods
+    public void InitializeVideo()  {
+
+        if (useNativeVideoPlugin)
+        { //Unity video player
 
             _videoPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<VideoPlayer>();
-		    _videoPlayer.playOnAwake = false;
+            _videoPlayer.playOnAwake = false;
 
-		    _videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
-		    _videoPlayer.SetTargetAudioSource (0, audioSource);
+            _videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+            _videoPlayer.SetTargetAudioSource(0, audioSource);
 
             if (VideoPlayerSettings.videoPath != null)
                 _videoPlayer.url = VideoPlayerSettings.videoPath;
@@ -69,8 +76,9 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _videoPlayer.loopPointReached += EndReached;
         }
 
-        else { //Media player
-        
+        else
+        { //Media player
+
             _mediaPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<MediaPlayer>();
 
             if (VideoPlayerSettings.videoPath != null)
@@ -78,7 +86,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         }
 
         _instructionsAudioName = VideoPlayerSettings.instructionsAudioName;
-		oscOut.SendOnAddress("audioname/", _instructionsAudioName);
+        oscOut.SendOnAddress("audioname/", _instructionsAudioName);
 
         if (VideoPlayerSettings.useAssistantVideo)
         {
@@ -97,20 +105,10 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         }
 
         CalibrateAllTransforms();
-       // Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
-
-
+        // Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
     }
 
-	void Update(){
-
-	}
-
-	#endregion
-
-	#region Public methods
-
-	public int CurrentFrame () {
+    public int CurrentFrame () {
         if (useNativeVideoPlugin)
             return (int)_videoPlayer.frame;
         else

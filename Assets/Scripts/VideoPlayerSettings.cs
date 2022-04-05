@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SFB;
-using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 using System.IO;
 using UnityEngine.UI;
+using ScriptableObjectArchitecture;
 
 public class VideoPlayerSettings : MonoBehaviour {
 
-	#region public variables
-	public GameObject buttonPrefab;
-	public Transform canvasParent;
-	public string libraryFolderName, assistantVideoFolderName; //name of the folder inside Assets to look for files.
-	public string fileFormat;
-	public Vector3 initialRotation;
-    public Toggle toggle360Video, toggleVideoFlip, toggleAssistantVideo, toggleNativeVideoPlugin;
+    #region public variables
+    [SerializeField] private GameObject buttonPrefab;
+    [SerializeField] private Transform canvasParent;
+    [SerializeField] private string libraryFolderName, assistantVideoFolderName; //name of the folder inside Assets to look for files.
+    [SerializeField] private string fileFormat;
+    [SerializeField] private Vector3 initialRotation;
+    [SerializeField] private Toggle toggle360Video, toggleVideoFlip, toggleAssistantVideo, toggleNativeVideoPlugin;
+    [SerializeField] private GameEvent _loadVideo;
+    [SerializeField] private BoolGameEvent _selectionMenuDim, _videoControlDim;
 
+    //adapt to SOA
     public static bool is360, useAssistantVideo, enableNativeVideoPlugin;
 	public static string videoPath, assistantVideoPath;
 	public static Vector3 initialTiltConfiguration;
@@ -24,9 +27,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 	#endregion
 
 
-
 	#region Monobehavior methods
-
 	void Start ()
     {
         InitialSettings();
@@ -35,13 +36,10 @@ public class VideoPlayerSettings : MonoBehaviour {
         foreach (string file in System.IO.Directory.GetFiles(libraryFolderName, "*." + fileFormat))
 			CreateButton (file);
 	}
-
 	#endregion
 
 
 	#region Public methods
-
-
 	public void LoadFile () {
 
         string lastBrowsedDirectory;
@@ -65,7 +63,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 
             initialTiltConfiguration = initialRotation;
                 
-            LoadVideoScene ();
+            LoadVideo ();
 		}
 	}
 
@@ -185,7 +183,7 @@ public class VideoPlayerSettings : MonoBehaviour {
             initialRotation = new Vector3(90, 0, 180);
 
         initialTiltConfiguration = initialRotation;
-		LoadVideoScene ();
+		LoadVideo ();
 
         //VideoPlayer.url in ImmersiveVideoPLayer uses the _Data folder for references in standalone, while in general./ refers to the application path
         if (!Application.isEditor)
@@ -198,8 +196,10 @@ public class VideoPlayerSettings : MonoBehaviour {
     }	
 
 
-	private void LoadVideoScene(){
-        SceneManager.LoadScene("Narrative");
+	private void LoadVideo(){
+        _selectionMenuDim.Raise(false);
+        _videoControlDim.Raise(true);
+        _loadVideo.Raise();  
 	}
 
 	#endregion

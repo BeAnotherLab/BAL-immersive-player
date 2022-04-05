@@ -21,13 +21,8 @@ public class TemporalVideoControls : MonoBehaviour
 			instance = this;
     }
 
-	void Start(){
-		sliderIsinteracting = false;
-		StartCoroutine (SetVideoDuration ());
-	}
-
     // Update is called once per frame
-    void Update()
+    private void UpdateTemporalControls()//temporal fix
     {
 		if (ImmersiveVideoPlayer.instance.isPlaying && !sliderIsinteracting)
 			ImmersiveVideoUIController.instance.UpdateTimeText(ImmersiveVideoPlayer.instance.ElapsedTime ().ToString("F2") + " of " + ImmersiveVideoPlayer.instance.TotalTime ());
@@ -35,10 +30,18 @@ public class TemporalVideoControls : MonoBehaviour
 		if(!sliderIsinteracting)
 			ImmersiveVideoUIController.instance.timeSlider.value = ImmersiveVideoPlayer.instance.ElapsedTime() / ImmersiveVideoPlayer.instance.TotalTime ();
     }
-	#endregion
+    #endregion
 
-	#region Public methods
-	public void OnSelect() {
+    #region Public methods
+
+    public void InitializeVideo()
+    {
+        sliderIsinteracting = false;
+        StartCoroutine(SetVideoDuration());
+        InvokeRepeating("UpdateTemporalControls", 0f, 0.5f);//temporal fix
+    }
+
+    public void OnSelect() {
 		sliderIsinteracting = true;
 	}
 
