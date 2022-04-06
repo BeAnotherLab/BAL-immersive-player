@@ -17,7 +17,7 @@ public class VideoPlayerSettings : MonoBehaviour {
     [SerializeField] private Vector3 initialRotation;
     [SerializeField] private Toggle toggle360Video, toggleVideoFlip, toggleAssistantVideo, toggleNativeVideoPlugin;
     [SerializeField] private GameEvent _loadVideo;
-    [SerializeField] private BoolGameEvent _selectionMenuDim, _videoControlDim;
+    [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff;
 
     //adapt to SOA
     public static bool is360, useAssistantVideo, enableNativeVideoPlugin;
@@ -62,6 +62,7 @@ public class VideoPlayerSettings : MonoBehaviour {
                 initialRotation = new Vector3(90, 0, 180);
 
             initialTiltConfiguration = initialRotation;
+            Debug.Log(initialTiltConfiguration);
                 
             LoadVideo ();
 		}
@@ -183,6 +184,7 @@ public class VideoPlayerSettings : MonoBehaviour {
             initialRotation = new Vector3(90, 0, 180);
 
         initialTiltConfiguration = initialRotation;
+        Debug.Log(initialTiltConfiguration);
 		LoadVideo ();
 
         //VideoPlayer.url in ImmersiveVideoPLayer uses the _Data folder for references in standalone, while in general./ refers to the application path
@@ -197,8 +199,8 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 
 	private void LoadVideo(){
-        _selectionMenuDim.Raise(false);
-        _videoControlDim.Raise(true);
+        _selectionMenuOn.Raise(false);
+        _videoControlOff.Raise(true);
         _loadVideo.Raise();  
 	}
 

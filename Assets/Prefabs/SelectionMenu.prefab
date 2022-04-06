@@ -813,7 +813,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5460231995716674361}
         m_MethodName: SwitchSphereMode
         m_Mode: 1
         m_Arguments:
@@ -1237,8 +1237,8 @@ MonoBehaviour:
   toggleAssistantVideo: {fileID: 6235383047885412601}
   toggleNativeVideoPlugin: {fileID: 6235383046189861828}
   _loadVideo: {fileID: 11400000, guid: 9bff712832548904f915f28a9b9648ae, type: 2}
-  _selectionMenuDim: {fileID: 11400000, guid: 5e9958a6006a7934fa7d1ce6502e1ff6, type: 2}
-  _videoControlDim: {fileID: 11400000, guid: 057453e7f9a94b7428ada3653fbe364b, type: 2}
+  _selectionMenuOn: {fileID: 11400000, guid: 5e9958a6006a7934fa7d1ce6502e1ff6, type: 2}
+  _videoControlOff: {fileID: 11400000, guid: 5e58eece82ecea744bf12577b77af7f4, type: 2}
 --- !u!1 &6235383047693748841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,7 +1392,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5460231995716674361}
         m_MethodName: SwitchRotationMode
         m_Mode: 1
         m_Arguments:

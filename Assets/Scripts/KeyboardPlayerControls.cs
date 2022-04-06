@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using ScriptableObjectArchitecture;
 
 public class KeyboardPlayerControls : MonoBehaviour
 {
 
 
-	#region unity methods
+    #region private variables
+    [SerializeField] private float rotationAcceleration;
+    [SerializeField] private Vector3GameEvent transformProjector;
+    [SerializeField] private GameEvent calibrateAllTransforms;
+    
+    #endregion
+
+    #region unity methods
 
     // Update is called once per frame
     void Update()
@@ -20,29 +28,26 @@ public class KeyboardPlayerControls : MonoBehaviour
 			smoothy.InitializeSmoothRotation (rotationTarget, 0, 1);
 		}
 
-		//tilt adjustments
-		if (Input.GetKey ("down"))
-			ImmersiveVideoPlayer.instance.UpdateProjectorTransform (0.25f, 0f, 0f);
-
+        //tilt adjustments
+        if (Input.GetKey("down"))
+            transformProjector.Raise(new Vector3(rotationAcceleration, 0f, 0f));
 		if (Input.GetKey ("up"))
-			ImmersiveVideoPlayer.instance.UpdateProjectorTransform (-0.25f, 0f, 0f);
+            transformProjector.Raise(new Vector3(-rotationAcceleration, 0f, 0f));
 
-		if (Input.GetKey ("left"))
-			ImmersiveVideoPlayer.instance.UpdateProjectorTransform (0f, 0.25f, 0f);
+        if (Input.GetKey ("left"))
+            transformProjector.Raise(new Vector3(0f, -rotationAcceleration, 0f));
 
-		if (Input.GetKey ("right"))
-			ImmersiveVideoPlayer.instance.UpdateProjectorTransform (0f, -0.25f, 0f);
+        if (Input.GetKey ("right"))
+            transformProjector.Raise(new Vector3(0f, rotationAcceleration, 0f));
 
-		if (Input.GetKey ("x"))
-			ImmersiveVideoPlayer.instance.UpdateProjectorTransform (0f, 0f, 0.25f);
+        if (Input.GetKey ("x"))
+            transformProjector.Raise(new Vector3(0f, 0f, rotationAcceleration));
 
-		if (Input.GetKey ("z"))
-			ImmersiveVideoPlayer.instance.UpdateProjectorTransform (0f, 0f, -0.25f);
+        if (Input.GetKey ("z"))
+            transformProjector.Raise(new Vector3(0f, 0f, -rotationAcceleration));
 
-
-		if (Input.GetKeyDown ("c")) {
-			ImmersiveVideoPlayer.instance.CalibrateAllTransforms ();
-		}
+        if (Input.GetKeyDown ("c")) 
+            calibrateAllTransforms.Raise();
 
 		if (Input.GetKeyDown ("return")) {
 			ImmersiveVideoPlayer.instance.StopImmersiveContent ();
@@ -70,5 +75,10 @@ public class KeyboardPlayerControls : MonoBehaviour
 
 		}
     }
-	#endregion
+    #endregion
+    
+    public void UpdateProjectorTransform(string direction)
+    {
+        Debug.Log("listened to " + direction);
+    }
 }

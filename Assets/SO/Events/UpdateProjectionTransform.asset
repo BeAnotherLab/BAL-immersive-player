@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe4d59e612f226418a9f7ddf54c95bf, type: 3}
-  m_Name: SelectionMenuDim
+  m_Script: {fileID: 11500000, guid: b75938839174f924db08cf0efcf049f1, type: 3}
+  m_Name: UpdateProjectionTransform
   m_EditorClassIdentifier: 
-  _debugValue: 1
+  _debugValue: {x: 0, y: 0, z: 0}

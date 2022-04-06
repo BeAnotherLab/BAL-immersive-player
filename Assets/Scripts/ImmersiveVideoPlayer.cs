@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine.Video;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 using RenderHeads.Media.AVProVideo;
+using ScriptableObjectArchitecture;
 
 public class ImmersiveVideoPlayer : MonoBehaviour {
 
@@ -30,9 +30,10 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	private VideoPlayer _videoPlayer;
     private VideoPlayer _assistantVideoPlayer;
     private MediaPlayer _mediaPlayer;
+    [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff;
 
 
-	private float _currentRotationX, _currentRotationY;
+    private float _currentRotationX, _currentRotationY;
 	private string _instructionsAudioName;
 
 	#endregion
@@ -137,12 +138,17 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             return _mediaPlayer.Info.GetDurationMs()/1000;
 	}
 
-	public void UpdateProjectorTransform(float pitch, float yaw, float roll){
-		_display.transform.Rotate(pitch, 0f, 0f, Space.Self);
-		_display.transform.Rotate(0f, yaw, 0f, Space.World); 
+	public void UpdateProjectorTransform(Vector3 rotation){// float pitch, float yaw, float roll
+		//_display.transform.Rotate(pitch, 0f, 0f, Space.Self);
+		//_display.transform.Rotate(0f, yaw, 0f, Space.World); 
 
-		cameraParentTransform.transform.rotation *= Quaternion.AngleAxis (roll, cameraParentTransform.GetChild (0).forward);
-	}
+		//cameraParentTransform.transform.rotation *= Quaternion.AngleAxis (roll, cameraParentTransform.GetChild (0).forward);
+
+        _display.transform.Rotate(rotation, Space.Self);
+        _display.transform.Rotate(rotation, Space.World);
+
+        cameraParentTransform.transform.rotation *= Quaternion.AngleAxis(rotation.z, cameraParentTransform.GetChild(0).forward);
+    }
 
 	public void PlayImmersiveContent(){
 		StartCoroutine(PrepareToPlayImmersiveContent ());
@@ -207,9 +213,9 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     }
 
 	public void BackToMenu(){
-		Resources.UnloadUnusedAssets ();
-		SceneManager.LoadScene ("Menu");
-	}
+        _selectionMenuOn.Raise(true);
+        _videoControlOff.Raise(false);
+    }
 
 	public bool ImmersiveContentIsReady(){
 		return _videoPlayer.isPrepared;
@@ -220,15 +226,16 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		UnityEngine.XR.InputTracking.Recenter ();
 		_display.transform.rotation = Quaternion.Euler(VideoPlayerSettings.initialTiltConfiguration.x, VideoPlayerSettings.initialTiltConfiguration.y, 0f);
 		cameraParentTransform.transform.rotation = Quaternion.Euler (0f, 0f, VideoPlayerSettings.initialTiltConfiguration.z);
-		//Debug.Log ("the inital transform is " + VideoPlayerSettings.initialTiltConfiguration);
+		Debug.Log ("the inital transform is " + VideoPlayerSettings.initialTiltConfiguration);
 	}
 
 	#endregion
 
 	#region Private methods
 	private void EndReached(UnityEngine.Video.VideoPlayer vp){
-		SceneManager.LoadScene ("Menu");
-		oscOut.Send ("stop");
+        _selectionMenuOn.Raise(true);
+        _videoControlOff.Raise(false);
+        oscOut.Send ("stop");
 	}
 
     private IEnumerator PrepareToPlayImmersiveContent() {
