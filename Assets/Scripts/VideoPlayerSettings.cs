@@ -15,11 +15,12 @@ public class VideoPlayerSettings : MonoBehaviour {
     [SerializeField] private string libraryFolderName, assistantVideoFolderName; //name of the folder inside Assets to look for files.
     [SerializeField] private string fileFormat;
     [SerializeField] private Vector3 initialRotation;
-    [SerializeField] private Toggle toggle360Video, toggleVideoFlip, toggleAssistantVideo, toggleNativeVideoPlugin;
+    [SerializeField] private Toggle toggle360Video, toggleVideoFlip, toggleAssistantVideo, toggleNativeVideoPlugin, toggleStereo;
     [SerializeField] private GameEvent _loadVideo;
     [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff;
 
     //adapt to SOA
+    public BoolGameEvent enableStereo;
     public static bool is360, useAssistantVideo, enableNativeVideoPlugin;
 	public static string videoPath, assistantVideoPath;
 	public static Vector3 initialTiltConfiguration;
@@ -90,7 +91,6 @@ public class VideoPlayerSettings : MonoBehaviour {
             PlayerPrefs.SetInt("is360", 1);
         else
             PlayerPrefs.SetInt("is360", 0);
-
     }
 
     public void SwitchRotationMode()
@@ -123,7 +123,18 @@ public class VideoPlayerSettings : MonoBehaviour {
         else
             PlayerPrefs.SetInt("nativeVideoPlugin", 0);
     }
-    
+
+
+    public void SwitchStereo()
+    {
+        enableStereo.Raise(toggleStereo.isOn); //potentially call all the events at once. 
+        
+        if (toggleStereo.isOn)
+            PlayerPrefs.SetInt("isStereo", 1);
+        else
+            PlayerPrefs.SetInt("isStereo", 0);
+    }
+
 
 
     public void WriteResult(string[] paths) {
@@ -164,6 +175,11 @@ public class VideoPlayerSettings : MonoBehaviour {
             toggleNativeVideoPlugin.isOn = true;
         else
             toggleNativeVideoPlugin.isOn = false;
+
+        if (PlayerPrefs.GetInt("isStereo") == 1)
+            toggleStereo.isOn = true;
+        else
+            toggleStereo.isOn = false;
 
         is360 = toggle360Video.isOn;
         useAssistantVideo = toggleAssistantVideo.isOn;
