@@ -4,38 +4,45 @@ using UnityEngine;
 
 public class DisplaySelector : MonoBehaviour
 {
-	#region Public variables
-	public GameObject semisphere;
-	public GameObject fullsphere;
+    
+    #region Public variables
+    public GameObject semisphere;
+    public GameObject fullsphere;
 
-	[HideInInspector]
-	public GameObject selectedDisplay;
+    [HideInInspector]
+    public GameObject selectedDisplay;
 
-	public static DisplaySelector instance;
+    public static DisplaySelector instance;
 
-	#endregion
+    #endregion
 
-	#region Unity Methods
-    void Awake()
-	{
+    #region Monobehavior Methods
+    private void Awake()
+    {
+        if (PlayerPrefs.GetInt("SphereSelector") == 0)
+            Set360Settings(false);
+        else
+            Set360Settings(true);
+    }
+    #endregion
 
-		if (instance == null)
-			instance = this;
-
-
-		if (VideoPlayerSettings.is360) {
-		    fullsphere.SetActive (true);
+    #region Public Methods
+    public void Set360Settings(bool enable360)
+    {
+        if (enable360)
+        {
+            fullsphere.SetActive(true);
             semisphere.SetActive(false);
             selectedDisplay = fullsphere;
-		} 
+        }
 
-		else {
-		    semisphere.SetActive (true);
+        else
+        {
+            semisphere.SetActive(true);
             fullsphere.SetActive(false);
             selectedDisplay = semisphere;
-		}
-        
+        }
+
     }
-		
-	#endregion
+    #endregion
 }

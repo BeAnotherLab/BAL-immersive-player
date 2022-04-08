@@ -11,10 +11,14 @@ public class TemporalVideoControls : MonoBehaviour
 	public bool sliderIsinteracting;
 
 	public static TemporalVideoControls instance;
-	#endregion
+    #endregion
+
+    #region Public variables
+    private bool useNativeVideoPlugin;
+    #endregion
 
 
-	#region Unity methods
+    #region Unity methods
     void Awake()
     {
 		if (instance == null)
@@ -33,6 +37,10 @@ public class TemporalVideoControls : MonoBehaviour
     #endregion
 
     #region Public methods
+    public void SetNativePluginSettings(bool enableNativeVideoPlugin)
+    {
+        useNativeVideoPlugin = enableNativeVideoPlugin;
+    }
 
     public void InitializeVideo()
     {
@@ -58,7 +66,6 @@ public class TemporalVideoControls : MonoBehaviour
 	}
 	#endregion
 
-
 	#region Private methods
 	private IEnumerator WaitForFrame(){
 
@@ -68,7 +75,7 @@ public class TemporalVideoControls : MonoBehaviour
 
 	private IEnumerator SetVideoDuration(){
 
-        if(ImmersiveVideoPlayer.instance.useNativeVideoPlugin)
+        if(useNativeVideoPlugin)
 		    while (!ImmersiveVideoPlayer.instance.ImmersiveContentIsReady ()) {
 			    yield return null;
 			    ImmersiveVideoUIController.instance.UpdateTimeText("...");

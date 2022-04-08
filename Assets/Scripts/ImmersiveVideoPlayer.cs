@@ -12,21 +12,23 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	public Transform cameraParentTransform;
 	public AudioSource audioSource;
-    public bool useNativeVideoPlugin;
 
-	[HideInInspector]
+    public GameObject _display;
+
+    [HideInInspector]
 	public bool isPlaying = false;
 	[HideInInspector]
 	public bool isPaused = false;
 
 	public static ImmersiveVideoPlayer instance;
 
-	#endregion
+    #endregion
 
-	#region private variables
+    #region private variables
 
-	private AudioOSCController oscOut;
-	private GameObject _display;
+    private bool useNativeVideoPlugin, useAssistantVideo;
+    private AudioOSCController oscOut;
+    private Vector3 initialTransform;
 	private VideoPlayer _videoPlayer;
     private VideoPlayer _assistantVideoPlayer;
     private MediaPlayer _mediaPlayer;
@@ -47,9 +49,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);
 		oscOut = (AudioOSCController)FindObjectOfType(typeof(AudioOSCController));
-		_display = DisplaySelector.instance.gameObject;
-
-        useNativeVideoPlugin = VideoPlayerSettings.enableNativeVideoPlugin;
 	}
 
 	void Update(){
@@ -59,6 +58,17 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     #endregion
 
     #region Public methods
+    
+    public void SetNativeVideoPLuginSettings(bool enableNativeVideoPlugin)
+    {
+        useNativeVideoPlugin = enableNativeVideoPlugin;
+    }
+
+    public void SetAssistantVideoSettings(bool setAssistantVideo)
+    {
+        useAssistantVideo = setAssistantVideo;
+    }
+
     public void InitializeVideo()  {
 
         if (useNativeVideoPlugin)
@@ -80,7 +90,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         else
         { //Media player
 
-            _mediaPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<MediaPlayer>();
+            _mediaPlayer = _display.GetComponent<DisplaySelector>().selectedDisplay.GetComponent<MediaPlayer>();
 
             if (VideoPlayerSettings.videoPath != null)
                 _mediaPlayer.OpenVideoFromFile(MediaPlayer.FileLocation.AbsolutePathOrURL, VideoPlayerSettings.videoPath, false);
@@ -89,7 +99,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         _instructionsAudioName = VideoPlayerSettings.instructionsAudioName;
         oscOut.SendOnAddress("audioname/", _instructionsAudioName);
 
-        if (VideoPlayerSettings.useAssistantVideo)
+        if (useAssistantVideo)
         {
             _assistantVideoPlayer = AssistantVideoPlayer.instance.assistantVideoObject.GetComponent<VideoPlayer>();
             _assistantVideoPlayer.playOnAwake = false;
@@ -182,7 +192,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 
 
-        if (VideoPlayerSettings.useAssistantVideo)
+        if (useAssistantVideo)
             _assistantVideoPlayer.Pause();
 	}
 
@@ -195,7 +205,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         oscOut.Send("pause");
 		isPaused = true;
 
-        if (VideoPlayerSettings.useAssistantVideo)
+        if (useAssistantVideo)
             _assistantVideoPlayer.Pause();
     }
 
@@ -208,7 +218,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         oscOut.Send("resume");
 		isPaused = false;
 
-        if (VideoPlayerSettings.useAssistantVideo)
+        if (useAssistantVideo)
             _assistantVideoPlayer.Play();
     }
 
@@ -224,11 +234,15 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	public void CalibrateAllTransforms(){
 		UnityEngine.XR.InputTracking.Recenter ();
-		_display.transform.rotation = Quaternion.Euler(VideoPlayerSettings.initialTiltConfiguration.x, VideoPlayerSettings.initialTiltConfiguration.y, 0f);
-		cameraParentTransform.transform.rotation = Quaternion.Euler (0f, 0f, VideoPlayerSettings.initialTiltConfiguration.z);
-		Debug.Log ("the inital transform is " + VideoPlayerSettings.initialTiltConfiguration);
-	}
+        _display.transform.rotation = Quaternion.Euler(initialTransform.x, initialTransform.y, 0f);
+        cameraParentTransform.transform.rotation = Quaternion.Euler (0f, 0f, initialTransform.z);
+        Debug.Log ("the inital transform is " + initialTransform);
+    }
 
+    public void UpdateInitialTransform(Vector3 projectorTransform)
+    {
+        initialTransform = projectorTransform;
+    }
 	#endregion
 
 	#region Private methods
@@ -241,7 +255,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     private IEnumerator PrepareToPlayImmersiveContent() {
 
 
-        if (VideoPlayerSettings.useAssistantVideo) {
+        if (useAssistantVideo) {
             while (!_assistantVideoPlayer.isPrepared)
             {
                 yield return null;
@@ -272,7 +286,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         oscOut.Send ("play");
 		isPlaying = true;       
 
-        if (VideoPlayerSettings.useAssistantVideo)
+        if (useAssistantVideo)
            _assistantVideoPlayer.Play();
 
     }

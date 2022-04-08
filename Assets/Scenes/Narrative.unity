@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 232ecb874e41e5945929015899b1bb6f, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: bebf24b36dcaad14fae55446892fac4c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -742,7 +742,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 71cb5eeead9e7be46a8718a5c548803e, type: 2}
+  - {fileID: 2100000, guid: bebf24b36dcaad14fae55446892fac4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1604,6 +1604,7 @@ GameObject:
   - component: {fileID: 960852857}
   - component: {fileID: 960852856}
   - component: {fileID: 960852858}
+  - component: {fileID: 960852859}
   m_Layer: 0
   m_Name: Fullsphere
   m_TagString: Untagged
@@ -1834,6 +1835,38 @@ MonoBehaviour:
   _videoPlayer: {fileID: 960852855}
   stereoRenderTexture: {fileID: 8400000, guid: 90acb25cc668c794bb74c802fa30d7bd, type: 2}
   monoMeshRender: {fileID: 588387220}
+--- !u!114 &960852859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960852853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791e3eca91bfc2e41b38477d0ecfaf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 76636ceea0b9ce24ea4956e51245a8b3, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 960852858}
+        m_MethodName: SetDepthMode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _debugValue: 0
 --- !u!1 &970717035 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3376338810204214097, guid: 06c1eeeb80073c84ca7789f51cad8858,

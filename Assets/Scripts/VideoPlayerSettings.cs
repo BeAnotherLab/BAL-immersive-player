@@ -19,11 +19,10 @@ public class VideoPlayerSettings : MonoBehaviour {
     [SerializeField] private GameEvent _loadVideo;
     [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff;
 
-    //adapt to SOA
-    public BoolGameEvent enableStereo;
-    public static bool is360, useAssistantVideo, enableNativeVideoPlugin;
+    //public BoolGameEvent enable360, enableAssistantVideo, enableNativeVideoPlugin, enableVideoFlip, enableStereo;
+    public Vector3GameEvent transformProjectorRotation;
 	public static string videoPath, assistantVideoPath;
-	public static Vector3 initialTiltConfiguration;
+	//public static Vector3 initialTiltConfiguration;
 	public static string instructionsAudioName;
 	#endregion
 
@@ -58,16 +57,16 @@ public class VideoPlayerSettings : MonoBehaviour {
 
         if (videoPath != null) {
 			instructionsAudioName = _fileName;
-
-            if(toggleVideoFlip.isOn == true)
-                initialRotation = new Vector3(90, 0, 180);
-
-            initialTiltConfiguration = initialRotation;
-            Debug.Log(initialTiltConfiguration);
                 
             LoadVideo ();
 		}
 	}
+
+    public void InitialRotation(bool flip)
+    {
+        if (flip)
+            transformProjectorRotation.Raise(new Vector3(90, 0, 180));
+    }
 
 	public void CreateButton(string file){
 		
@@ -82,60 +81,6 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 		buttonBehaviour.onClick.AddListener (() => { ButtonBehavior(_fileName);});
 	}
-
-    public void SwitchSphereMode()
-    {
-        is360 = toggle360Video.isOn;
-
-        if (toggle360Video.isOn)
-            PlayerPrefs.SetInt("is360", 1);
-        else
-            PlayerPrefs.SetInt("is360", 0);
-    }
-
-    public void SwitchRotationMode()
-    {
-        if (toggleVideoFlip.isOn)
-            PlayerPrefs.SetInt("isFlipped", 1);
-        else
-            PlayerPrefs.SetInt("isFlipped", 0);
-    }
-
-    public void SwitchAssistantVideo()
-    {
-
-        useAssistantVideo = toggleAssistantVideo.isOn;
-
-        if (useAssistantVideo)
-            PlayerPrefs.SetInt("assistantVideo", 1);
-        else
-            PlayerPrefs.SetInt("assistantVideo", 0);
-    }
-
-    
-    public void SwitchVideoPlugin()
-    {
-
-        enableNativeVideoPlugin = toggleNativeVideoPlugin.isOn;
-
-        if (enableNativeVideoPlugin)
-            PlayerPrefs.SetInt("nativeVideoPlugin", 1);
-        else
-            PlayerPrefs.SetInt("nativeVideoPlugin", 0);
-    }
-
-
-    public void SwitchStereo()
-    {
-        enableStereo.Raise(toggleStereo.isOn); //potentially call all the events at once. 
-        
-        if (toggleStereo.isOn)
-            PlayerPrefs.SetInt("isStereo", 1);
-        else
-            PlayerPrefs.SetInt("isStereo", 0);
-    }
-
-
 
     public void WriteResult(string[] paths) {
 		if (paths.Length == 0)
@@ -156,37 +101,14 @@ public class VideoPlayerSettings : MonoBehaviour {
 
     private void InitialSettings()
     {
-        if (PlayerPrefs.GetInt("is360") == 1)
-            toggle360Video.isOn = true;
-        else
-            toggle360Video.isOn = false;
-
-        if (PlayerPrefs.GetInt("isFlipped") == 1)
-            toggleVideoFlip.isOn = true;
-        else
-            toggleVideoFlip.isOn = false;
-
-        if (PlayerPrefs.GetInt("assistantVideo") == 1)
-            toggleAssistantVideo.isOn = true;
-        else
-            toggleAssistantVideo.isOn = false;
-
-        if (PlayerPrefs.GetInt("nativeVideoPlugin") == 1)
-            toggleNativeVideoPlugin.isOn = true;
-        else
-            toggleNativeVideoPlugin.isOn = false;
-
-        if (PlayerPrefs.GetInt("isStereo") == 1)
-            toggleStereo.isOn = true;
-        else
-            toggleStereo.isOn = false;
-
-        is360 = toggle360Video.isOn;
-        useAssistantVideo = toggleAssistantVideo.isOn;
+        /*toggle360Video.isOn = IntToBool(PlayerPrefs.GetInt("is360"));
+        toggleVideoFlip.isOn = IntToBool(PlayerPrefs.GetInt("isFlipped"));
+        toggleAssistantVideo.isOn = IntToBool(PlayerPrefs.GetInt("assistantVideo"));
+        toggleNativeVideoPlugin.isOn = IntToBool(PlayerPrefs.GetInt("nativeVideoPlugin"));
+        toggleStereo.isOn = IntToBool(PlayerPrefs.GetInt("isStereo"));*/
 
         libraryFolderName = "./" + libraryFolderName + "/";
         assistantVideoFolderName = "./" + assistantVideoFolderName + "/";//add ./ before when not in standalone
-
     }
 
 	private void ButtonBehavior(string _fileName){
@@ -196,11 +118,6 @@ public class VideoPlayerSettings : MonoBehaviour {
         videoPath = libraryFolderName + _fileName + ".mp4";
 		assistantVideoPath = assistantVideoFolderName + _fileName + ".mp4";
 
-        if (toggleVideoFlip.isOn == true)
-            initialRotation = new Vector3(90, 0, 180);
-
-        initialTiltConfiguration = initialRotation;
-        Debug.Log(initialTiltConfiguration);
 		LoadVideo ();
 
         //VideoPlayer.url in ImmersiveVideoPLayer uses the _Data folder for references in standalone, while in general./ refers to the application path
@@ -211,10 +128,54 @@ public class VideoPlayerSettings : MonoBehaviour {
                 assistantVideoPath = Application.dataPath + assistantVideoPath;
                 assistantVideoPath = assistantVideoPath.Replace("/Immersive Player Desktop_Data.", "");
         }
-    }	
+    }
+
+    private int BoolToInt(bool val)
+    {
+        if (val)
+            return 1;
+        else
+            return 0;
+    }
+
+    private bool IntToBool(int val)
+    { 
+        if (val == 1)
+            return true;
+        else
+            return false;
+    }
+
+    /*
+    public void SaveSphereMode()
+    {
+        PlayerPrefs.SetInt("is360", BoolToInt(toggle360Video.isOn));
+    }
+
+    public void SaveRotationMode()
+    {
+        PlayerPrefs.SetInt("isFlipped", BoolToInt(toggleVideoFlip.isOn));
+    }
+
+    public void SaveAssistantVideoMode()
+    {
+        PlayerPrefs.SetInt("assistantVideo", BoolToInt(toggleAssistantVideo.isOn));
+    }
 
 
-	private void LoadVideo(){
+    public void SaveVideoPluginMode()
+    {
+        PlayerPrefs.SetInt("nativeVideoPlugin", BoolToInt(toggleNativeVideoPlugin.isOn));
+    }
+
+
+    public void SetStereoMode()
+    {
+        PlayerPrefs.SetInt("isStereo", BoolToInt(toggleStereo.isOn));
+    }*/
+
+
+    private void LoadVideo(){
         _selectionMenuOn.Raise(false);
         _videoControlOff.Raise(true);
         _loadVideo.Raise();  

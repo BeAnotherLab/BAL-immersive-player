@@ -10,7 +10,8 @@ public class ImmersiveVideoUIController : MonoBehaviour
 
 	public Text rotationText;
 	public Text elapsedTimeText;
-	public Slider timeSlider;	
+	public Slider timeSlider;
+    public DisplaySelector _displaySelector;
 
 	public static ImmersiveVideoUIController instance;
 
@@ -38,7 +39,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		_dpTransform = DisplaySelector.instance.selectedDisplay.transform;
+		_dpTransform = _displaySelector.selectedDisplay.transform;
 		_cameraTransform = GameObject.FindGameObjectWithTag ("MainCamera").transform;
     }
 

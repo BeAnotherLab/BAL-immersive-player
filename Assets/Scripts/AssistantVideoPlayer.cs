@@ -11,34 +11,23 @@ public class AssistantVideoPlayer : MonoBehaviour
 
     public static AssistantVideoPlayer instance;
 
-    private void Awake()
+    public void SetAssistantVideoSettings(bool enableAssistantVideo)
     {
-
-        if (instance == null)
-            instance = this;
-
-        if (VideoPlayerSettings.useAssistantVideo) { 
+        if (enableAssistantVideo)
+        {
             assistantVideoObject.SetActive(true);
             assistantVideoCamera.enabled = true;
+
+         _dpCameras = DisplaySelector.instance.selectedDisplay.gameObject;//check
+         _dpCameras.transform.GetChild(0).Find("Monitor Camera").gameObject.SetActive(false);//check
+         _dpCameras.transform.GetChild(0).Find("Monitor Camera round").gameObject.SetActive(false);//check
+            
         }
-        else { 
+        else
+        {
             assistantVideoObject.SetActive(false);
             assistantVideoCamera.enabled = false;
         }
-    }
-    // Start is called before the first frame update
-
-    void Start()
-    {
-        if (VideoPlayerSettings.useAssistantVideo) { 
-            _dpCameras = DisplaySelector.instance.selectedDisplay.gameObject;
-
-            _dpCameras.transform.GetChild(0).Find("Monitor Camera").gameObject.SetActive(false);
-            _dpCameras.transform.GetChild(0).Find("Monitor Camera round").gameObject.SetActive(false);
-
-
-        }
-
     }
 
 }
