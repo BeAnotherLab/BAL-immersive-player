@@ -5,7 +5,7 @@ using UnityEngine;
 public class AssistantVideoPlayer : MonoBehaviour
 {
 
-    private GameObject _dpCameras;
+    public GameObject _dpCameras;
     public GameObject assistantVideoObject;
     public Camera assistantVideoCamera;
 
@@ -18,7 +18,6 @@ public class AssistantVideoPlayer : MonoBehaviour
             assistantVideoObject.SetActive(true);
             assistantVideoCamera.enabled = true;
 
-         _dpCameras = DisplaySelector.instance.selectedDisplay.gameObject;//check
          _dpCameras.transform.GetChild(0).Find("Monitor Camera").gameObject.SetActive(false);//check
          _dpCameras.transform.GetChild(0).Find("Monitor Camera round").gameObject.SetActive(false);//check
             

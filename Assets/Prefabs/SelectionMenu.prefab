@@ -155,8 +155,19 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 76636ceea0b9ce24ea4956e51245a8b3, type: 2}
-        m_MethodName: SwitchStereo
+      - m_Target: {fileID: 8086174925203036100}
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8086174925203036100}
+        m_MethodName: OnToggleChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -179,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfca4d3fabbcd404dbf84ccfe841c5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boolEvent: {fileID: 0}
 --- !u!1 &4120158049881530904
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,8 +541,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: e01263e89e2c9054384267b61f4a3f3d, type: 2}
-        m_MethodName: SwitchVideoPlugin
+      - m_Target: {fileID: 6717451877978669165}
+        m_MethodName: OnToggleChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -553,6 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfca4d3fabbcd404dbf84ccfe841c5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boolEvent: {fileID: 11400000, guid: e01263e89e2c9054384267b61f4a3f3d, type: 2}
 --- !u!1 &6235383046274729898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,8 +1091,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 419fc414776946444b96356e2e5d0715, type: 2}
-        m_MethodName: SwitchSphereMode
+      - m_Target: {fileID: 5875842954922349785}
+        m_MethodName: OnToggleChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1102,6 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfca4d3fabbcd404dbf84ccfe841c5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boolEvent: {fileID: 11400000, guid: 419fc414776946444b96356e2e5d0715, type: 2}
 --- !u!1 &6235383047089875902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,11 +1532,8 @@ MonoBehaviour:
   _loadVideo: {fileID: 11400000, guid: 9bff712832548904f915f28a9b9648ae, type: 2}
   _selectionMenuOn: {fileID: 11400000, guid: 5e9958a6006a7934fa7d1ce6502e1ff6, type: 2}
   _videoControlOff: {fileID: 11400000, guid: 5e58eece82ecea744bf12577b77af7f4, type: 2}
-  enable360: {fileID: 0}
-  enableAssistantVideo: {fileID: 0}
-  enableNativeVideoPlugin: {fileID: 0}
-  enableVideoFlip: {fileID: 0}
-  enableStereo: {fileID: 0}
+  initializeSettings: {fileID: 0}
+  transformProjectorRotation: {fileID: 0}
 --- !u!1 &6235383047693748841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,6 +1712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfca4d3fabbcd404dbf84ccfe841c5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boolEvent: {fileID: 11400000, guid: 92cd616887e7bf441bc1fa3f661b70d9, type: 2}
 --- !u!1 &6235383047885412598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,8 +1795,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 44a2eacf6c4606142bd496ec9b32e2cf, type: 2}
-        m_MethodName: SwitchAssistantVideo
+      - m_Target: {fileID: 9181198564367559257}
+        m_MethodName: OnToggleChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1807,6 +1819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfca4d3fabbcd404dbf84ccfe841c5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boolEvent: {fileID: 11400000, guid: 44a2eacf6c4606142bd496ec9b32e2cf, type: 2}
 --- !u!1 &6235383047894116311
 GameObject:
   m_ObjectHideFlags: 0
