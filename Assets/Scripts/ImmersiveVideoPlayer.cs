@@ -148,6 +148,11 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             return _mediaPlayer.Info.GetDurationMs()/1000;
 	}
 
+    public void SetInitialTransform(Vector3 rotation)
+    {
+        initialTransform = rotation;
+    }
+
 	public void UpdateProjectorTransform(Vector3 rotation){// float pitch, float yaw, float roll
 		//_display.transform.Rotate(pitch, 0f, 0f, Space.Self);
 		//_display.transform.Rotate(0f, yaw, 0f, Space.World); 

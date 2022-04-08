@@ -363,18 +363,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267454727}
   m_CullTransparentMesh: 0
---- !u!114 &340187869 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5875842954922349785, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 6235383046355207937}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfca4d3fabbcd404dbf84ccfe841c5df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &461969981
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +634,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31245eb6aaee1104d898922abb7e2bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dpCameras: {fileID: 497758105}
+  fullSphere: {fileID: 960852853}
+  semiSphere: {fileID: 692433961}
   assistantVideoObject: {fileID: 461969981}
   assistantVideoCamera: {fileID: 2121138786}
 --- !u!114 &497758109
@@ -703,6 +692,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 497758107}
         m_MethodName: Set360Settings
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 497758108}
+        m_MethodName: SetSelectedDisplay
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1414,6 +1414,8 @@ GameObject:
   - component: {fileID: 912142106}
   - component: {fileID: 912142107}
   - component: {fileID: 912142104}
+  - component: {fileID: 912142108}
+  - component: {fileID: 912142109}
   m_Layer: 0
   m_Name: VideoManager
   m_TagString: Untagged
@@ -1575,6 +1577,70 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _debugValue: {x: 0, y: 0, z: 0}
+--- !u!114 &912142108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912142101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2fc5a78b7e63945bfa39128a8eefc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 185bf010dbc1f2b4a8160f87fe11e833, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 912142102}
+        m_MethodName: SetInitialTransform
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _debugValue: {x: 0, y: 0, z: 0}
+--- !u!114 &912142109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912142101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791e3eca91bfc2e41b38477d0ecfaf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 44a2eacf6c4606142bd496ec9b32e2cf, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 912142102}
+        m_MethodName: SetAssistantVideoSettings
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _debugValue: 0
 --- !u!1 &934741391
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,6 +3110,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 14c70d9e1aef8be429e6f979e5432a75,
         type: 2}
+    - target: {fileID: 5460231995716674361, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
+        type: 3}
+      propertyPath: initialProjectorRotation
+      value: 
+      objectReference: {fileID: 11400000, guid: 185bf010dbc1f2b4a8160f87fe11e833,
+        type: 2}
+    - target: {fileID: 5460231995716674361, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
+        type: 3}
+      propertyPath: initialRotation.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5901420915171511852, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3096,8 +3173,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6235383046809510668, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235383046809510668, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6235383046809510668, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
@@ -3108,11 +3190,12 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 340187869}
+      objectReference: {fileID: 11400000, guid: 419fc414776946444b96356e2e5d0715,
+        type: 2}
     - target: {fileID: 6235383046809510668, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OnToggleChanged
+      value: Raise
       objectReference: {fileID: 0}
     - target: {fileID: 6235383046809510668, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
@@ -3232,12 +3315,12 @@ PrefabInstance:
     - target: {fileID: 6235383047877532528, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6235383047877532528, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnToggleChanged
+      value: InitialRotation
       objectReference: {fileID: 0}
     - target: {fileID: 6235383047877532528, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
@@ -3268,7 +3351,17 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1946550908}
+      objectReference: {fileID: 2041642578}
+    - target: {fileID: 6235383047877532528, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235383047877532528, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6235383047885412601, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode

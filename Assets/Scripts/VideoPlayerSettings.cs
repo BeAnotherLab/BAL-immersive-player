@@ -20,7 +20,7 @@ public class VideoPlayerSettings : MonoBehaviour {
     [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff;
 
     //public BoolGameEvent enable360, enableAssistantVideo, enableNativeVideoPlugin, enableVideoFlip, enableStereo;
-    public Vector3GameEvent transformProjectorRotation;
+    public Vector3GameEvent initialProjectorRotation;
 	public static string videoPath, assistantVideoPath;
 	//public static Vector3 initialTiltConfiguration;
 	public static string instructionsAudioName;
@@ -65,7 +65,9 @@ public class VideoPlayerSettings : MonoBehaviour {
     public void InitialRotation(bool flip)
     {
         if (flip)
-            transformProjectorRotation.Raise(new Vector3(90, 0, 180));
+            initialProjectorRotation.Raise(new Vector3(90, 0, 180));
+        else
+            initialProjectorRotation.Raise(initialRotation);
     }
 
 	public void CreateButton(string file){
@@ -101,11 +103,6 @@ public class VideoPlayerSettings : MonoBehaviour {
 
     private void InitialSettings()
     {
-        /*toggle360Video.isOn = IntToBool(PlayerPrefs.GetInt("is360"));
-        toggleVideoFlip.isOn = IntToBool(PlayerPrefs.GetInt("isFlipped"));
-        toggleAssistantVideo.isOn = IntToBool(PlayerPrefs.GetInt("assistantVideo"));
-        toggleNativeVideoPlugin.isOn = IntToBool(PlayerPrefs.GetInt("nativeVideoPlugin"));
-        toggleStereo.isOn = IntToBool(PlayerPrefs.GetInt("isStereo"));*/
 
         libraryFolderName = "./" + libraryFolderName + "/";
         assistantVideoFolderName = "./" + assistantVideoFolderName + "/";//add ./ before when not in standalone
@@ -145,34 +142,6 @@ public class VideoPlayerSettings : MonoBehaviour {
         else
             return false;
     }
-
-    /*
-    public void SaveSphereMode()
-    {
-        PlayerPrefs.SetInt("is360", BoolToInt(toggle360Video.isOn));
-    }
-
-    public void SaveRotationMode()
-    {
-        PlayerPrefs.SetInt("isFlipped", BoolToInt(toggleVideoFlip.isOn));
-    }
-
-    public void SaveAssistantVideoMode()
-    {
-        PlayerPrefs.SetInt("assistantVideo", BoolToInt(toggleAssistantVideo.isOn));
-    }
-
-
-    public void SaveVideoPluginMode()
-    {
-        PlayerPrefs.SetInt("nativeVideoPlugin", BoolToInt(toggleNativeVideoPlugin.isOn));
-    }
-
-
-    public void SetStereoMode()
-    {
-        PlayerPrefs.SetInt("isStereo", BoolToInt(toggleStereo.isOn));
-    }*/
 
 
     private void LoadVideo(){
