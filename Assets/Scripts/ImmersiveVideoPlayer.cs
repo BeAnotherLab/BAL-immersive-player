@@ -264,11 +264,11 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             while (!_assistantVideoPlayer.isPrepared)
             {
                 yield return null;
-
+                Debug.Log("waiting for assistant video");
             }
         }       
 
-        else 
+        //else 
         if (useNativeVideoPlugin) { 
             while (!_videoPlayer.isPrepared) {
 			        yield return null;

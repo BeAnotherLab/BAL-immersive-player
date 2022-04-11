@@ -31,6 +31,7 @@ public class KeyboardPlayerControls : MonoBehaviour
         //tilt adjustments
         if (Input.GetKey("down"))
             transformProjector.Raise(new Vector3(rotationAcceleration, 0f, 0f));
+
 		if (Input.GetKey ("up"))
             transformProjector.Raise(new Vector3(-rotationAcceleration, 0f, 0f));
 
@@ -61,11 +62,12 @@ public class KeyboardPlayerControls : MonoBehaviour
 
 		if (Input.GetKeyDown ("space")) {
 
-			if (!ImmersiveVideoPlayer.instance.isPlaying) 
+			if (!ImmersiveVideoPlayer.instance.isPlaying) { 
 				ImmersiveVideoPlayer.instance.PlayImmersiveContent ();
+                Debug.Log("should now be playing");
+            }
 
-			else if (ImmersiveVideoPlayer.instance.isPlaying) {
-
+            else if (ImmersiveVideoPlayer.instance.isPlaying) {
 				if (!ImmersiveVideoPlayer.instance.isPaused) 
 					ImmersiveVideoPlayer.instance.PauseImmersiveContent ();
 
