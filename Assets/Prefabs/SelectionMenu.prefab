@@ -715,7 +715,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use native video plugin
+  m_Text: native video plugin
 --- !u!1 &6235383046528284496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,7 +1265,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use assistant video
+  m_Text: assistant video
 --- !u!1 &6235383047476965902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,16 +1524,10 @@ MonoBehaviour:
   assistantVideoFolderName: AssistantVideos
   fileFormat: mp4
   initialRotation: {x: 90, y: 0, z: 0}
-  toggle360Video: {fileID: 6235383046809510668}
-  toggleVideoFlip: {fileID: 6235383047877532528}
-  toggleAssistantVideo: {fileID: 6235383047885412601}
-  toggleNativeVideoPlugin: {fileID: 6235383046189861828}
-  toggleStereo: {fileID: 0}
   _loadVideo: {fileID: 11400000, guid: 9bff712832548904f915f28a9b9648ae, type: 2}
   _selectionMenuOn: {fileID: 11400000, guid: 5e9958a6006a7934fa7d1ce6502e1ff6, type: 2}
   _videoControlOff: {fileID: 11400000, guid: 5e58eece82ecea744bf12577b77af7f4, type: 2}
-  initializeSettings: {fileID: 0}
-  transformProjectorRotation: {fileID: 0}
+  initialProjectorRotation: {fileID: 0}
 --- !u!1 &6235383047693748841
 GameObject:
   m_ObjectHideFlags: 0

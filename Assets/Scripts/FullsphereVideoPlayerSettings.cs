@@ -25,6 +25,7 @@ public class FullsphereVideoPlayerSettings : MonoBehaviour
     public void SetDepthMode(bool stereo) {
         if (stereo) { 
             _videoPlayer.renderMode = VideoRenderMode.RenderTexture;
+            _videoPlayer.targetTexture = stereoRenderTexture;
         }
 
         else _videoPlayer.renderMode = VideoRenderMode.MaterialOverride;

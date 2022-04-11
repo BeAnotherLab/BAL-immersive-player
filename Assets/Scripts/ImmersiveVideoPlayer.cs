@@ -150,7 +150,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
     public void SetInitialTransform(Vector3 rotation)
     {
-        initialTransform = rotation;
+        //initialTransform = rotation;
     }
 
 	public void UpdateProjectorTransform(Vector3 rotation){// float pitch, float yaw, float roll
@@ -239,7 +239,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	public void CalibrateAllTransforms(){
 		UnityEngine.XR.InputTracking.Recenter ();
-        _display.transform.rotation = Quaternion.Euler(initialTransform.x, initialTransform.y, 0f);
+        _display.transform.rotation = Quaternion.Euler(initialTransform);//initialTransform.x, initialTransform.y, 0f);
         cameraParentTransform.transform.rotation = Quaternion.Euler (0f, 0f, initialTransform.z);
         Debug.Log ("the inital transform is " + initialTransform);
     }

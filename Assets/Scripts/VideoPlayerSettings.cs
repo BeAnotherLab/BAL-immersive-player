@@ -15,11 +15,9 @@ public class VideoPlayerSettings : MonoBehaviour {
     [SerializeField] private string libraryFolderName, assistantVideoFolderName; //name of the folder inside Assets to look for files.
     [SerializeField] private string fileFormat;
     [SerializeField] private Vector3 initialRotation;
-    [SerializeField] private Toggle toggle360Video, toggleVideoFlip, toggleAssistantVideo, toggleNativeVideoPlugin, toggleStereo;
     [SerializeField] private GameEvent _loadVideo;
     [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff;
 
-    //public BoolGameEvent enable360, enableAssistantVideo, enableNativeVideoPlugin, enableVideoFlip, enableStereo;
     public Vector3GameEvent initialProjectorRotation;
 	public static string videoPath, assistantVideoPath;
 	//public static Vector3 initialTiltConfiguration;
