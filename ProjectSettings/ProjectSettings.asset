@@ -274,24 +274,24 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 82348687a981f5a489903e8987d57e46, type: 3}
+      m_Icon: {fileID: 2800000, guid: 84d1151d83d896443aeaed1cbc09c8c0, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
   - m_BuildTarget: Standalone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 82348687a981f5a489903e8987d57e46, type: 3}
+      m_Icon: {fileID: 2800000, guid: 9aa517865e7c53e44b50113108d549ab, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 82348687a981f5a489903e8987d57e46, type: 3}
+      m_Icon: {fileID: 2800000, guid: 9aa517865e7c53e44b50113108d549ab, type: 3}
       m_Width: 512
       m_Height: 512
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 82348687a981f5a489903e8987d57e46, type: 3}
+      m_Icon: {fileID: 2800000, guid: 9aa517865e7c53e44b50113108d549ab, type: 3}
       m_Width: 256
       m_Height: 256
       m_Kind: 0
@@ -649,7 +649,7 @@ PlayerSettings:
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   apiCompatibilityLevelPerPlatform:
-    Standalone: 3
+    Standalone: 6
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Spherical video player
