@@ -17,9 +17,10 @@ public class VideoPlayerSettings : MonoBehaviour {
     [SerializeField] private Vector3 initialRotation;
     [SerializeField] private GameEvent _loadVideo;
     [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff;
+    [SerializeField] private StringGameEvent immersiveVideoPath, assistantVideoPath, assistantAudioPath;
 
     public Vector3GameEvent initialProjectorRotation;
-	public static string videoPath, assistantVideoPath;
+	//public static string videoPath, assistantVideoPath;
 	//public static Vector3 initialTiltConfiguration;
 	public static string instructionsAudioName;
 	#endregion
@@ -29,6 +30,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 	void Start ()
     {
         InitialSettings();
+        ShowSelectionMenu();
 
         //Creates a button for each file.
         foreach (string file in System.IO.Directory.GetFiles(libraryFolderName, "*." + fileFormat))
@@ -47,18 +49,47 @@ public class VideoPlayerSettings : MonoBehaviour {
         else
             lastBrowsedDirectory = Application.dataPath;
 
-        WriteResult(StandaloneFileBrowser.OpenFilePanel("Open File", lastBrowsedDirectory,"", false));
-        PlayerPrefs.SetString("lastBrowsedDirectory", System.IO.Path.GetDirectoryName(videoPath));
+        string _fileName = ReturnPathResults(StandaloneFileBrowser.OpenFilePanel("Open File", lastBrowsedDirectory,"", false));
+        PlayerPrefs.SetString("lastBrowsedDirectory", System.IO.Path.GetDirectoryName(_fileName));
 
-        string _fileName = Path.GetFileNameWithoutExtension(videoPath);
-        Debug.Log("file path " + videoPath + " and file name " + _fileName);
-
-        if (videoPath != null) {
-			instructionsAudioName = _fileName;
+        if (_fileName != "") {
+            immersiveVideoPath.Raise(_fileName);
+			assistantAudioPath.Raise(Path.GetFileNameWithoutExtension(_fileName));
                 
             LoadVideo ();
 		}
 	}
+
+    private void ButtonBehavior(string _fileName)
+    {
+        string _immersiveVideoPath = libraryFolderName + _fileName + ".mp4";
+        string _assistantVideoPath = assistantVideoFolderName + _fileName + ".mp4";
+
+        //VideoPlayer.url in ImmersiveVideoPLayer uses the _Data folder for references in standalone, while in general./ refers to the application path
+        if (!Application.isEditor)
+        {
+            _immersiveVideoPath = (Application.dataPath + _immersiveVideoPath).Replace("/Immersive Player Desktop_Data.", "");
+            _assistantVideoPath = (Application.dataPath + assistantVideoPath).Replace("/Immersive Player Desktop_Data.", "");
+        }
+
+        assistantAudioPath.Raise(_fileName);
+        immersiveVideoPath.Raise(_immersiveVideoPath);
+        assistantAudioPath.Raise(_assistantVideoPath);
+
+        LoadVideo(); 
+    }
+
+    public void HideSelectionMenu()
+    {
+        _selectionMenuOn.Raise(false);
+        _videoControlOff.Raise(true);
+    }
+
+    public void ShowSelectionMenu()
+    {
+        _selectionMenuOn.Raise(true);
+        _videoControlOff.Raise(false);
+    }
 
     public void InitialRotation(bool flip)
     {
@@ -82,17 +113,19 @@ public class VideoPlayerSettings : MonoBehaviour {
 		buttonBehaviour.onClick.AddListener (() => { ButtonBehavior(_fileName);});
 	}
 
-    public void WriteResult(string[] paths) {
-		if (paths.Length == 0)
-			return;
+    public string ReturnPathResults(string[] paths) {
 
-		videoPath = "";
+        string videoPath = "";
+
+        if (paths.Length == 0)
+            return videoPath;
 
 		foreach (var p in paths) 
 			videoPath += p; //videoPath += p + "\n";
 
 		videoPath = videoPath.Replace("\\", "/"); //changing \ slash to / slash
 
+        return videoPath;
 	}
 	#endregion
 
@@ -104,25 +137,6 @@ public class VideoPlayerSettings : MonoBehaviour {
 
         libraryFolderName = "./" + libraryFolderName + "/";
         assistantVideoFolderName = "./" + assistantVideoFolderName + "/";//add ./ before when not in standalone
-    }
-
-	private void ButtonBehavior(string _fileName){
-
-        instructionsAudioName = _fileName;
-
-        videoPath = libraryFolderName + _fileName + ".mp4";
-		assistantVideoPath = assistantVideoFolderName + _fileName + ".mp4";
-
-		LoadVideo ();
-
-        //VideoPlayer.url in ImmersiveVideoPLayer uses the _Data folder for references in standalone, while in general./ refers to the application path
-        if (!Application.isEditor)
-        {
-                videoPath = Application.dataPath + videoPath;
-                videoPath = videoPath.Replace("/Immersive Player Desktop_Data.", "");
-                assistantVideoPath = Application.dataPath + assistantVideoPath;
-                assistantVideoPath = assistantVideoPath.Replace("/Immersive Player Desktop_Data.", "");
-        }
     }
 
     private int BoolToInt(bool val)
@@ -143,8 +157,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 
     private void LoadVideo(){
-        _selectionMenuOn.Raise(false);
-        _videoControlOff.Raise(true);
+        HideSelectionMenu();
         _loadVideo.Raise();  
 	}
 

@@ -21,12 +21,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	public bool isPaused = false;
 
 	public static ImmersiveVideoPlayer instance;
+    public bool useNativeVideoPlugin;
 
     #endregion
 
     #region private variables
 
-    private bool useNativeVideoPlugin, useAssistantVideo;
+    private bool useAssistantVideo;
     private AudioOSCController oscOut;
     private Vector3 initialTransform;
 	private VideoPlayer _videoPlayer;
@@ -36,7 +37,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 
     private float _currentRotationX, _currentRotationY;
-	private string _instructionsAudioName;
+	private string immersiveVideoPath, assistantVideoPath, assistantAudioPath;
 
 	#endregion
 
@@ -58,7 +59,23 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     #endregion
 
     #region Public methods
-    
+
+    public void SetImmersiveVideoPath(string _path)
+    {
+        immersiveVideoPath = _path;
+    }
+
+    public void SetAssistantVideoPath(string _path)
+    {
+        assistantVideoPath = _path;
+    }
+
+    public void SetAssistantAudioPath(string _path)
+    {
+        assistantAudioPath = _path;
+    }
+
+
     public void SetNativeVideoPLuginSettings(bool enableNativeVideoPlugin)
     {
         useNativeVideoPlugin = enableNativeVideoPlugin;
@@ -71,33 +88,11 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
     public void InitializeVideo()  {
 
-        if (useNativeVideoPlugin)
-        { //Unity video player
+        if (useNativeVideoPlugin) InitializeNativeVideoPluginContent();
 
-            _videoPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<VideoPlayer>();
-            _videoPlayer.playOnAwake = false;
+        else InitializeAVPlayerContent();
 
-            _videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
-            _videoPlayer.SetTargetAudioSource(0, audioSource);
-
-            if (VideoPlayerSettings.videoPath != null)
-                _videoPlayer.url = VideoPlayerSettings.videoPath;
-
-            _videoPlayer.Prepare();
-            _videoPlayer.loopPointReached += EndReached;
-        }
-
-        else
-        { //Media player
-
-            _mediaPlayer = _display.GetComponent<DisplaySelector>().selectedDisplay.GetComponent<MediaPlayer>();
-
-            if (VideoPlayerSettings.videoPath != null)
-                _mediaPlayer.OpenVideoFromFile(MediaPlayer.FileLocation.AbsolutePathOrURL, VideoPlayerSettings.videoPath, false);
-        }
-
-        _instructionsAudioName = VideoPlayerSettings.instructionsAudioName;
-        oscOut.SendOnAddress("audioname/", _instructionsAudioName);
+        oscOut.SendOnAddress("audioname/", assistantAudioPath);
 
         if (useAssistantVideo)
         {
@@ -106,13 +101,11 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
             _assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
 
-            if (VideoPlayerSettings.assistantVideoPath != null)
-                _assistantVideoPlayer.url = VideoPlayerSettings.assistantVideoPath;
+            if (assistantVideoPath != null)
+                _assistantVideoPlayer.url = assistantVideoPath;
 
             _assistantVideoPlayer.Prepare();
             _assistantVideoPlayer.loopPointReached += EndReached;
-
-
         }
 
         CalibrateAllTransforms();
@@ -227,12 +220,18 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _assistantVideoPlayer.Play();
     }
 
-	public void BackToMenu(){
+	public void HideSelectionMenu(){
+        _selectionMenuOn.Raise(false);
+        _videoControlOff.Raise(true);
+    }
+
+    public void ShowSelectionMenu()
+    {
         _selectionMenuOn.Raise(true);
         _videoControlOff.Raise(false);
     }
 
-	public bool ImmersiveContentIsReady(){
+    public bool ImmersiveContentIsReady(){
 		return _videoPlayer.isPrepared;
 	}
 		
@@ -248,17 +247,38 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     {
         initialTransform = projectorTransform;
     }
-	#endregion
+    #endregion
 
-	#region Private methods
-	private void EndReached(UnityEngine.Video.VideoPlayer vp){
-        _selectionMenuOn.Raise(true);
-        _videoControlOff.Raise(false);
+    #region Private methods
+
+    private void InitializeNativeVideoPluginContent()//Unity video player
+    {
+        _videoPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<VideoPlayer>();
+        _videoPlayer.playOnAwake = false;
+
+        _videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+        _videoPlayer.SetTargetAudioSource(0, audioSource);
+
+        if (immersiveVideoPath != null)
+            _videoPlayer.url = immersiveVideoPath;
+
+        _videoPlayer.Prepare();
+        _videoPlayer.loopPointReached += EndReached;
+    }
+
+    private void InitializeAVPlayerContent()//AvPro Media Player     
+    {
+        _mediaPlayer = _display.GetComponent<DisplaySelector>().selectedDisplay.GetComponent<MediaPlayer>();
+
+        if (immersiveVideoPath != null)
+            _mediaPlayer.OpenVideoFromFile(MediaPlayer.FileLocation.AbsolutePathOrURL, immersiveVideoPath, false);
+    }
+    private void EndReached(UnityEngine.Video.VideoPlayer vp){
+        ShowSelectionMenu();
         oscOut.Send ("stop");
 	}
 
     private IEnumerator PrepareToPlayImmersiveContent() {
-
 
         if (useAssistantVideo) {
             while (!_assistantVideoPlayer.isPrepared)

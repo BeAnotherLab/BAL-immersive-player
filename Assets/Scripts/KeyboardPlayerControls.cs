@@ -57,7 +57,7 @@ public class KeyboardPlayerControls : MonoBehaviour
 
 		if (Input.GetKeyDown ("escape")){
 			ImmersiveVideoPlayer.instance.StopImmersiveContent ();
-			ImmersiveVideoPlayer.instance.BackToMenu ();
+			ImmersiveVideoPlayer.instance.ShowSelectionMenu ();
 		}
 
 		if (Input.GetKeyDown ("space")) {
