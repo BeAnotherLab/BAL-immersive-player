@@ -1588,18 +1588,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5928012320566185474}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &912142105 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5928012320191193371, guid: 7f66dee490fa7464cb513e384850836d,
-    type: 3}
-  m_PrefabInstance: {fileID: 5928012320566185474}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136906466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe42385e17b99142b19871a6dd01aae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &934741391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,6 +1902,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1206487094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4841773970633659650, guid: 85716520435ee01408e1c59da283e4b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1427919080291565520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be02b0e326bc7543bbea380056f74b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1212220188
@@ -2897,12 +2897,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912142105}
+      objectReference: {fileID: 1206487094}
     - target: {fileID: 1427919081942325169, guid: 85716520435ee01408e1c59da283e4b5,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912142105}
+      objectReference: {fileID: 1206487094}
+    - target: {fileID: 1427919081942325169, guid: 85716520435ee01408e1c59da283e4b5,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1427919081942325169, guid: 85716520435ee01408e1c59da283e4b5,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDiselect
+      objectReference: {fileID: 0}
     - target: {fileID: 1427919082124624629, guid: 85716520435ee01408e1c59da283e4b5,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3088,6 +3098,12 @@ PrefabInstance:
       propertyPath: videoControlOn
       value: 
       objectReference: {fileID: 11400000, guid: 5e58eece82ecea744bf12577b77af7f4,
+        type: 2}
+    - target: {fileID: 5928012320191193364, guid: 7f66dee490fa7464cb513e384850836d,
+        type: 3}
+      propertyPath: videoIsReady
+      value: 
+      objectReference: {fileID: 11400000, guid: cc7263884647cf04bbca66315adae1e0,
         type: 2}
     - target: {fileID: 5928012320191193365, guid: 7f66dee490fa7464cb513e384850836d,
         type: 3}
