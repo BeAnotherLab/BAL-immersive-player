@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ScriptableObjectArchitecture;
 
 public class SmoothDisplayRotator : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SmoothDisplayRotator : MonoBehaviour
 	#region Private variables
 	private Transform _displayTransform;
 	private Transform _cameraTransform;
+    [SerializeField] BoolVariable isPaused;
 	#endregion
 
 
@@ -22,12 +24,10 @@ public class SmoothDisplayRotator : MonoBehaviour
 	#region Private variables
 	private IEnumerator RotateDisplaySmoothly(Vector3 targetRotation, float rotationStartTime, float rotationDuration){
 
-		bool pause;
 		float timeCount = 0;
 
 		while (timeCount < rotationStartTime) {
-			pause = ImmersiveVideoPlayer.instance.isPaused;
-			if (!pause) 
+			if (!isPaused) 
 				timeCount += Time.fixedDeltaTime;
 			yield return null;
 		}
@@ -37,9 +37,8 @@ public class SmoothDisplayRotator : MonoBehaviour
 		float durationCount = 0;
 
 		//ISSUE! Quaternion.Lerp completes full range before reaching one
-		while (durationCount < rotationDuration) {
-			pause =  ImmersiveVideoPlayer.instance.isPaused;
-			if (!pause) {
+		while (durationCount < rotationDuration) {	
+			if (!isPaused) {
 				durationCount += Time.fixedDeltaTime;
 				_displayTransform.rotation = Quaternion.Lerp (_displayTransform.rotation, Quaternion.Euler(new Vector3(targetRotation.x, targetRotation.y, 0f)), durationCount/rotationDuration);
 				_cameraTransform.rotation = Quaternion.Lerp (_cameraTransform.rotation, Quaternion.Euler(new Vector3(0f, 0f, targetRotation.z)), durationCount/rotationDuration);

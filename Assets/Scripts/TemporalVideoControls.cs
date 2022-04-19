@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using ScriptableObjectArchitecture;
 
 public class TemporalVideoControls : MonoBehaviour
 {
@@ -10,32 +11,28 @@ public class TemporalVideoControls : MonoBehaviour
 	[HideInInspector]
 	public bool sliderIsinteracting;
 
-	public static TemporalVideoControls instance;
+	//public static TemporalVideoControls instance;
     #endregion
 
     #region Public variables
-    private bool useNativeVideoPlugin;
+    [SerializeField] private bool useNativeVideoPlugin;
+
     #endregion
 
 
     #region Unity methods
-    void Awake()
-    {
-		if (instance == null)
-			instance = this;
-    }
-
+    /*
     // Update is called once per frame
     private void UpdateTemporalControls()//temporal fix
     {
-		if (ImmersiveVideoPlayer.instance.isPlaying && !sliderIsinteracting)
+		if (isPlaying && !sliderIsinteracting)
 			ImmersiveVideoUIController.instance.UpdateTimeText(ImmersiveVideoPlayer.instance.ElapsedTime ().ToString("F2") + " of " + ImmersiveVideoPlayer.instance.TotalTime ());
 
 		if(!sliderIsinteracting)
 			ImmersiveVideoUIController.instance.timeSlider.value = ImmersiveVideoPlayer.instance.ElapsedTime() / ImmersiveVideoPlayer.instance.TotalTime ();
     }
     #endregion
-
+    
     #region Public methods
     public void SetNativePluginSettings(bool enableNativeVideoPlugin)
     {
@@ -53,7 +50,7 @@ public class TemporalVideoControls : MonoBehaviour
 		sliderIsinteracting = true;
 	}
 
-
+    
 	public void OnStop(){
 		ImmersiveVideoUIController.instance.timeSlider.value = 0f;
 		ImmersiveVideoUIController.instance.UpdateTimeText( "0 of " + ImmersiveVideoPlayer.instance.TotalTime ());
@@ -82,7 +79,7 @@ public class TemporalVideoControls : MonoBehaviour
 		    }
 
 		ImmersiveVideoUIController.instance.UpdateTimeText( "0 of " + ImmersiveVideoPlayer.instance.TotalTime ());
-	}
+	}*/
 	#endregion
-			
+
 }

@@ -15,11 +15,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
     public GameObject _display;
 
-    [HideInInspector]
-	public bool isPlaying = false;
-	[HideInInspector]
-	public bool isPaused = false;
-
 	public static ImmersiveVideoPlayer instance;
     public bool useNativeVideoPlugin;
 
@@ -33,7 +28,10 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	private VideoPlayer _videoPlayer;
     private VideoPlayer _assistantVideoPlayer;
     private MediaPlayer _mediaPlayer;
-    [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff;
+    [SerializeField] private BoolGameEvent selectionMenuOn, videoControlOn;
+    [SerializeField] private GameEvent videoIsReady;
+    [SerializeField] private BoolVariable isPlaying, isPaused;
+    [SerializeField] private FloatVariable elapsedTime, totalTime;
 
 
     private float _currentRotationX, _currentRotationY;
@@ -45,16 +43,13 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 	#region monobehavior methods
 
 	void Awake () {
-		if (instance == null)
-			instance = this;
-
-		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);
-		oscOut = (AudioOSCController)FindObjectOfType(typeof(AudioOSCController));
-	}
-
-	void Update(){
-
-	}
+		//if (instance == null)
+			//instance = this;
+		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);//maybe move elsewhere
+		oscOut = (AudioOSCController)FindObjectOfType(typeof(AudioOSCController));//same
+        isPlaying.Value = false;
+        isPaused.Value = false;
+    }
 
     #endregion
 
@@ -111,7 +106,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         CalibrateAllTransforms();
         // Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
     }
-
+    /*
     public int CurrentFrame () {
         if (useNativeVideoPlugin)
             return (int)_videoPlayer.frame;
@@ -126,7 +121,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             return (int)_mediaPlayer.Info.GetDurationMs();
 
     }
-
+    
 	public float ElapsedTime() {
         if (useNativeVideoPlugin)
             return (_videoPlayer.frame / _videoPlayer.frameRate);
@@ -139,7 +134,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             return (_videoPlayer.frameCount / _videoPlayer.frameRate);
         else
             return _mediaPlayer.Info.GetDurationMs()/1000;
-	}
+	}*/
 
     public void SetInitialTransform(Vector3 rotation)
     {
@@ -147,10 +142,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     }
 
 	public void UpdateProjectorTransform(Vector3 rotation){// float pitch, float yaw, float roll
-		//_display.transform.Rotate(pitch, 0f, 0f, Space.Self);
-		//_display.transform.Rotate(0f, yaw, 0f, Space.World); 
-
-		//cameraParentTransform.transform.rotation *= Quaternion.AngleAxis (roll, cameraParentTransform.GetChild (0).forward);
 
         _display.transform.Rotate(rotation, Space.Self);
         _display.transform.Rotate(rotation, Space.World);
@@ -162,18 +153,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		StartCoroutine(PrepareToPlayImmersiveContent ());
 	}
 
-	public void GoToFrame(int frameToSeek){
-		oscOut.Send ("stop");
-
-        Debug.Log ("Stoped assistant Audio Player, seek is not supported");
-
-        if (useNativeVideoPlugin)
-            _videoPlayer.frame = frameToSeek;
-
-        else
-            _mediaPlayer.Control.Seek(frameToSeek);
-	}
-
 	public void StopImmersiveContent(){
         if (useNativeVideoPlugin) {
             _videoPlayer.frame = 0;
@@ -183,12 +162,10 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         else {
             _mediaPlayer.Stop();
             _mediaPlayer.Control.Seek(0f);
-             }
+        }
 
         oscOut.Send("stop");
-		isPlaying = false;
-
-
+		isPlaying.Value = false;
 
         if (useAssistantVideo)
             _assistantVideoPlayer.Pause();
@@ -201,7 +178,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _mediaPlayer.Pause();
 
         oscOut.Send("pause");
-		isPaused = true;
+		isPaused.Value = true;
 
         if (useAssistantVideo)
             _assistantVideoPlayer.Pause();
@@ -214,21 +191,21 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _mediaPlayer.Play();
 
         oscOut.Send("resume");
-		isPaused = false;
+		isPaused.Value = false;
 
         if (useAssistantVideo)
             _assistantVideoPlayer.Play();
     }
 
 	public void HideSelectionMenu(){
-        _selectionMenuOn.Raise(false);
-        _videoControlOff.Raise(true);
+        selectionMenuOn.Raise(false);
+        videoControlOn.Raise(true);
     }
 
     public void ShowSelectionMenu()
     {
-        _selectionMenuOn.Raise(true);
-        _videoControlOff.Raise(false);
+        selectionMenuOn.Raise(true);
+        videoControlOn.Raise(false);
     }
 
     public bool ImmersiveContentIsReady(){
@@ -284,7 +261,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             while (!_assistantVideoPlayer.isPrepared)
             {
                 yield return null;
-                Debug.Log("waiting for assistant video");
             }
         }       
 
@@ -309,7 +285,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         }
 
         oscOut.Send ("play");
-		isPlaying = true;       
+		isPlaying.Value = true;
+        videoIsReady.Raise();
 
         if (useAssistantVideo)
            _assistantVideoPlayer.Play();

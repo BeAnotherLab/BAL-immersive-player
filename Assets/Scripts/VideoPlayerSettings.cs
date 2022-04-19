@@ -134,7 +134,6 @@ public class VideoPlayerSettings : MonoBehaviour {
 
     private void InitialSettings()
     {
-
         libraryFolderName = "./" + libraryFolderName + "/";
         assistantVideoFolderName = "./" + assistantVideoFolderName + "/";//add ./ before when not in standalone
     }
