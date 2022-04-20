@@ -432,88 +432,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left: {fileID: 109498377}
   right: {fileID: 1583896812}
---- !u!1 &444435391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2235025305850077516, guid: 0ea83060059d1eb4d921314d55c6a08b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2235025306227348890}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &444435392 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2235025305850077506, guid: 0ea83060059d1eb4d921314d55c6a08b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2235025306227348890}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444435391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745ba056d6ea13a49a983adbaf1f6039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &444435393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444435391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 791e3eca91bfc2e41b38477d0ecfaf1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showDebugFields: 0
-  _enableGizmoDebugging: 1
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
-  _event: {fileID: 11400000, guid: 5e58eece82ecea744bf12577b77af7f4, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 444435392}
-        m_MethodName: AvailKeyboardControls
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _debugValue: 0
---- !u!114 &444435394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444435391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _showDebugFields: 0
-  _enableGizmoDebugging: 1
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 11400000, guid: b43446d3bfb4b19469ae96220b0bae6d,
-    type: 2}
-  _event: {fileID: 11400000, guid: b43446d3bfb4b19469ae96220b0bae6d, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 444435392}
-        m_MethodName: RunWhenSomethingHappens
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &461969981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,7 +1828,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1427919080291565520}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1666208478}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4be02b0e326bc7543bbea380056f74b5, type: 3}
@@ -2327,6 +2245,44 @@ MonoBehaviour:
       - m_Target: {fileID: 2041642578}
         m_MethodName: InitialRotation
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _debugValue: 0
+--- !u!1 &1666208478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1427919082178765811, guid: 85716520435ee01408e1c59da283e4b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1427919080291565520}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1666208479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666208478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791e3eca91bfc2e41b38477d0ecfaf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 5e9958a6006a7934fa7d1ce6502e1ff6, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1206487094}
+        m_MethodName: OnInitializeUI
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2983,11 +2939,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4294630497137320293, guid: 85716520435ee01408e1c59da283e4b5,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CallPlayPauseEvent
+      objectReference: {fileID: 0}
     - target: {fileID: 4841773970633659650, guid: 85716520435ee01408e1c59da283e4b5,
         type: 3}
       propertyPath: _displaySelector
       value: 
       objectReference: {fileID: 497758107}
+    - target: {fileID: 7042032692096029510, guid: 85716520435ee01408e1c59da283e4b5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CallStopEvent
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85716520435ee01408e1c59da283e4b5, type: 3}
 --- !u!1001 &2235025306227348890

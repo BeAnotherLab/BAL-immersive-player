@@ -7,7 +7,6 @@ using ScriptableObjectArchitecture;
 public class KeyboardPlayerControls : MonoBehaviour
 {
 
-
     #region private variables
     private bool playbackAvailable;
     [SerializeField] private float rotationAcceleration;
@@ -54,7 +53,6 @@ public class KeyboardPlayerControls : MonoBehaviour
 
 		    if (Input.GetKeyDown ("return")) {
                 stopPlayback.Raise();
-			    //TemporalVideoControls.instance.OnStop ();
 		    }
 
 		    if (Input.GetKeyDown ("escape")){

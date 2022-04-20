@@ -14,6 +14,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
 	public Text rotationText;
 	public Text elapsedTimeText;
 	public Slider timeSlider;
+    public Toggle playToggle;
     public DisplaySelector _displaySelector;
     public bool useNativeVideoPlugin = false;
 
@@ -31,6 +32,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
     private MediaPlayer mediaPlayer;
     private VideoPlayer videoPlayer;
     [SerializeField] private BoolVariable isPlaying, isPaused;
+    [SerializeField] private GameEvent stopPlayback, startPlayback, pausePlayback;
 
     #endregion
 
@@ -114,7 +116,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
         InvokeRepeating("UpdateTemporalControls", 0f, 0.2f);//temporal fix
     }
 
-    public void OnSelect()
+    public void OnSelectTimeSlider()
     {
         timeSliderIsInteracting = true;
     }
@@ -130,9 +132,44 @@ public class ImmersiveVideoUIController : MonoBehaviour
             mediaPlayer.Control.Seek(0);
 
         elapsedTimeText.text = "0 of " + TotalTime();
+
+        playToggle.isOn = false;
     }
 
-    public void OnDiselect()
+    public void OnStart()
+    {
+        playToggle.isOn = true;
+    }
+
+    public void CallStopEvent()
+    {
+        Debug.Log("should call stopPlayback event");
+        stopPlayback.Raise();     
+    }
+
+    public void CallPlayPauseEvent(bool toggleOn)
+    {
+        Image playImage = playToggle.image;// GetComponentInChildren(typeof(Image)) as Image;
+
+        if (toggleOn)
+        {
+            playImage.color = new Color(0f, 0f, 0f, 0f);
+            startPlayback.Raise();
+
+        }
+        else {
+            playImage.color = new Color(1f, 1f, 1f, 1f);
+            pausePlayback.Raise();
+        }
+    }
+
+    public void OnInitializeUI()
+    {
+        playToggle.isOn = false;
+    }
+
+
+    public void OnDiselectTimeSlider()
     {
         GoToFrame((int)(timeSlider.value* TotalFrames()));
         StartCoroutine(WaitForFrame());
