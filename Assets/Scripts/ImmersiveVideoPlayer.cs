@@ -103,8 +103,9 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         {
             _assistantVideoPlayer = AssistantVideoPlayer.instance.assistantVideoObject.GetComponent<VideoPlayer>();
             _assistantVideoPlayer.playOnAwake = false;
-            _assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
-            _assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
+            _assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
+            //_assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
+            _assistantVideoPlayer.SetDirectAudioMute(0, true);
 
             if (VideoPlayerSettings.assistantVideoPath != null)
                 _assistantVideoPlayer.url = VideoPlayerSettings.assistantVideoPath;
