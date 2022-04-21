@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5928012320191193365}
   - component: {fileID: 5928012320191193364}
-  - component: {fileID: 5928012320191193371}
   - component: {fileID: 5928012320191193368}
   - component: {fileID: 5928012320191193369}
   - component: {fileID: 5928012320191193370}
@@ -57,23 +56,11 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   _display: {fileID: 0}
   useNativeVideoPlugin: 0
-  _selectionMenuOn: {fileID: 11400000, guid: 5e9958a6006a7934fa7d1ce6502e1ff6, type: 2}
-  _videoControlOff: {fileID: 11400000, guid: 5e58eece82ecea744bf12577b77af7f4, type: 2}
+  selectionMenuOn: {fileID: 0}
+  videoControlOn: {fileID: 0}
+  videoIsReady: {fileID: 0}
   isPlaying: {fileID: 11400000, guid: 540aba719730c6f468040e44fffe0a0c, type: 2}
   isPaused: {fileID: 11400000, guid: 81a60baa0cf58b7459de2ecda0661ed3, type: 2}
---- !u!114 &5928012320191193371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928012320191193367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe42385e17b99142b19871a6dd01aae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sliderIsinteracting: 0
 --- !u!114 &5928012320191193368
 MonoBehaviour:
   m_ObjectHideFlags: 0
