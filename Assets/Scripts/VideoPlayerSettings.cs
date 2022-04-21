@@ -74,7 +74,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 
         assistantAudioPath.Raise(_fileName);
         immersiveVideoPath.Raise(_immersiveVideoPath);
-        assistantAudioPath.Raise(_assistantVideoPath);
+        assistantVideoPath.Raise(_assistantVideoPath);
 
         LoadVideo(); 
     }

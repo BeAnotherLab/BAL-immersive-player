@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using RenderHeads.Media.AVProVideo;
@@ -20,51 +21,44 @@ public class ImmersiveVideoUIController : MonoBehaviour
 
 	public static ImmersiveVideoUIController instance;
 
-	[HideInInspector]
-	public bool timeSliderIsInteracting;
-
 	#endregion
 
 	#region Private variables
 	//private DisplaySelector _dpSelector;
 	private Transform _dpTransform;
 	private Transform _cameraTransform;
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer, assistantMediaPlayer;
     private VideoPlayer videoPlayer;
-    [SerializeField] private BoolVariable isPlaying, isPaused;
+    private bool timeSliderIsInteracting, useAssistantVideo;
+    [SerializeField] private BoolGameEvent selectionMenuOn, VideoMenuOn;
     [SerializeField] private GameEvent stopPlayback, startPlayback, pausePlayback;
 
     #endregion
 
     #region Unity methods
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        videoPlayer = _displaySelector.selectedDisplay.GetComponent<VideoPlayer>();
-        mediaPlayer = _displaySelector.selectedDisplay.GetComponent<MediaPlayer>();
-        _dpTransform = _displaySelector.selectedDisplay.transform;
-		_cameraTransform = GameObject.FindGameObjectWithTag ("MainCamera").transform;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-		UpdateRotationText ();
-    }
-    
-    private void UpdateTemporalControls()//temporal fix
-    {
-        if (isPlaying && !timeSliderIsInteracting)
-            elapsedTimeText.text = ElapsedTime().ToString("F2") + " of " + TotalTime();
-
-        if (!timeSliderIsInteracting)
-            timeSlider.value = ElapsedTime() / TotalTime();
-    }
-
     #endregion
 
     #region Private variables
+    private string TimeLabel()
+    {
+        string _elapsedInMinutes = TimeSpan.FromSeconds(ElapsedTime()).Minutes.ToString("00") + ":" +
+            TimeSpan.FromSeconds(ElapsedTime()).Seconds.ToString("00") + ":" +
+            TimeSpan.FromSeconds(ElapsedTime()).Milliseconds.ToString("000");
+
+        string _totalInMinutes = TimeSpan.FromSeconds(TotalTime()).Minutes.ToString("00") + ":" +
+            TimeSpan.FromSeconds(TotalTime()).Seconds.ToString("00") + ":" +
+            TimeSpan.FromSeconds(TotalTime()).Milliseconds.ToString("000");
+
+        return _elapsedInMinutes + " of " + _totalInMinutes;
+    }
+
+    private string RotationLabel()
+    {
+        return "Pitch: " + _dpTransform.rotation.eulerAngles.x.ToString() +
+            "\nYaw: " + _dpTransform.rotation.eulerAngles.y.ToString() +
+            "\nRoll: " + _cameraTransform.eulerAngles.z.ToString();
+    }
+
     private float ElapsedTime()
     {
         if (useNativeVideoPlugin)
@@ -99,21 +93,61 @@ public class ImmersiveVideoUIController : MonoBehaviour
     #endregion
 
     #region Private methods
+    private void UpdateControls()
+    {
+        elapsedTimeText.text = TimeLabel();
+        rotationText.text = RotationLabel();
 
-    private void UpdateRotationText(){
-		rotationText.text = "Pitch: " + _dpTransform.rotation.eulerAngles.x.ToString () +
-			"\nYaw: " + _dpTransform.rotation.eulerAngles.y.ToString () +
-			"\nRoll: " + _cameraTransform.eulerAngles.z.ToString ();
-	}
+        if (!timeSliderIsInteracting)
+            timeSlider.value = ElapsedTime() / TotalTime();
+    }
 
+    private IEnumerator WaitToInitControls()
+    {
+        yield return new WaitForSeconds(0.2f);//wait for a moment for video to be loaded, not best way
+        elapsedTimeText.text = TimeLabel();
+        rotationText.text = RotationLabel();
+
+        if (!timeSliderIsInteracting)
+            timeSlider.value = 0;
+    }
+
+    private IEnumerator WaitForFrame()
+    {
+        yield return new WaitForSeconds(0.5f);
+        timeSliderIsInteracting = false;
+    }
+
+    private void GoToFrame(int frameToSeek)
+    {
+        //oscOut.Send("stop");
+        Debug.Log("Seek is not supported for assistant audio player");
+
+        if (useNativeVideoPlugin)
+            videoPlayer.frame = frameToSeek;
+        else
+            mediaPlayer.Control.Seek(frameToSeek);
+
+        if (useAssistantVideo)
+            assistantMediaPlayer.Control.Seek(frameToSeek);
+
+        //if (useAssistantVideo)
+
+
+    }
     #endregion
 
     #region Public methods
 
-    public void InitializeVideoControls()
+    public void SetAssistantVideoSettings(bool setAssistantVideo)
     {
-        timeSliderIsInteracting = false;
-        InvokeRepeating("UpdateTemporalControls", 0f, 0.2f);//temporal fix
+        useAssistantVideo = setAssistantVideo;
+    }
+
+    public void StartVideoControlUpdate()
+    {
+        //timeSliderIsInteracting = false;;
+        InvokeRepeating("UpdateControls", 0f, 0.1f);//temporal fix
     }
 
     public void OnSelectTimeSlider()
@@ -143,19 +177,17 @@ public class ImmersiveVideoUIController : MonoBehaviour
 
     public void CallStopEvent()
     {
-        Debug.Log("should call stopPlayback event");
         stopPlayback.Raise();     
     }
 
     public void CallPlayPauseEvent(bool toggleOn)
     {
-        Image playImage = playToggle.image;// GetComponentInChildren(typeof(Image)) as Image;
+        Image playImage = playToggle.image;
 
         if (toggleOn)
         {
             playImage.color = new Color(0f, 0f, 0f, 0f);
             startPlayback.Raise();
-
         }
         else {
             playImage.color = new Color(1f, 1f, 1f, 1f);
@@ -163,36 +195,34 @@ public class ImmersiveVideoUIController : MonoBehaviour
         }
     }
 
-    public void OnInitializeUI()
+    public void OnInitializeVideoUI()
     {
+        videoPlayer = _displaySelector.selectedDisplay.GetComponent<VideoPlayer>();
+        mediaPlayer = _displaySelector.selectedDisplay.GetComponent<MediaPlayer>();
+        assistantMediaPlayer = _displaySelector.fullsphere.GetComponent<MediaPlayer>();
+        _dpTransform = _displaySelector.selectedDisplay.transform;
+        _cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
+
         playToggle.isOn = false;
+
+        StartCoroutine(WaitToInitControls());
     }
 
+    public void OnQuitVideoUI()
+    {
+        CancelInvoke();
+    }
+
+    public void BackToSelectionMenu()
+    {
+        selectionMenuOn.Raise(true);
+        VideoMenuOn.Raise(false);
+    }
 
     public void OnDiselectTimeSlider()
     {
         GoToFrame((int)(timeSlider.value* TotalFrames()));
         StartCoroutine(WaitForFrame());
     }
-    #endregion
-
-    #region Private methods
-    private IEnumerator WaitForFrame()
-    {
-        yield return new WaitForSeconds(0.5f);
-        timeSliderIsInteracting = false;
-    }
-
-    private void GoToFrame(int frameToSeek)
-    {
-        //oscOut.Send("stop");
-        Debug.Log("Seek is not supported for assistant audio player");
-
-        if (useNativeVideoPlugin)
-            videoPlayer.frame = frameToSeek;
-        else
-            mediaPlayer.Control.Seek(frameToSeek);
-    }
-
     #endregion
 }

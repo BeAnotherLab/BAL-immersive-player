@@ -6,8 +6,7 @@ public class DisplaySelector : MonoBehaviour
 {
     
     #region Public variables
-    public GameObject semisphere;
-    public GameObject fullsphere;
+    public GameObject semisphere, fullsphere, assistantplane;
 
     [HideInInspector]
     public GameObject selectedDisplay;

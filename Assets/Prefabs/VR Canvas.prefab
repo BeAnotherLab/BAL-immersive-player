@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 3376338810204214103}
   - component: {fileID: 3376338810204214096}
   - component: {fileID: 326009348722672938}
+  - component: {fileID: 6043116349250624649}
   m_Layer: 5
   m_Name: VR Canvas
   m_TagString: Untagged
@@ -335,3 +336,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afcde3abdd29124ea6c2bf5d7898801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6043116349250624649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3376338810204214097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791e3eca91bfc2e41b38477d0ecfaf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 5e9958a6006a7934fa7d1ce6502e1ff6, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 326009348722672938}
+        m_MethodName: Show
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _debugValue: 0

@@ -82,7 +82,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     public void InitializeVideo()  {
 
         if (useNativeVideoPlugin) InitializeNativeVideoPluginContent();
-
         else InitializeAVPlayerContent();
 
         oscOut.SendOnAddress("audioname/", assistantAudioPath);
@@ -94,11 +93,12 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
             _assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
 
-            if (assistantVideoPath != null)
+            if (assistantVideoPath != null) { 
                 _assistantVideoPlayer.url = assistantVideoPath;
 
-            _assistantVideoPlayer.Prepare();
-            _assistantVideoPlayer.loopPointReached += EndReached;
+                _assistantVideoPlayer.Prepare();
+                _assistantVideoPlayer.loopPointReached += EndReached;
+            }
         }
 
         CalibrateAllTransforms();
@@ -137,8 +137,11 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		isPlaying.Value = false;
 
         if (useAssistantVideo)
+        {
+            _assistantVideoPlayer.frame = 0;
             _assistantVideoPlayer.Pause();
-	}
+        }
+    }
 
 	public void PauseImmersiveContent(){
         if (useNativeVideoPlugin)
