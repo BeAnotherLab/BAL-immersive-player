@@ -31,8 +31,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     [SerializeField] private BoolGameEvent selectionMenuOn, videoControlOn;
     [SerializeField] private GameEvent videoIsReady;
     [SerializeField] private BoolVariable isPlaying, isPaused;
-    [SerializeField] private FloatVariable elapsedTime, totalTime;
-
 
     private float _currentRotationX, _currentRotationY;
 	private string immersiveVideoPath, assistantVideoPath, assistantAudioPath;
@@ -106,35 +104,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         CalibrateAllTransforms();
         // Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
     }
-    /*
-    public int CurrentFrame () {
-        if (useNativeVideoPlugin)
-            return (int)_videoPlayer.frame;
-        else
-            return (int)_mediaPlayer.Control.GetCurrentTimeMs();
-	}
-
-	public int TotalFrames() {
-        if (useNativeVideoPlugin)
-            return (int) _videoPlayer.frameCount;
-        else
-            return (int)_mediaPlayer.Info.GetDurationMs();
-
-    }
-    
-	public float ElapsedTime() {
-        if (useNativeVideoPlugin)
-            return (_videoPlayer.frame / _videoPlayer.frameRate);
-        else
-            return _mediaPlayer.Control.GetCurrentTimeMs()/1000;
-    }
-
-	public float TotalTime(){
-        if (useNativeVideoPlugin)
-            return (_videoPlayer.frameCount / _videoPlayer.frameRate);
-        else
-            return _mediaPlayer.Info.GetDurationMs()/1000;
-	}*/
 
     public void SetInitialTransform(Vector3 rotation)
     {
