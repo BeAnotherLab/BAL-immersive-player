@@ -5,9 +5,12 @@ using ScriptableObjectArchitecture;
 
 public class SmoothDisplayRotator : MonoBehaviour
 {
+    #region Public variables
+    public GameObject displays;
+    #endregion
 
-	#region Private variables
-	private Transform _displayTransform;
+    #region Private variables
+    private Transform _displayTransform;
 	private Transform _cameraTransform;
     [SerializeField] BoolVariable isPaused;
 	#endregion
@@ -15,7 +18,7 @@ public class SmoothDisplayRotator : MonoBehaviour
 
 	#region Public Methods
 	public void InitializeSmoothRotation(Vector3 targetRotation, float rotationStartTime, float rotationDuration){
-		_displayTransform = DisplaySelector.instance.gameObject.transform;
+		_displayTransform = displays.gameObject.transform;
 		_cameraTransform = ImmersiveVideoPlayer.instance.cameraParentTransform;
 		StartCoroutine(RotateDisplaySmoothly(targetRotation, rotationStartTime, rotationDuration));
 	}

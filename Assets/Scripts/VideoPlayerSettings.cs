@@ -20,8 +20,6 @@ public class VideoPlayerSettings : MonoBehaviour {
     [SerializeField] private StringGameEvent immersiveVideoPath, assistantVideoPath, assistantAudioPath;
 
     public Vector3GameEvent initialProjectorRotation;
-	//public static string videoPath, assistantVideoPath;
-	//public static Vector3 initialTiltConfiguration;
 	public static string instructionsAudioName;
 	#endregion
 

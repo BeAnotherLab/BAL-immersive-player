@@ -88,7 +88,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
         if (useAssistantVideo)
         {
-            _assistantVideoPlayer = AssistantVideoPlayer.instance.assistantVideoObject.GetComponent<VideoPlayer>();
+           
+            _assistantVideoPlayer = _display.GetComponent<DisplaySettings>().assistantPlane.GetComponentInChildren(typeof(VideoPlayer)) as VideoPlayer;
             _assistantVideoPlayer.playOnAwake = false;
             _assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
             _assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
@@ -187,9 +188,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	public void CalibrateAllTransforms(){
 		UnityEngine.XR.InputTracking.Recenter ();
-        _display.transform.rotation = Quaternion.Euler(initialTransform);//initialTransform.x, initialTransform.y, 0f);
+        _display.transform.rotation = Quaternion.Euler(initialTransform);
         cameraParentTransform.transform.rotation = Quaternion.Euler (0f, 0f, initialTransform.z);
-        Debug.Log ("the inital transform is " + initialTransform);
     }
 
     public void UpdateInitialTransform(Vector3 projectorTransform)
@@ -202,7 +202,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
     private void InitializeNativeVideoPluginContent()//Unity video player
     {
-        _videoPlayer = DisplaySelector.instance.selectedDisplay.GetComponent<VideoPlayer>();
+        _videoPlayer = _display.GetComponent<DisplaySettings>().selectedDisplay.GetComponent<VideoPlayer>();//eventually change to SOA
         _videoPlayer.playOnAwake = false;
 
         _videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
@@ -217,7 +217,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
     private void InitializeAVPlayerContent()//AvPro Media Player     
     {
-        _mediaPlayer = _display.GetComponent<DisplaySelector>().selectedDisplay.GetComponent<MediaPlayer>();
+        _mediaPlayer = _display.GetComponent<DisplaySettings>().selectedDisplay.GetComponent<MediaPlayer>();//eventually change to SOA
 
         if (immersiveVideoPath != null)
             _mediaPlayer.OpenVideoFromFile(MediaPlayer.FileLocation.AbsolutePathOrURL, immersiveVideoPath, false);

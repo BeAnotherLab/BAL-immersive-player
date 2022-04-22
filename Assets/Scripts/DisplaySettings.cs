@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ScriptableObjectArchitecture;
 
-public class DisplaySelector : MonoBehaviour
+public class DisplaySettings : MonoBehaviour
 {
     
     #region Public variables
-    public GameObject semisphere, fullsphere, assistantplane;
+    public GameObject semisphere, fullsphere, assistantPlane;
 
     [HideInInspector]
-    public GameObject selectedDisplay;
-
-    public static DisplaySelector instance;
+    public GameObject selectedDisplay;//eventually change to scriptable object architecture.
 
     #endregion
 
@@ -42,6 +41,23 @@ public class DisplaySelector : MonoBehaviour
             selectedDisplay = semisphere;
         }
 
+    }
+
+    public void SetAssistantVideoSettings(bool enableAssistantVideo)
+    {
+
+        Camera assistantVideoCamera = assistantPlane.GetComponent<Camera>();
+
+        if (enableAssistantVideo)
+        {
+            assistantPlane.SetActive(true);
+            assistantVideoCamera.enabled = true;         
+        }
+        else
+        {
+            assistantPlane.SetActive(false);
+            assistantVideoCamera.enabled = false;
+        }
     }
     #endregion
 }

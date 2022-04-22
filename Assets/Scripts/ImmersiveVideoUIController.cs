@@ -16,7 +16,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
 	public Text elapsedTimeText;
 	public Slider timeSlider;
     public Toggle playToggle;
-    public DisplaySelector _displaySelector;
+    public DisplaySettings _displaySelector;
     public bool useNativeVideoPlugin = false;
 
 	public static ImmersiveVideoUIController instance;
