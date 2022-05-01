@@ -6,12 +6,16 @@ using ScriptableObjectArchitecture;
 public class DisplaySettings : MonoBehaviour
 {
     
-    #region Public variables
+    #region Public 
     public GameObject semisphere, fullsphere, assistantPlane;
 
     [HideInInspector]
     public GameObject selectedDisplay;//eventually change to scriptable object architecture.
 
+    #endregion
+
+    #region Private variables
+    private string assistantVideoPath;
     #endregion
 
     #region Monobehavior Methods
@@ -43,16 +47,22 @@ public class DisplaySettings : MonoBehaviour
 
     }
 
+    public void SetAssistantVideoPath(string _path)
+    {
+        assistantVideoPath = _path;
+    }
+
     public void SetAssistantVideoSettings(bool enableAssistantVideo)
     {
 
         Camera assistantVideoCamera = assistantPlane.GetComponent<Camera>();
 
-        if (enableAssistantVideo)
+        if (enableAssistantVideo && assistantVideoPath != null)
         {
             assistantPlane.SetActive(true);
-            assistantVideoCamera.enabled = true;         
+            assistantVideoCamera.enabled = true;
         }
+
         else
         {
             assistantPlane.SetActive(false);

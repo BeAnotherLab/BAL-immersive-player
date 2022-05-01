@@ -142,6 +142,7 @@ MonoBehaviour:
   semisphere: {fileID: 2440585454430707478}
   fullsphere: {fileID: 2440585454162221130}
   assistantPlane: {fileID: 2440585455120968032}
+  assistantVideoPath: {fileID: 11400000, guid: 3e19f1f30852d23458b13b4db3a1c6f9, type: 2}
   selectedDisplay: {fileID: 0}
 --- !u!114 &2440585453565199521
 MonoBehaviour:

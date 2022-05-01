@@ -18,6 +18,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
     public Toggle playToggle;
     public DisplaySettings _displaySelector;
     public bool useNativeVideoPlugin = false;
+    public Text noAssistantVideoLabel;
 
 	public static ImmersiveVideoUIController instance;
 
@@ -30,6 +31,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
     private MediaPlayer mediaPlayer, assistantMediaPlayer;
     private VideoPlayer videoPlayer;
     private bool timeSliderIsInteracting, useAssistantVideo;
+    private string assistantVideoPath;
     [SerializeField] private BoolGameEvent selectionMenuOn, VideoMenuOn;
     [SerializeField] private GameEvent stopPlayback, startPlayback, pausePlayback;
 
@@ -118,6 +120,22 @@ public class ImmersiveVideoUIController : MonoBehaviour
         timeSliderIsInteracting = false;
     }
 
+    private IEnumerator ShowPathErrorLabelCoroutine()
+    {
+        Color fadeColor = new Color(0.77f,0.76f,0.87f,1);
+        float timeAtStart = 0;
+
+        while (timeAtStart < 5)
+        {
+            timeAtStart += Time.deltaTime;
+            fadeColor.a = 1-(timeAtStart / 5f);
+            noAssistantVideoLabel.color = fadeColor;
+
+            yield return null;
+        }
+
+    }
+
     private void GoToFrame(int frameToSeek)
     {
         //oscOut.Send("stop");
@@ -128,11 +146,8 @@ public class ImmersiveVideoUIController : MonoBehaviour
         else
             mediaPlayer.Control.Seek(frameToSeek);
 
-        if (useAssistantVideo)
+        if (useAssistantVideo && assistantVideoPath != null)
             assistantMediaPlayer.Control.Seek(frameToSeek);
-
-        //if (useAssistantVideo)
-
 
     }
     #endregion
@@ -143,6 +158,8 @@ public class ImmersiveVideoUIController : MonoBehaviour
     {
         useAssistantVideo = setAssistantVideo;
     }
+
+
 
     public void StartVideoControlUpdate()
     {
@@ -195,6 +212,11 @@ public class ImmersiveVideoUIController : MonoBehaviour
         }
     }
 
+    public void ShowPathErrorLabel()
+    {
+        StartCoroutine(ShowPathErrorLabelCoroutine());
+    }
+
     public void OnInitializeVideoUI()
     {
         videoPlayer = _displaySelector.selectedDisplay.GetComponent<VideoPlayer>();
@@ -223,6 +245,11 @@ public class ImmersiveVideoUIController : MonoBehaviour
     {
         GoToFrame((int)(timeSlider.value* TotalFrames()));
         StartCoroutine(WaitForFrame());
+    }
+
+    public void SetAssistantVideoPath(string _path)
+    {
+        assistantVideoPath = _path;
     }
     #endregion
 }

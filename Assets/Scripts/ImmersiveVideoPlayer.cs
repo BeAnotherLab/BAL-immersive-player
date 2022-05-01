@@ -29,7 +29,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     private VideoPlayer _assistantVideoPlayer;
     private MediaPlayer _mediaPlayer;
     [SerializeField] private BoolGameEvent selectionMenuOn, videoControlOn;
-    [SerializeField] private GameEvent videoIsReady;
+    [SerializeField] private GameEvent videoIsReady, showPathNotFoundLabel;
     [SerializeField] private BoolVariable isPlaying, isPaused;
 
     private float _currentRotationX, _currentRotationY;
@@ -68,7 +68,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         assistantAudioPath = _path;
     }
 
-
     public void SetNativeVideoPLuginSettings(bool enableNativeVideoPlugin)
     {
         useNativeVideoPlugin = enableNativeVideoPlugin;
@@ -86,21 +85,22 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
         oscOut.SendOnAddress("audioname/", assistantAudioPath);
 
-        if (useAssistantVideo)
+        if (useAssistantVideo && assistantVideoPath != null)
         {
-           
+
             _assistantVideoPlayer = _display.GetComponent<DisplaySettings>().assistantPlane.GetComponentInChildren(typeof(VideoPlayer)) as VideoPlayer;
             _assistantVideoPlayer.playOnAwake = false;
             _assistantVideoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
             _assistantVideoPlayer.SetTargetAudioSource(0, audioSource);
 
-            if (assistantVideoPath != null) { 
-                _assistantVideoPlayer.url = assistantVideoPath;
+            _assistantVideoPlayer.url = assistantVideoPath;
 
-                _assistantVideoPlayer.Prepare();
-                _assistantVideoPlayer.loopPointReached += EndReached;
-            }
+            _assistantVideoPlayer.Prepare();
+            _assistantVideoPlayer.loopPointReached += EndReached;
         }
+
+        else if (useAssistantVideo && assistantVideoPath == null)
+            showPathNotFoundLabel.Raise();
 
         CalibrateAllTransforms();
         // Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
@@ -137,7 +137,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         oscOut.Send("stop");
 		isPlaying.Value = false;
 
-        if (useAssistantVideo)
+        if (useAssistantVideo && assistantVideoPath != null)
         {
             _assistantVideoPlayer.frame = 0;
             _assistantVideoPlayer.Pause();
@@ -153,7 +153,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         oscOut.Send("pause");
 		isPaused.Value = true;
 
-        if (useAssistantVideo)
+        if (useAssistantVideo && assistantVideoPath != null)
             _assistantVideoPlayer.Pause();
     }
 
@@ -166,7 +166,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         oscOut.Send("resume");
 		isPaused.Value = false;
 
-        if (useAssistantVideo)
+        if (useAssistantVideo && assistantVideoPath != null)
             _assistantVideoPlayer.Play();
     }
 
@@ -185,7 +185,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		return _videoPlayer.isPrepared;
 	}
 		
-
 	public void CalibrateAllTransforms(){
 		UnityEngine.XR.InputTracking.Recenter ();
         _display.transform.rotation = Quaternion.Euler(initialTransform);
@@ -229,7 +228,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
     private IEnumerator PrepareToPlayImmersiveContent() {
 
-        if (useAssistantVideo) {
+        if (useAssistantVideo && assistantVideoPath != null) {
             while (!_assistantVideoPlayer.isPrepared)
             {
                 yield return null;
@@ -260,9 +259,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		isPlaying.Value = true;
         videoIsReady.Raise();
 
-        if (useAssistantVideo)
+        if (useAssistantVideo && assistantVideoPath != null)
            _assistantVideoPlayer.Play();
-
     }
 	#endregion
 }

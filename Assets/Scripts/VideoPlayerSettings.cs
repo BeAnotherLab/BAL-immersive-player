@@ -16,7 +16,7 @@ public class VideoPlayerSettings : MonoBehaviour {
     [SerializeField] private string fileFormat;
     [SerializeField] private Vector3 initialRotation;
     [SerializeField] private GameEvent _loadVideo;
-    [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff;
+    [SerializeField] private BoolGameEvent _selectionMenuOn, _videoControlOff, useAssistantVideo;
     [SerializeField] private StringGameEvent immersiveVideoPath, assistantVideoPath, assistantAudioPath;
 
     public Vector3GameEvent initialProjectorRotation;
@@ -69,6 +69,9 @@ public class VideoPlayerSettings : MonoBehaviour {
             _immersiveVideoPath = (Application.dataPath + _immersiveVideoPath).Replace("/Immersive Player Desktop_Data.", "");
             _assistantVideoPath = (Application.dataPath + assistantVideoPath).Replace("/Immersive Player Desktop_Data.", "");
         }
+
+        if (!File.Exists(_assistantVideoPath))
+            _assistantVideoPath = null;
 
         assistantAudioPath.Raise(_fileName);
         immersiveVideoPath.Raise(_immersiveVideoPath);
@@ -154,6 +157,7 @@ public class VideoPlayerSettings : MonoBehaviour {
 
 
     private void LoadVideo(){
+
         HideSelectionMenu();
         _loadVideo.Raise();  
 	}
