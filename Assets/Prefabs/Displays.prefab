@@ -142,7 +142,6 @@ MonoBehaviour:
   semisphere: {fileID: 2440585454430707478}
   fullsphere: {fileID: 2440585454162221130}
   assistantPlane: {fileID: 2440585455120968032}
-  assistantVideoPath: {fileID: 11400000, guid: 3e19f1f30852d23458b13b4db3a1c6f9, type: 2}
   selectedDisplay: {fileID: 0}
 --- !u!114 &2440585453565199521
 MonoBehaviour:
@@ -437,6 +436,7 @@ GameObject:
   - component: {fileID: 2440585454162221129}
   - component: {fileID: 2440585454162221128}
   - component: {fileID: 2440585454162221126}
+  - component: {fileID: 1188050312404716382}
   m_Layer: 0
   m_Name: Fullsphere
   m_TagString: Untagged
@@ -634,6 +634,23 @@ MonoBehaviour:
     overridePath: 0
     pathLocation: 2
     path: 
+--- !u!114 &1188050312404716382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2440585454162221130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed685e8c5f1f584aa28b32dcf9bdab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  _renderer: {fileID: 2440585454257731755}
+  _uGuiComponent: {fileID: 0}
+  _material: {fileID: 0}
+  _forceEyeMode: 0
 --- !u!1 &2440585454235451829
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +741,6 @@ GameObject:
   - component: {fileID: 2440585454257731753}
   - component: {fileID: 2440585454257731754}
   - component: {fileID: 2440585454257731755}
-  - component: {fileID: 2440585454257731751}
   - component: {fileID: 2440585454257731752}
   m_Layer: 0
   m_Name: OctahedronSphere
@@ -794,23 +810,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2440585454257731751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2440585454257731756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed685e8c5f1f584aa28b32dcf9bdab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
-  _renderer: {fileID: 2440585454257731755}
-  _uGuiComponent: {fileID: 0}
-  _material: {fileID: 0}
-  _forceEyeMode: 0
 --- !u!114 &2440585454257731752
 MonoBehaviour:
   m_ObjectHideFlags: 0
