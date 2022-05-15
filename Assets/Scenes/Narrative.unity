@@ -517,6 +517,38 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _debugValue: 0
+--- !u!114 &497758109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497758105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 9bff712832548904f915f28a9b9648ae,
+    type: 2}
+  _event: {fileID: 11400000, guid: 9bff712832548904f915f28a9b9648ae, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 497758107}
+        m_MethodName: SetDisplaySettingsUponLoad
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &497758110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,6 +663,38 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &700785084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700785076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791e3eca91bfc2e41b38477d0ecfaf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 44a2eacf6c4606142bd496ec9b32e2cf, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1206487094}
+        m_MethodName: SetAssistantVideoSettings
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _debugValue: 0
 --- !u!4 &713258199 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2235025305850077517, guid: 0ea83060059d1eb4d921314d55c6a08b,
@@ -911,48 +975,6 @@ MonoBehaviour:
   m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1150694265 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2440585454162221130, guid: 3d185cad4975b6e4c8292fb83750cef6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2440585453738814271}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1150694267 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2440585454162221126, guid: 3d185cad4975b6e4c8292fb83750cef6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2440585453738814271}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150694265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 638c870cac4da414fba921606d504407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1150694270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150694265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6d1977a52888584496b1acc7e998011, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _media: {fileID: 1150694267}
-  _defaultTexture: {fileID: 0}
-  _mesh: {fileID: 1174147617}
-  _texturePropertyName: _MainTex
-  _offset: {x: 0, y: 0}
-  _scale: {x: 1, y: 1}
---- !u!23 &1174147617 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2440585454257731755, guid: 3d185cad4975b6e4c8292fb83750cef6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2440585453738814271}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1206487094 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4841773970633659650, guid: 85716520435ee01408e1c59da283e4b5,
@@ -1664,6 +1686,11 @@ PrefabInstance:
       propertyPath: _displaySelector
       value: 
       objectReference: {fileID: 497758107}
+    - target: {fileID: 7016770493869762011, guid: 85716520435ee01408e1c59da283e4b5,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7042032692096029510, guid: 85716520435ee01408e1c59da283e4b5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1763,15 +1790,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1955321325}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1425667229}
     - target: {fileID: 1188050312404716382, guid: 3d185cad4975b6e4c8292fb83750cef6,
         type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1425667229}
-    - target: {fileID: 0}
-      propertyPath: _camera
-      value: 
-      objectReference: {fileID: 1425667229}
+    - target: {fileID: 1188050312404716382, guid: 3d185cad4975b6e4c8292fb83750cef6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2440585453565199521, guid: 3d185cad4975b6e4c8292fb83750cef6,
         type: 3}
       propertyPath: _response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -1844,18 +1876,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2440585454162221126, guid: 3d185cad4975b6e4c8292fb83750cef6,
         type: 3}
+      propertyPath: m_AutoStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440585454162221126, guid: 3d185cad4975b6e4c8292fb83750cef6,
+        type: 3}
       propertyPath: m_StereoPacking
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2440585454162221126, guid: 3d185cad4975b6e4c8292fb83750cef6,
         type: 3}
-      propertyPath: m_AutoStart
-      value: 0
+      propertyPath: m_DisplayDebugStereoColorTint
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2440585454430707475, guid: 3d185cad4975b6e4c8292fb83750cef6,
         type: 3}
       propertyPath: m_StereoPacking
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045860658925431397, guid: 3d185cad4975b6e4c8292fb83750cef6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d185cad4975b6e4c8292fb83750cef6, type: 3}
@@ -1950,17 +1992,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 934741392}
     m_Modifications:
-    - target: {fileID: 1337450199390697986, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1337450199390697986, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
-        type: 3}
-      propertyPath: _boolEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 76636ceea0b9ce24ea4956e51245a8b3,
-        type: 2}
     - target: {fileID: 2696557811351745866, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}
       propertyPath: m_Text
@@ -1998,12 +2029,6 @@ PrefabInstance:
       propertyPath: transformProjectorRotation
       value: 
       objectReference: {fileID: 11400000, guid: 14c70d9e1aef8be429e6f979e5432a75,
-        type: 2}
-    - target: {fileID: 5460231995716674361, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
-        type: 3}
-      propertyPath: useAssistantVideo
-      value: 
-      objectReference: {fileID: 11400000, guid: 44a2eacf6c4606142bd496ec9b32e2cf,
         type: 2}
     - target: {fileID: 5901420915171511852, guid: 9ea641912fa54f64a82f4cb0d88c27cc,
         type: 3}

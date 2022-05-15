@@ -17,6 +17,7 @@ public class DisplaySettings : MonoBehaviour
 
     #region Private variables
     private string assistantVideoPath;
+    private bool enableAssistantVideo;
     #endregion
 
     #region Monobehavior Methods
@@ -53,12 +54,17 @@ public class DisplaySettings : MonoBehaviour
         assistantVideoPath = _path;
     }
 
-    public void SetAssistantVideoSettings(bool enableAssistantVideo)
+    public void SetAssistantVideoSettings(bool _enableAssistantVideo)
     {
+        enableAssistantVideo = _enableAssistantVideo;
+        
+    }
 
+    public void SetDisplaySettingsUponLoad()
+    {
         Camera assistantVideoCamera = assistantPlane.GetComponent<Camera>();
 
-        if (enableAssistantVideo && assistantVideoPath != null)
+        if (enableAssistantVideo)// && assistantVideoPath != null)
         {
             assistantPlane.SetActive(true);
             assistantVideoCamera.enabled = true;
@@ -75,29 +81,24 @@ public class DisplaySettings : MonoBehaviour
     {
         MediaPlayer _semisphereMediaPlayer = semisphere.GetComponent<MediaPlayer>();
         MediaPlayer _fullSphereMediaPlayer = fullsphere.GetComponent<MediaPlayer>();
-        ApplyToMesh _fullSphereApplyToMesh = fullsphere.GetComponent<ApplyToMesh>();
-        //UpdateStereoMaterial _semisphereStereoMaterial = semisphere.GetComponent<UpdateStereoMaterial>();
-        //UpdateStereoMaterial _fullSphereStereoMaterial = semisphere.GetComponent<UpdateStereoMaterial>();
-
-        // assistantVideoCamera = assistantPlane.GetComponent<Camera>();
 
         if (enableStereo)
         {
-            Debug.Log("stereo enabled");
-            _semisphereMediaPlayer.m_StereoPacking = StereoPacking.LeftRight;
-            _fullSphereMediaPlayer.m_StereoPacking = StereoPacking.LeftRight;
-            _fullSphereApplyToMesh.ForceUpdate();
+            Debug.Log("stereo mode enabled");
+            _semisphereMediaPlayer.m_StereoPacking = StereoPacking.TopBottom;
+            _fullSphereMediaPlayer.m_StereoPacking = StereoPacking.TopBottom;
         }
 
         else
         {
-            Debug.Log("stereo disabled");
+            Debug.Log("stereo mode disabled");
             _semisphereMediaPlayer.m_StereoPacking = StereoPacking.None;
             _fullSphereMediaPlayer.m_StereoPacking = StereoPacking.None;
-            _fullSphereApplyToMesh.ForceUpdate();
-            //_semisphereStereoMaterial.
-            //_fullSphereMediaPlayer.m_StereoPacking = StereoPacking.None;
         }
+
+        fullsphere.GetComponent<ApplyToMesh>().ForceUpdate();
+        fullsphere.GetComponent<ApplyToMesh>().ForceUpdate();
+
     }
     #endregion
 }

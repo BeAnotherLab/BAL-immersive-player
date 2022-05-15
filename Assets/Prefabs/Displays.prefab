@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 2440585454162221128}
   - component: {fileID: 2440585454162221126}
   - component: {fileID: 1188050312404716382}
+  - component: {fileID: 3045860658925431397}
   m_Layer: 0
   m_Name: Fullsphere
   m_TagString: Untagged
@@ -651,6 +652,24 @@ MonoBehaviour:
   _uGuiComponent: {fileID: 0}
   _material: {fileID: 0}
   _forceEyeMode: 0
+--- !u!114 &3045860658925431397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2440585454162221130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d1977a52888584496b1acc7e998011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _media: {fileID: 2440585454162221126}
+  _defaultTexture: {fileID: 0}
+  _mesh: {fileID: 2440585454257731755}
+  _texturePropertyName: _MainTex
+  _offset: {x: 0, y: 0}
+  _scale: {x: 1, y: 1}
 --- !u!1 &2440585454235451829
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +760,6 @@ GameObject:
   - component: {fileID: 2440585454257731753}
   - component: {fileID: 2440585454257731754}
   - component: {fileID: 2440585454257731755}
-  - component: {fileID: 2440585454257731752}
   m_Layer: 0
   m_Name: OctahedronSphere
   m_TagString: Untagged
@@ -810,24 +828,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2440585454257731752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2440585454257731756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6d1977a52888584496b1acc7e998011, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _media: {fileID: 2440585454162221126}
-  _defaultTexture: {fileID: 0}
-  _mesh: {fileID: 2440585454257731755}
-  _texturePropertyName: _MainTex
-  _offset: {x: 0, y: 0}
-  _scale: {x: 1, y: 1}
 --- !u!1 &2440585454430707478
 GameObject:
   m_ObjectHideFlags: 0

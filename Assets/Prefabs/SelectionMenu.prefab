@@ -1601,7 +1601,7 @@ MonoBehaviour:
   _loadVideo: {fileID: 11400000, guid: 9bff712832548904f915f28a9b9648ae, type: 2}
   _selectionMenuOn: {fileID: 11400000, guid: 5e9958a6006a7934fa7d1ce6502e1ff6, type: 2}
   _videoControlOff: {fileID: 11400000, guid: 5e58eece82ecea744bf12577b77af7f4, type: 2}
-  useAssistantVideo: {fileID: 0}
+  useAssistantVideo: {fileID: 11400000, guid: 44a2eacf6c4606142bd496ec9b32e2cf, type: 2}
   immersiveVideoPath: {fileID: 11400000, guid: 0d4a9d9d8ab33c041b2fc7ca0c3b73e7, type: 2}
   assistantVideoPath: {fileID: 11400000, guid: 3e19f1f30852d23458b13b4db3a1c6f9, type: 2}
   assistantAudioPath: {fileID: 11400000, guid: bca9ce5e8b3c7a940adb3f2942f83525, type: 2}
@@ -2364,12 +2364,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9067314774735095638}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfca4d3fabbcd404dbf84ccfe841c5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boolEvent: {fileID: 11400000, guid: 44a2eacf6c4606142bd496ec9b32e2cf, type: 2}
+  _boolEvent: {fileID: 11400000, guid: 76636ceea0b9ce24ea4956e51245a8b3, type: 2}
 --- !u!1001 &6235383047157658451
 PrefabInstance:
   m_ObjectHideFlags: 0

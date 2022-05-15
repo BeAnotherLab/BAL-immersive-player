@@ -234,9 +234,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
                 yield return null;
             }
         }       
-
-        //else 
-        if (useNativeVideoPlugin) { 
+ 
+        if (useNativeVideoPlugin) { //for using without AV pro, has not been tested.
             while (!_videoPlayer.isPrepared) {
 			        yield return null;
 		        }
@@ -255,12 +254,15 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _mediaPlayer.Play();
         }
 
-        oscOut.Send ("play");
-		isPlaying.Value = true;
-        videoIsReady.Raise();
+        
 
         if (useAssistantVideo && assistantVideoPath != null)
-           _assistantVideoPlayer.Play();
+            _assistantVideoPlayer.Play();
+
+        //oscOut.Send ("play");
+        isPlaying.Value = true;
+        videoIsReady.Raise();
+
     }
 	#endregion
 }
