@@ -1210,6 +1210,7 @@ MonoBehaviour:
   stopPlayback: {fileID: 11400000, guid: 42541ee78bebd0242929f50b537af6e4, type: 2}
   startPlayback: {fileID: 11400000, guid: c0db8770ab01830479df157fc7bc7c12, type: 2}
   pausePlayback: {fileID: 11400000, guid: b43446d3bfb4b19469ae96220b0bae6d, type: 2}
+  resumePlayback: {fileID: 11400000, guid: 600355427131d3a4787c63f6a8f72386, type: 2}
 --- !u!114 &5791658283959357810
 MonoBehaviour:
   m_ObjectHideFlags: 0

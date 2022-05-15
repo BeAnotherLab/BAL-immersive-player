@@ -49,7 +49,7 @@ MonoBehaviour:
   calibrateAllTransforms: {fileID: 11400000, guid: e248460904cb0944da2944544f74eb9d,
     type: 2}
   stopPlayback: {fileID: 11400000, guid: 42541ee78bebd0242929f50b537af6e4, type: 2}
-  startPlayback: {fileID: 11400000, guid: c0db8770ab01830479df157fc7bc7c12, type: 2}
+  startUIPlayback: {fileID: 11400000, guid: 7820b5f30fda31048a7b1a6f04570a45, type: 2}
   pausePlayback: {fileID: 11400000, guid: b43446d3bfb4b19469ae96220b0bae6d, type: 2}
   resumePlayback: {fileID: 11400000, guid: 600355427131d3a4787c63f6a8f72386, type: 2}
   selectionMenuOn: {fileID: 11400000, guid: 5e9958a6006a7934fa7d1ce6502e1ff6, type: 2}

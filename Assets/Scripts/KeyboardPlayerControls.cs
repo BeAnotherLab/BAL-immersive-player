@@ -11,7 +11,7 @@ public class KeyboardPlayerControls : MonoBehaviour
     private bool playbackAvailable;
     [SerializeField] private float rotationAcceleration;
     [SerializeField] private Vector3GameEvent transformProjector;
-    [SerializeField] private GameEvent calibrateAllTransforms, stopPlayback, startPlayback, pausePlayback, resumePlayback;
+    [SerializeField] private GameEvent calibrateAllTransforms, stopPlayback, startUIPlayback, pausePlayback, resumePlayback;
     [SerializeField] private BoolGameEvent selectionMenuOn, videoControlOn;
     [SerializeField] private BoolVariable isPlaying, isPaused;
     #endregion
@@ -63,7 +63,7 @@ public class KeyboardPlayerControls : MonoBehaviour
 
 		    if (Input.GetKeyDown ("space")) {
                 if (!isPlaying.Value) {
-                    startPlayback.Raise();
+                    startUIPlayback.Raise();
                 }
 
                 else {

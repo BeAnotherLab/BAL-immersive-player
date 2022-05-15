@@ -30,10 +30,10 @@ public class ImmersiveVideoUIController : MonoBehaviour
 	private Transform _cameraTransform;
     private MediaPlayer mediaPlayer, assistantMediaPlayer;
     private VideoPlayer videoPlayer;
-    private bool timeSliderIsInteracting, useAssistantVideo;
+    private bool timeSliderIsInteracting, useAssistantVideo, isPlaying;
     private string assistantVideoPath;
     [SerializeField] private BoolGameEvent selectionMenuOn, VideoMenuOn;
-    [SerializeField] private GameEvent stopPlayback, startPlayback, pausePlayback;
+    [SerializeField] private GameEvent stopPlayback, startPlayback, pausePlayback, resumePlayback;
 
     #endregion
 
@@ -148,7 +148,6 @@ public class ImmersiveVideoUIController : MonoBehaviour
 
         if (useAssistantVideo && assistantVideoPath != null)
             assistantMediaPlayer.Control.Seek(frameToSeek);
-
     }
     #endregion
 
@@ -159,11 +158,8 @@ public class ImmersiveVideoUIController : MonoBehaviour
         useAssistantVideo = setAssistantVideo;
     }
 
-
-
     public void StartVideoControlUpdate()
     {
-        //timeSliderIsInteracting = false;;
         InvokeRepeating("UpdateControls", 0f, 0.1f);//temporal fix
     }
 
@@ -185,6 +181,8 @@ public class ImmersiveVideoUIController : MonoBehaviour
         elapsedTimeText.text = "0 of " + TotalTime();
 
         playToggle.isOn = false;
+
+        isPlaying = false;
     }
 
     public void OnStart()
@@ -203,8 +201,18 @@ public class ImmersiveVideoUIController : MonoBehaviour
 
         if (toggleOn)
         {
-            playImage.color = new Color(0f, 0f, 0f, 0f);
-            startPlayback.Raise();
+            if(!isPlaying) { 
+                playImage.color = new Color(0f, 0f, 0f, 0f);
+                startPlayback.Raise();
+                isPlaying = true;
+            }
+
+            else
+            {
+                playImage.color = new Color(0f, 0f, 0f, 0f);
+                resumePlayback.Raise();
+            }
+
         }
         else {
             playImage.color = new Color(1f, 1f, 1f, 1f);

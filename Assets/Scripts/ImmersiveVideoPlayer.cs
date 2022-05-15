@@ -23,7 +23,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     #region private variables
 
     private bool useAssistantVideo;
-    private AudioOSCController oscOut;
+
     private Vector3 initialTransform;
 	private VideoPlayer _videoPlayer;
     private VideoPlayer _assistantVideoPlayer;
@@ -33,7 +33,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     [SerializeField] private BoolVariable isPlaying, isPaused;
 
     private float _currentRotationX, _currentRotationY;
-	private string immersiveVideoPath, assistantVideoPath, assistantAudioPath;
+	private string immersiveVideoPath, assistantVideoPath;
 
 	#endregion
 
@@ -44,7 +44,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 		//if (instance == null)
 			//instance = this;
 		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);//maybe move elsewhere
-		oscOut = (AudioOSCController)FindObjectOfType(typeof(AudioOSCController));//same
         isPlaying.Value = false;
         isPaused.Value = false;
     }
@@ -63,11 +62,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         assistantVideoPath = _path;
     }
 
-    public void SetAssistantAudioPath(string _path)
-    {
-        assistantAudioPath = _path;
-    }
-
     public void SetNativeVideoPLuginSettings(bool enableNativeVideoPlugin)
     {
         useNativeVideoPlugin = enableNativeVideoPlugin;
@@ -82,8 +76,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
         if (useNativeVideoPlugin) InitializeNativeVideoPluginContent();
         else InitializeAVPlayerContent();
-
-        oscOut.SendOnAddress("audioname/", assistantAudioPath);
 
         if (useAssistantVideo && assistantVideoPath != null)
         {
@@ -134,7 +126,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             _mediaPlayer.Control.Seek(0f);
         }
 
-        oscOut.Send("stop");
 		isPlaying.Value = false;
 
         if (useAssistantVideo && assistantVideoPath != null)
@@ -150,7 +141,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         else
             _mediaPlayer.Pause();
 
-        oscOut.Send("pause");
 		isPaused.Value = true;
 
         if (useAssistantVideo && assistantVideoPath != null)
@@ -163,7 +153,6 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         else
             _mediaPlayer.Play();
 
-        oscOut.Send("resume");
 		isPaused.Value = false;
 
         if (useAssistantVideo && assistantVideoPath != null)
@@ -221,9 +210,8 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         if (immersiveVideoPath != null)
             _mediaPlayer.OpenVideoFromFile(MediaPlayer.FileLocation.AbsolutePathOrURL, immersiveVideoPath, false);
     }
-    private void EndReached(UnityEngine.Video.VideoPlayer vp){
+    private void EndReached(UnityEngine.Video.VideoPlayer vp){//adapt for AVpro
         ShowSelectionMenu();
-        oscOut.Send ("stop");
 	}
 
     private IEnumerator PrepareToPlayImmersiveContent() {
@@ -255,11 +243,10 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         }
 
         
-
         if (useAssistantVideo && assistantVideoPath != null)
             _assistantVideoPlayer.Play();
 
-        //oscOut.Send ("play");
+        //oscOut.Send ("play");//test timing since this osc call was removed from here.
         isPlaying.Value = true;
         videoIsReady.Raise();
 
