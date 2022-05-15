@@ -922,7 +922,7 @@ MonoBehaviour:
   m_ResampleBufferSize: 5
   m_Persistent: 0
   m_videoMapping: 0
-  m_StereoPacking: 0
+  m_StereoPacking: 1
   m_AlphaPacking: 0
   m_DisplayDebugStereoColorTint: 0
   m_FilterMode: 1
