@@ -10,12 +10,12 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	#region public variables
 
-	public Transform cameraParentTransform;
-	public AudioSource audioSource;
+	public Transform cameraParentTransform;//TODO remove and adapt for modularity
+	public AudioSource audioSource;//TODO remove and adapt for modularity
 
-    public GameObject _display;
+    public GameObject _display;//TODO remove and adapt for modularity
 
-	public static ImmersiveVideoPlayer instance;
+    public static ImmersiveVideoPlayer instance;
     public bool useNativeVideoPlugin;
 
     #endregion
@@ -29,7 +29,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     private VideoPlayer _assistantVideoPlayer;
     private MediaPlayer _mediaPlayer;
     [SerializeField] private BoolGameEvent selectionMenuOn, videoControlOn;
-    [SerializeField] private GameEvent videoIsReady, showPathNotFoundLabel;
+    [SerializeField] private GameEvent videoIsReady, showPathNotFoundLabel, videoIsOver;
     [SerializeField] private BoolVariable isPlaying, isPaused;
 
     private float _currentRotationX, _currentRotationY;
@@ -37,12 +37,9 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
 
 	#endregion
 
-
 	#region monobehavior methods
 
 	void Awake () {
-		//if (instance == null)
-			//instance = this;
 		XRDevice.SetTrackingSpaceType (TrackingSpaceType.Stationary);//maybe move elsewhere
         isPlaying.Value = false;
         isPaused.Value = false;
@@ -95,12 +92,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
             showPathNotFoundLabel.Raise();
 
         CalibrateAllTransforms();
-        // Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
-    }
-
-    public void SetInitialTransform(Vector3 rotation)
-    {
-        //initialTransform = rotation;
+        _mediaPlayer.Events.AddListener(OnVideoEvent);
     }
 
 	public void UpdateProjectorTransform(Vector3 rotation){// float pitch, float yaw, float roll
@@ -210,9 +202,29 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
         if (immersiveVideoPath != null)
             _mediaPlayer.OpenVideoFromFile(MediaPlayer.FileLocation.AbsolutePathOrURL, immersiveVideoPath, false);
     }
+
     private void EndReached(UnityEngine.Video.VideoPlayer vp){//adapt for AVpro
         ShowSelectionMenu();
 	}
+
+    public void OnVideoEvent(MediaPlayer mp, MediaPlayerEvent.EventType et, ErrorCode errorCode)
+    {
+        switch (et)
+        {
+            /*case MediaPlayerEvent.EventType.ReadyToPlay:
+                break;
+            case MediaPlayerEvent.EventType.Started:
+                break;
+            case MediaPlayerEvent.EventType.FirstFrameReady:
+                break;*/
+            case MediaPlayerEvent.EventType.FinishedPlaying:
+                ShowSelectionMenu();
+                videoIsOver.Raise();
+                break;
+        }
+
+        //Debug.Log("Event: " + et.ToString());
+    }
 
     private IEnumerator PrepareToPlayImmersiveContent() {
 

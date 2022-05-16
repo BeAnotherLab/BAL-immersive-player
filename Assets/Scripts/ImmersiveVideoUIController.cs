@@ -16,7 +16,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
 	public Text elapsedTimeText;
 	public Slider timeSlider;
     public Toggle playToggle;
-    public DisplaySettings _displaySelector;
+    public DisplaySettings _displaySelector;//TODO remove and adapt to more modular call
     public bool useNativeVideoPlugin = false;
     public Text noAssistantVideoLabel;
 
@@ -25,7 +25,6 @@ public class ImmersiveVideoUIController : MonoBehaviour
 	#endregion
 
 	#region Private variables
-	//private DisplaySelector _dpSelector;
 	private Transform _dpTransform;
 	private Transform _cameraTransform;
     private MediaPlayer mediaPlayer, assistantMediaPlayer;
@@ -106,7 +105,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
 
     private IEnumerator WaitToInitControls()
     {
-        yield return new WaitForSeconds(0.2f);//wait for a moment for video to be loaded, not best way
+        yield return new WaitForSeconds(0.2f);//wait a moment for video to be loaded, not best way
         elapsedTimeText.text = TimeLabel();
         rotationText.text = RotationLabel();
 
@@ -138,7 +137,6 @@ public class ImmersiveVideoUIController : MonoBehaviour
 
     private void GoToFrame(int frameToSeek)
     {
-        //oscOut.Send("stop");
         Debug.Log("Seek is not supported for assistant audio player");
 
         if (useNativeVideoPlugin)
@@ -225,7 +223,7 @@ public class ImmersiveVideoUIController : MonoBehaviour
         StartCoroutine(ShowPathErrorLabelCoroutine());
     }
 
-    public void OnInitializeVideoUI()
+    public void OnInitializeVideoUI()//TODO, adapt for modularity
     {
         videoPlayer = _displaySelector.selectedDisplay.GetComponent<VideoPlayer>();
         mediaPlayer = _displaySelector.selectedDisplay.GetComponent<MediaPlayer>();

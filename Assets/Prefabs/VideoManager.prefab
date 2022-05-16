@@ -64,6 +64,7 @@ MonoBehaviour:
   videoIsReady: {fileID: 11400000, guid: cc7263884647cf04bbca66315adae1e0, type: 2}
   showPathNotFoundLabel: {fileID: 11400000, guid: 5056de097b286a14c93c97bd13b8cdc1,
     type: 2}
+  videoIsOver: {fileID: 11400000, guid: 5541591c64907d54691cbf9acc07e0e5, type: 2}
   isPlaying: {fileID: 11400000, guid: 540aba719730c6f468040e44fffe0a0c, type: 2}
   isPaused: {fileID: 11400000, guid: 81a60baa0cf58b7459de2ecda0661ed3, type: 2}
 --- !u!114 &5928012320191193368
