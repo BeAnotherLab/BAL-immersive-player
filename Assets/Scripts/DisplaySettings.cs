@@ -64,7 +64,7 @@ public class DisplaySettings : MonoBehaviour
     {
         Camera assistantVideoCamera = assistantPlane.GetComponent<Camera>();
 
-        if (enableAssistantVideo)// && assistantVideoPath != null)
+        if (enableAssistantVideo && assistantVideoPath != null)
         {
             assistantPlane.SetActive(true);
             assistantVideoCamera.enabled = true;

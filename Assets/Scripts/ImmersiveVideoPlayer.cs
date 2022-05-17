@@ -16,7 +16,7 @@ public class ImmersiveVideoPlayer : MonoBehaviour {
     public GameObject _display;//TODO remove and adapt for modularity
 
     public static ImmersiveVideoPlayer instance;
-    public bool useNativeVideoPlugin;
+    public bool useNativeVideoPlugin = false;
 
     #endregion
 
