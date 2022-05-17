@@ -66,12 +66,8 @@ public class VideoPlayerSettings : MonoBehaviour {
         //VideoPlayer.url in ImmersiveVideoPLayer uses the _Data folder for references in standalone, while in general./ refers to the application path
         if (!Application.isEditor)
         {
-            Debug.Log("video path assistant before" + _assistantVideoPath);
-            //_assistantVideoPath = _assistantVideoPath.Replace("./", "/");
             _immersiveVideoPath = (Application.dataPath + _immersiveVideoPath).Replace("/Library of Ourselves Desktop_Data.", "");
             _assistantVideoPath = (Application.dataPath + _assistantVideoPath).Replace("/Library of Ourselves Desktop_Data.", "");
-            Debug.Log("video path assistant after" + _assistantVideoPath);
-           
         }
 
         if (!File.Exists(_assistantVideoPath))
