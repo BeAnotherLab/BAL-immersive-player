@@ -1290,9 +1290,9 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 11400000, guid: c0db8770ab01830479df157fc7bc7c12,
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 7820b5f30fda31048a7b1a6f04570a45,
     type: 2}
-  _event: {fileID: 11400000, guid: c0db8770ab01830479df157fc7bc7c12, type: 2}
+  _event: {fileID: 11400000, guid: 7820b5f30fda31048a7b1a6f04570a45, type: 2}
   _response:
     m_PersistentCalls:
       m_Calls:

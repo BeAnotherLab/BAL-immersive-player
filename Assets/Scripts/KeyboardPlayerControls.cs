@@ -59,6 +59,9 @@ public class KeyboardPlayerControls : MonoBehaviour
                 stopPlayback.Raise();
                 selectionMenuOn.Raise(true);
                 videoControlOn.Raise(false);
+
+                if(isPaused.Value == true)
+                    isPaused.Value = false;
             }
 
 		    if (Input.GetKeyDown ("space")) {
