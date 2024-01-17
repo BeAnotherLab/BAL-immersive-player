@@ -31,9 +31,11 @@ public class VideoPlayerSettings : MonoBehaviour {
         ShowSelectionMenu();
 
         //Creates a button for each file.
+
         foreach (string file in System.IO.Directory.GetFiles(libraryFolderName, "*." + fileFormat))
 			CreateButton (file);
-	}
+
+    }
 	#endregion
 
 
@@ -66,8 +68,8 @@ public class VideoPlayerSettings : MonoBehaviour {
         //VideoPlayer.url in ImmersiveVideoPLayer uses the _Data folder for references in standalone, while in general./ refers to the application path
         if (!Application.isEditor)
         {
-            _immersiveVideoPath = (Application.dataPath + _immersiveVideoPath).Replace("/Library of Ourselves Desktop_Data.", "");
-            _assistantVideoPath = (Application.dataPath + _assistantVideoPath).Replace("/Library of Ourselves Desktop_Data.", "");
+            _immersiveVideoPath = (Application.dataPath + _immersiveVideoPath).Replace("/MISS-U_Data.", "");
+            _assistantVideoPath = (Application.dataPath + _assistantVideoPath).Replace("/MISS-U_Data.", "");
         }
 
         if (!File.Exists(_assistantVideoPath))
@@ -101,9 +103,10 @@ public class VideoPlayerSettings : MonoBehaviour {
     }
 
 	public void CreateButton(string file){
-		
-		string _fileName = Path.GetFileNameWithoutExtension (file);
-		GameObject newButton = Instantiate (buttonPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
+
+        string _fileName = Path.GetFileNameWithoutExtension(file);
+
+        GameObject newButton = Instantiate (buttonPrefab, new Vector3 (0, 0, 0), Quaternion.identity);
 		newButton.transform.SetParent (canvasParent, false);
 
 		Text newButtonText = newButton.GetComponentInChildren<Text> () as Text;
